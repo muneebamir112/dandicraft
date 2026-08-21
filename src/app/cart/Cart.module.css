@@ -98,6 +98,12 @@
   transition: all var(--transition-fast);
 }
 
+.cartItem:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
+}
+
 .cartItemMoqError {
   border-color: var(--error);
   background-color: var(--error-bg);

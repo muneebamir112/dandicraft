@@ -306,11 +306,13 @@
   background-color: var(--white);
   border: 2px solid var(--border-light);
   color: var(--medium-text);
+  transition: all var(--transition-fast);
 }
 
 .swatchItem:hover {
   border-color: var(--primary-light);
   color: var(--primary);
+  transform: scale(1.03);
 }
 
 .swatchActive {
@@ -318,6 +320,7 @@
   border-color: var(--primary);
   color: var(--primary-deep);
   font-weight: 700;
+  transform: scale(1.05);
 }
 
 /* Image Uploader */
@@ -373,6 +376,7 @@
 
 .addonLabel:hover {
   border-color: var(--primary-light);
+  transform: translateX(4px);
 }
 
 .addonLabelChecked {
