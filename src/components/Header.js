@@ -11,15 +11,11 @@ export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const categories = [
-    { name: "Paint-by-Number", slug: "paint-by-number" },
-    { name: "Washable", slug: "washable-paint-by-number" },
-    { name: "Custom Canvas", slug: "custom" },
-    { name: "Plaster", slug: "plaster" },
-    { name: "Stuff-a-Bear", slug: "stuff-a-bear" },
-    { name: "Supplies", slug: "paint-and-supplies" },
-    { name: "Photo Pillows", slug: "photo-pillows" },
-    { name: "CandleArt", slug: "candleart" }
+  const navLinks = [
+    { name: "Shop", path: "/shop" },
+    { name: "FAQ", path: "/faq" },
+    { name: "Policies", path: "/shipping-returns" },
+    { name: "Contact", path: "/contact" }
   ];
 
   return (
@@ -63,15 +59,15 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <nav className={styles.desktopNav}>
-              {categories.map((cat) => {
-                const isActive = pathname === `/shop/${cat.slug}` || (pathname === "/" && cat.slug === "paint-by-number");
+              {navLinks.map((link) => {
+                const isActive = pathname === link.path || (link.path !== '/' && pathname.startsWith(link.path));
                 return (
                   <Link
-                    key={cat.slug}
-                    href={`/shop/${cat.slug}`}
+                    key={link.name}
+                    href={link.path}
                     className={`${styles.navLink} ${isActive ? styles.navLinkActive : ""}`}
                   >
-                    {cat.name}
+                    {link.name}
                   </Link>
                 );
               })}
@@ -117,16 +113,16 @@ export default function Header() {
         <div className={styles.mobileNav}>
           <div className="container">
             <div className={styles.mobileNavLinks}>
-              {categories.map((cat) => {
-                const isActive = pathname === `/shop/${cat.slug}`;
+              {navLinks.map((link) => {
+                const isActive = pathname === link.path || (link.path !== '/' && pathname.startsWith(link.path));
                 return (
                   <Link
-                    key={cat.slug}
-                    href={`/shop/${cat.slug}`}
+                    key={link.name}
+                    href={link.path}
                     className={`${styles.mobileNavLink} ${isActive ? styles.mobileNavLinkActive : ""}`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {cat.name}
+                    {link.name}
                   </Link>
                 );
               })}
