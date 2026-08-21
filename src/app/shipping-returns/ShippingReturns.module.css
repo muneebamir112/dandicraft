@@ -1,0 +1,127 @@
+.policyContainer {
+  width: 100%;
+}
+
+/* Policy Banner */
+.policyBanner {
+  background: linear-gradient(135deg, var(--primary-deep) 0%, var(--primary) 100%);
+  color: var(--white);
+  padding: 60px 0 70px;
+}
+
+.bannerSubtitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.bannerTitle {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.bannerText {
+  font-size: 1.05rem;
+  color: var(--primary-accent);
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+/* Policy Grid Layout */
+.policyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.policyCard {
+  background-color: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.policyCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid var(--border-light);
+  padding-bottom: 16px;
+}
+
+.cardIcon {
+  font-size: 2.2rem;
+}
+
+.cardHeader h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--dark-text);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cardBody h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-deep);
+}
+
+.cardBody p {
+  color: var(--medium-text);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.cardBody strong {
+  color: var(--dark-text);
+}
+
+.policyFooterLink {
+  text-align: center;
+  background-color: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 30px;
+  box-shadow: var(--shadow-sm);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.policyFooterLink p {
+  color: var(--muted-text);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+  .policyGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .policyCard {
+    padding: 24px;
+  }
+}

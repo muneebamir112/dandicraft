@@ -1,0 +1,146 @@
+.footer {
+  background-color: var(--primary-deep);
+  color: var(--white);
+  padding: 60px 0 30px;
+  margin-top: auto;
+  border-top: 4px solid var(--secondary);
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr 1.2fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.columnLarge {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.logoText {
+  color: var(--white);
+}
+
+.logoAlt {
+  color: var(--secondary);
+}
+
+.description {
+  color: var(--primary-accent);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.title {
+  color: var(--white);
+  font-size: 1.15rem;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.linksList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.linksList a {
+  color: var(--primary-accent);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.linksList a:hover {
+  color: var(--white);
+  padding-left: 4px;
+}
+
+.contactList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary-accent);
+  font-size: 0.95rem;
+}
+
+.contactItem a {
+  color: var(--primary-accent);
+}
+
+.contactItem a:hover {
+  color: var(--white);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  color: var(--secondary);
+  flex-shrink: 0;
+}
+
+/* Bottom Bar */
+.bottomBar {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: var(--primary-accent);
+}
+
+.safetyDisclaimer {
+  font-size: 0.85rem;
+  color: var(--primary-light);
+  max-width: 500px;
+}
+
+/* Responsive Rules */
+@media (max-width: 1024px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .bottomBar {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+}

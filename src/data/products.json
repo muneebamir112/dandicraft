@@ -1,0 +1,325 @@
+[
+  {
+    "id": "acrylic-paint-by-number",
+    "slug": "acrylic-paint-by-number",
+    "name": "Acrylic Paint-by-Number Kit",
+    "category": "Paint-by-Number",
+    "price": 30.00,
+    "description": "Unleash your inner artist with our premium Acrylic Paint-by-Number kits. Each kit comes complete with a high-quality canvas, numbered acrylic paint pots, and a set of professional brushes. Ideal for all skill levels.",
+    "hasUpload": false,
+    "options": [
+      {
+        "name": "Design Style",
+        "type": "swatch",
+        "values": ["Sunset Beach", "Forest Cabin", "Floral Bouquet", "Mystic Mountain", "Cosmic Galaxy"]
+      }
+    ],
+    "addons": [
+      {
+        "name": "Professional Brush Set",
+        "price": 3.00,
+        "description": "Upgraded synthetic paint brushes in 3 different sizes."
+      }
+    ]
+  },
+  {
+    "id": "custom-paint-by-number",
+    "slug": "custom-paint-by-number",
+    "name": "Custom Paint-by-Number Canvas",
+    "category": "Custom",
+    "price": 30.00,
+    "description": "Transform your favorite personal photo into a custom paint-by-number canvas! Upload your photo, and we will translate it into a custom canvas with a matching numbered paint kit.",
+    "hasUpload": true,
+    "options": [
+      {
+        "name": "Canvas Size",
+        "type": "select",
+        "values": ["12x16 Inch", "16x20 Inch"]
+      }
+    ],
+    "addons": [
+      {
+        "name": "Professional Brush Set",
+        "price": 3.00,
+        "description": "Upgraded synthetic paint brushes in 3 different sizes."
+      }
+    ]
+  },
+  {
+    "id": "custom-diamond-art",
+    "slug": "custom-diamond-art",
+    "name": "Custom Diamond Art",
+    "category": "Custom",
+    "price": 25.00,
+    "description": "Create a sparkling masterpiece from your own photograph. Upload your photo, and we'll create a custom adhesive canvas and supply all the diamonds and toolkits needed to complete your stunning diamond painting.",
+    "hasUpload": true,
+    "options": [
+      {
+        "name": "Canvas Size",
+        "type": "select",
+        "values": ["12x16 Inch", "16x20 Inch"]
+      }
+    ],
+    "addons": []
+  },
+  {
+    "id": "washable-paint-by-number",
+    "slug": "washable-paint-by-number",
+    "name": "Washable Paint-by-Number",
+    "category": "Washable Paint-by-Number",
+    "price": 12.00,
+    "description": "Fun, mess-free crafting for children! These kits include canvases outlined with adorable designs. Designed to coordinate with the Crayola 18-color washable paint set (sold separately). Note: This kit does not include paint.",
+    "hasUpload": false,
+    "options": [
+      {
+        "name": "Design Style",
+        "type": "swatch",
+        "values": ["Happy Dinosaur", "Magic Unicorn", "Safari Lion", "Deep Sea Turtle"]
+      }
+    ],
+    "addons": [
+      {
+        "name": "Crayola 18-Color Washable Paint Set",
+        "price": 6.00,
+        "description": "Non-toxic, washable paint set from Crayola."
+      },
+      {
+        "name": "Paintbrush Set",
+        "price": 1.00,
+        "description": "Standard pack of 2 brushes."
+      }
+    ]
+  },
+  {
+    "id": "stuff-a-bear-mini",
+    "slug": "stuff-a-bear-mini",
+    "name": "8\" Mini Bear Kit",
+    "category": "Stuff-a-Bear",
+    "price": 10.00,
+    "description": "Our mini stuff-a-bear kits are perfect for birthday parties, camps, and school activities! Each kit comes with an 8\" plush animal shell, premium fiber stuffing, a wishing star, and an official birth certificate.",
+    "hasUpload": false,
+    "options": [
+      {
+        "name": "Animal Style",
+        "type": "swatch",
+        "values": ["Bulldog", "Teddy Bear", "Unicorn", "Playful Puppy", "Monkey"]
+      }
+    ],
+    "addons": [
+      {
+        "name": "White Mini T-Shirt",
+        "price": 3.00,
+        "description": "A white plush t-shirt to decorate."
+      },
+      {
+        "name": "Fabric Markers (6 Pack)",
+        "price": 6.00,
+        "description": "Six permanent colorful fabric markers."
+      }
+    ]
+  },
+  {
+    "id": "stuff-a-bear-large",
+    "slug": "stuff-a-bear-large",
+    "name": "16\" Large Bear Kit",
+    "category": "Stuff-a-Bear",
+    "price": 15.00,
+    "description": "A full-sized, huggable plush friend! Our 16\" stuff-a-bear kits contain a large plush skin, high-loft cloud stuffing, a wishing star, and a birth certificate. Easy zip-and-tie closure (no sewing required).",
+    "hasUpload": false,
+    "options": [
+      {
+        "name": "Animal Style",
+        "type": "swatch",
+        "values": ["Husky", "Brown Bear", "Cozy Koala", "Dinosaur", "Magical Dragon"]
+      }
+    ],
+    "addons": [
+      {
+        "name": "White Large T-Shirt",
+        "price": 4.00,
+        "description": "A large white plush t-shirt to decorate."
+      },
+      {
+        "name": "Fabric Markers (6 Pack)",
+        "price": 6.00,
+        "description": "Six permanent colorful fabric markers."
+      }
+    ]
+  },
+  {
+    "id": "plaster-box-chocolates",
+    "slug": "plaster-box-chocolates",
+    "name": "Box of Chocolates Plaster Set",
+    "category": "Plaster",
+    "price": 0.00,
+    "description": "A beautiful 3D plaster box of chocolates. Note: Plaster pieces are not available for direct online checkout. Please contact info@dandicraft.com to purchase.",
+    "hasUpload": false,
+    "requiresQuote": true,
+    "options": [],
+    "addons": []
+  },
+  {
+    "id": "plaster-3d-figures",
+    "slug": "plaster-3d-figures",
+    "name": "Assorted Plaster 3D Figures",
+    "category": "Plaster",
+    "price": 0.00,
+    "description": "Fun-shaped 3D plaster figures ready for painting. Perfect for camp activities and children's parties. Contact info@dandicraft.com for catalogs, listings, and pricing details.",
+    "hasUpload": false,
+    "requiresQuote": true,
+    "options": [],
+    "addons": []
+  },
+  {
+    "id": "acrylic-paint-set",
+    "slug": "acrylic-paint-set",
+    "name": "Acrylic Paint Set (6 Colors)",
+    "category": "Paint and Supplies",
+    "price": 3.00,
+    "description": "A high-quality 6-color acrylic paint set. Safe, certified non-toxic, and perfect for plaster crafts or paint-by-numbers.",
+    "hasUpload": false,
+    "options": [],
+    "addons": []
+  },
+  {
+    "id": "crayola-washable-paint-set",
+    "slug": "crayola-washable-paint-set",
+    "name": "Crayola 18-Color Paint Set",
+    "category": "Paint and Supplies",
+    "price": 6.00,
+    "description": "The official Crayola 18-Color Washable Paint Set. Coordinates perfectly with our Washable Paint-by-Number series. Washable from skin and most clothing.",
+    "hasUpload": false,
+    "options": [],
+    "addons": []
+  },
+  {
+    "id": "paintbrushes-basic",
+    "slug": "paintbrushes-basic",
+    "name": "Standard Paintbrushes Pack",
+    "category": "Paint and Supplies",
+    "price": 1.00,
+    "description": "A basic pack of 2 paintbrushes, ideal for quick touch-ups or small crafting sessions.",
+    "hasUpload": false,
+    "options": [],
+    "addons": []
+  },
+  {
+    "id": "photo-pillows-custom",
+    "slug": "photo-pillows-custom",
+    "name": "Photo Pillow 12x12 Inch",
+    "category": "Photo Pillows",
+    "price": 18.00,
+    "description": "Create a fully personalized 12x12 inch canvas pillow shell. Upload your custom photo, drawing, or team logo. Perfect for camp activities, custom marking, and decorative projects. Note: Minimum order quantity of 15 pillows is required.",
+    "hasUpload": true,
+    "minQty": 15,
+    "options": [],
+    "addons": [
+      {
+        "name": "Fabric Markers (6 Pack)",
+        "price": 6.00,
+        "description": "Six colorful markers to write or color outlines on the pillow."
+      },
+      {
+        "name": "Stencil Set",
+        "price": 2.00,
+        "description": "Alphabet and shape stencils for precise decoration."
+      }
+    ]
+  },
+  {
+    "id": "candleart-libbey-4-5",
+    "slug": "candleart-libbey-4-5",
+    "name": "4.5 oz. Libbey CandleArt Kit",
+    "category": "CandleArt",
+    "price": 10.00,
+    "description": "Make your own premium jar candles! Our Libbey 4.5 oz glass jar candle kit contains quality wax granules, a wick, safety tabs, and selected scents. Safe, fun, and easy. Note: Minimum order of 6 CandleArt kits is required.",
+    "hasUpload": false,
+    "minQty": 6,
+    "options": [
+      {
+        "name": "Fragrance Scent",
+        "type": "select",
+        "values": ["Lavender Fields", "Warm Vanilla", "Spiced Apple", "Ocean Breeze", "Unscented"]
+      }
+    ],
+    "addons": [
+      {
+        "name": "Mini Crock Pot",
+        "price": 16.00,
+        "description": "Electric melting pot for easy, controlled wax melting."
+      }
+    ]
+  },
+  {
+    "id": "candleart-hex-6",
+    "slug": "candleart-hex-6",
+    "name": "6 oz. Hex CandleArt Kit",
+    "category": "CandleArt",
+    "price": 10.00,
+    "description": "Create custom candles in a stylish hexagonal 6 oz glass jar. Kit includes wax granules, wick, safety instructions, and fragrance choices. Note: Minimum order of 6 CandleArt kits is required.",
+    "hasUpload": false,
+    "minQty": 6,
+    "options": [
+      {
+        "name": "Fragrance Scent",
+        "type": "select",
+        "values": ["Lavender Fields", "Warm Vanilla", "Spiced Apple", "Ocean Breeze", "Unscented"]
+      }
+    ],
+    "addons": [
+      {
+        "name": "Mini Crock Pot",
+        "price": 16.00,
+        "description": "Electric melting pot for easy, controlled wax melting."
+      }
+    ]
+  },
+  {
+    "id": "candleart-straight-8",
+    "slug": "candleart-straight-8",
+    "name": "8 oz. Straight CandleArt Kit",
+    "category": "CandleArt",
+    "price": 13.00,
+    "description": "Classic 8 oz straight jar candle making kit. Safe for group activities, camps, and home setups. Includes premium fragrance options. Note: Minimum order of 6 CandleArt kits is required.",
+    "hasUpload": false,
+    "minQty": 6,
+    "options": [
+      {
+        "name": "Fragrance Scent",
+        "type": "select",
+        "values": ["Lavender Fields", "Warm Vanilla", "Spiced Apple", "Ocean Breeze", "Unscented"]
+      }
+    ],
+    "addons": [
+      {
+        "name": "Mini Crock Pot",
+        "price": 16.00,
+        "description": "Electric melting pot for easy, controlled wax melting."
+      }
+    ]
+  },
+  {
+    "id": "candleart-hex-9",
+    "slug": "candleart-hex-9",
+    "name": "9 oz. Hex CandleArt Kit",
+    "category": "CandleArt",
+    "price": 13.00,
+    "description": "Large hexagonal 9 oz jar candle making kit. Includes granular wax, high-quality wick, safety instructions, and customizable scents. Note: Minimum order of 6 CandleArt kits is required.",
+    "hasUpload": false,
+    "minQty": 6,
+    "options": [
+      {
+        "name": "Fragrance Scent",
+        "type": "select",
+        "values": ["Lavender Fields", "Warm Vanilla", "Spiced Apple", "Ocean Breeze", "Unscented"]
+      }
+    ],
+    "addons": [
+      {
+        "name": "Mini Crock Pot",
+        "price": 16.00,
+        "description": "Electric melting pot for easy, controlled wax melting."
+      }
+    ]
+  }
+]
