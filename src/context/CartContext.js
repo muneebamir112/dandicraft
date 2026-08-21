@@ -77,6 +77,7 @@ export const CartProvider = ({ children }) => {
             addons: selectedAddons,
             quantity: quantity,
             uploadFile: uploadFile, // base64 string or file info
+            image: product.image || "",
             minQty: product.minQty || 1,
             requiresQuote: product.requiresQuote || false
           }

@@ -66,6 +66,8 @@ export default function Cart() {
                       }}>
                         {item.uploadFile ? (
                           <img src={item.uploadFile} alt="Preview uploaded file" className={styles.itemImage} />
+                        ) : item.image ? (
+                          <img src={item.image} alt={item.name} className={styles.itemImage} />
                         ) : (
                           <span className={styles.itemImagePlaceholder}>🎨</span>
                         )}

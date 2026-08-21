@@ -94,12 +94,16 @@ export default function Shop() {
               {filteredProducts.map((prod) => (
                 <div key={prod.id} className={styles.productCard}>
                   <div className={styles.productImageWrapper}>
-                    {/* CSS Mock Image for premium graphics */}
-                    <div className={styles.productMockImage} style={{ 
-                      background: `linear-gradient(135deg, var(--primary-bg) 0%, var(--primary-accent) 100%)`
-                    }}>
-                      <span className={styles.mockText}>🎨 {prod.category}</span>
-                    </div>
+                    {prod.image ? (
+                      <img src={prod.image} alt={prod.name} className={styles.productRealImage} />
+                    ) : (
+                      /* CSS Mock Image for premium graphics */
+                      <div className={styles.productMockImage} style={{ 
+                        background: `linear-gradient(135deg, var(--primary-bg) 0%, var(--primary-accent) 100%)`
+                      }}>
+                        <span className={styles.mockText}>🎨 {prod.category}</span>
+                      </div>
+                    )}
 
                     {/* Notice Badges */}
                     {prod.requiresQuote && (

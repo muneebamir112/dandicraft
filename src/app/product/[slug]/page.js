@@ -173,6 +173,8 @@ export default function ProductDetail() {
             }}>
               {uploadFile ? (
                 <img src={uploadFile} alt="Custom upload preview" className={styles.previewImage} />
+              ) : product.image ? (
+                <img src={product.image} alt={product.name} className={styles.previewImage} />
               ) : (
                 <div className={styles.mockIllustration}>
                   <span className={styles.mockEmoji}>🎨</span>

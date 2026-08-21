@@ -1,0 +1,23 @@
+Options -Indexes
+<Files ~ '.*\..*'>
+# Apache 2.2
+<IfModule !authz_core_module>
+Order Allow,Deny
+Deny from all
+</IfModule>
+# Apache 2.4
+<IfModule authz_core_module>
+Require all Denied
+</IfModule>
+</Files>
+<FilesMatch '\.(jpg|jpeg|png|gif)$'>
+# Apache 2.2
+<IfModule !authz_core_module>
+Order Deny,Allow
+Allow from all
+</IfModule>
+# Apache 2.4
+<IfModule authz_core_module>
+Require all Granted
+</IfModule>
+</FilesMatch>

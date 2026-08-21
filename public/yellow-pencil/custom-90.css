@@ -1,0 +1,857 @@
+/*
+
+    The following CSS codes are created by the YellowPencil plugin.
+    https://yellowpencil.waspthemes.com/
+
+
+    T A B L E   O F   C O N T E N T S
+    ........................................................................
+
+    01. Global Styles
+    02. Page Template
+    03. Search Page
+    04. Product Template
+    05. "Pillows 12 x 12 Inch" Product
+    06. "4.5 oz. Libbey" Product
+    07. "6 oz. Hex" Product
+    08. "8 oz. Straight" Product
+    09. "9 oz. Hex" Product
+    10. "12 oz. Rock" Product
+    11. "Prayer in Hue" Product
+    12. "Checkout" Page
+    13. "Cart" Page
+    14. "Watermelon" Product
+    15. "Custom Diamond Art" Product
+    16. "Custom Teddy Bears" Product
+    17. "Sailboat" Product
+    18. "Bear with Balloons" Product
+    19. "Parrot" Product
+    20. "Flowers" Product
+    21. "Ice Cream" Product
+    22. "Duck" Product
+    23. "Bear" Product
+    24. "Fire Truck" Product
+    25. "Fruit Bowl" Product
+    26. "Yerushalayim" Product
+    27. "Dreidel" Product
+    28. "Modeh Ani" Product
+    29. "Chanuka icons" Product
+    30. "Torah" Product
+    31. "Menorah" Product
+    32. "Shema Yisroel" Product
+    33. "8” Bulldog" Product
+    34. "Blank pillow" Product
+    35. "Privacy Policy" Page
+    36. "TERMS &#038; CONDITIONS" Page
+    37. "Shipping &#038; Returns" Page
+
+*/
+
+
+
+/*-----------------------------------------------*/
+/*  Global Styles                                */
+/*-----------------------------------------------*/
+body .etheme-product-grid .sale-wrapper span{
+	background-color:#ff1e05;
+	font-size:19px;
+	font-family:'Alfa Slab One', display;
+	font-weight:300;
+}
+
+body h1, body h2, body h3, body h4, body h5, body h6, body .et-heading, body .title, body .page-title, body .single-product .product_title{
+	font-family: "Tahoma", sans-serif !important;
+	font-weight: 700 !important;
+}
+
+body .pbn-size-line{
+	margin-top: -4px;
+	margin-bottom: 6px;
+	display: block;
+	line-height: 1.2;
+}
+
+body .etheme-product-grid .etheme-product-grid-item .pbn-size-line{
+	font-weight:600;
+	color:#000000;
+	padding-top:8px;
+	font-size:15px;
+}
+
+body .a-center .woocommerce-breadcrumb div{
+	color:#ffffff;
+}
+
+body .variations tr .type-image{
+	border-style:solid;
+	border-width:2px;
+}
+
+body .elementor-widget-woocommerce-product-etheme_price div input[type=number]{
+	font-size:20px !important;
+}
+
+body .elementor-widget-woocommerce-product-etheme_price div span{
+	font-size:17px !important;
+}
+
+body .add-to-cart-button-stretched .etheme-add-to-cart-form form{
+	display:inline;
+}
+
+body .template-container .template-content .page-wrapper .product .elementor-element .e-con-inner .elementor-element .add-to-cart-button-stretched .elementor-widget-container .etheme-add-to-cart-form .cart .single_add_to_cart_button{
+	display:inline !important;
+}
+
+body .template-content .page-wrapper .product{
+	-webkit-transform:translatex(0px) translatey(0px);	-ms-transform:translatex(0px) translatey(0px);	transform:translatex(0px) translatey(0px);
+}
+
+body .etheme-add-to-cart-form .cart .single_add_to_cart_button{
+	margin-bottom:12px !important;
+}
+
+body.tax-product_cat.term-plaster-crafts .etheme_sidebar-widget-item:nth-child(3){
+
+	display: none !important;
+}
+
+body.tax-product_cat.term-candleart #woocommerce_layered_nav-9{
+	display: none !important;
+}
+
+body .page-wrapper .product .etheme_sidebar-widget-item:nth-child(3){
+
+	-webkit-transform:translatex(0px) translatey(0px);	-ms-transform:translatex(0px) translatey(0px);	transform:translatex(0px) translatey(0px);
+	display: none !important;
+}
+
+body .page-wrapper .elementor-location-header > .elementor-element{
+	background-color:#4d1b6e;
+}
+
+body .dokan-alert, body .dokan-alert-success, body .dokan-error, body .dokan-info, body .mc4wp-alert, body .wc-block-components-notice-banner, body .woocommerce-error, body .woocommerce-info, body .woocommerce-message, body .woocommerce-order-overview-wrapper~p{
+	background: #662e91;
+	color: var(--et_notice-color,#662e91);
+}
+
+
+
+/*-----------------------------------------------*/
+/*  Page Template                                */
+/*-----------------------------------------------*/
+body.page:not(.home) .template-content .page-wrapper .bc-effect-mouse{
+	background-color:#4d1b6e;
+}
+
+body.page:not(.home) .a-center .title span{
+	color:#ffffff;
+}
+
+body.page:not(.home) #breadcrumb{
+	color:#ffffff;
+}
+
+body.page:not(.home) #breadcrumb a{
+	color:#ffffff;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  Search Page                                  */
+/*-----------------------------------------------*/
+body.search .product_cat-plaster-crafts .etheme-product-grid-button, body.search .product_cat-plaster-crafts .product_type_external, body.search .product_cat-plaster-crafts a.button{
+	display: none !important;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  Product Template                             */
+/*-----------------------------------------------*/
+body.single-product .pewc-group-wrap .pewc-product-extra-groups li{
+	width:360px;
+}
+
+body.single-product .etheme-add-to-cart-form .variations_form .variations tbody tr .value .st-swatch-preview .type-image{
+	height:40px !important;
+}
+
+body.single-product .variations tr .type-image{
+	width:70px !important;
+}
+
+body.single-product tr .value .st-swatch-preview .subtype-square span{
+	font-size:15px;
+}
+
+body.single-product .pewc-group-wrap .pewc-group-heading-wrapper h3{
+	font-size:18px;
+	font-weight:300;
+}
+
+body.single-product .add-to-cart-button-stretched .elementor-widget-container .etheme-add-to-cart-form .variations_form .single_variation_wrap .woocommerce-variation-add-to-cart .pewc-product-extra-groups-wrap .pewc-group-wrap .pewc-group-content-wrapper .pewc-product-extra-groups .pewc-item .pewc-item-field-wrapper label{
+	width:100% !important;
+}
+
+body.single-product .pewc-product-extra-groups-wrap .pewc-total-field-wrapper p:nth-child(1){
+
+	display:none;
+}
+
+body.single-product .pewc-product-extra-groups-wrap .pewc-total-field-wrapper p:nth-child(2){
+
+	display:none;
+}
+
+body.single-product .pewc-product-extra-groups-wrap .pewc-item label{
+	min-width:280px;
+	width:280px;
+	font-weight:500 !important;
+	font-size:14px;
+	line-height:1.4em;
+}
+
+body.single-product .pewc-checkbox-form-label > span{
+	font-weight:600;
+	line-height:1.7em;
+	font-size:15px;
+}
+
+body.single-product .pewc-product-extra-groups-wrap .pewc-group-wrap ul{
+	margin-bottom:15px;
+}
+
+body.single-product .pewc-item-field-wrapper .pewc-checkbox-form-label .pewc-theme-element{
+	background-color:#a479c8 !important;
+	border-color:#662e91;
+	border-style:solid;
+	border-width:2px;
+}
+
+body.single-product .et-product-height-calculated .product-details .add_to_cart_button{
+	color:#ffffff;
+}
+
+body.single-product .swiper-slide .product .et-product-height-calculated .product-details .add_to_cart_button{
+	background-color:#662e91;
+}
+
+body.single-product .etheme-add-to-cart-form .cart .et-single-buy-now{
+	background-color:#662e91;
+}
+
+body.single-product .product .elementor-element .e-con-inner .elementor-element .add-to-cart-button-stretched .elementor-widget-container .etheme-add-to-cart-form .variations_form .single_variation_wrap .woocommerce-variation-add-to-cart .pewc-product-extra-groups-wrap .pewc-group-wrap .pewc-group-content-wrapper .pewc-product-extra-groups .pewc-item .pewc-item-field-wrapper{
+	width:441px !important;
+}
+
+body.single-product .pewc-main-price .woocommerce-Price-amount bdi{
+	color:#662e91;
+}
+
+body.single-product .pewc-product-extra-groups span .pewc-checkbox-price{
+	color:#662e91;
+	font-size:17px;
+}
+
+body.single-product .pewc-item .pewc-item-field-wrapper p{
+	line-height:1.3em !important;
+}
+
+body.single-product .pewc-group-wrap .pewc-product-extra-groups .pewc-item{
+	width:579px;
+}
+
+body.single-product .add-to-cart-button-stretched .elementor-widget-container .etheme-add-to-cart-form .variations_form .single_variation_wrap .woocommerce-variation-add-to-cart .pewc-product-extra-groups-wrap .pewc-group-wrap .pewc-group-content-wrapper .pewc-product-extra-groups .pewc-item .pewc-item-field-wrapper .pewc-checkbox-form-label{
+	width:18% !important;
+}
+
+body.single-product .pewc-product-extra-groups .pewc-item .pewc-checkbox-form-label{
+	min-width:229px;
+	margin-right:16px;
+	text-align:left;
+}
+
+body.single-product .pewc-item .pewc-item-field-image-wrapper img{
+	top:-33px !important;
+}
+
+body.single-product .pewc-product-extra-groups .pewc-item .pewc-select-wrapper{
+	font-weight:600;
+	background-color:transparent;
+	border-color:#662e91;
+}
+
+body.single-product .pewc-product-extra-groups .pewc-item select{
+	color:#000000;
+	background-image:none !important;
+}
+
+body.single-product .pewc-product-extra-groups-wrap .pewc-item p{
+	position:static;
+	margin-bottom:0px;
+	margin-top:0px;
+	padding-top:0px;
+}
+
+body.single-product .pewc-product-extra-groups-wrap .pewc-item .pewc-field-label-text{
+	font-weight:600;
+}
+
+body.single-product .pewc-product-extra-groups-wrap .pewc-item input[type=number]{
+	margin-bottom:12px;
+}
+
+body.single-product .pewc-product-extra-groups .pewc-item input[type=number]{
+	width:87px;
+}
+
+body.single-product #pewc-flat-rate-total-label{
+	visibility:hidden;
+}
+
+body.single-product #pewc-flat-rate-total{
+	visibility:hidden;
+}
+
+body.single-product .pewc-product-extra-groups .pewc-item .pewc-field-price{
+	font-weight:600;
+	font-size:16px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Pillows 12 x 12 Inch" Product               */
+/*-----------------------------------------------*/
+body.postid-1733 .cart .quantity-select select{
+	background-color:transparent;
+	color:#000000;
+	border-width:1px;
+	border-style:solid;
+	border-color:#662e91;
+}
+
+body.postid-1733 .etheme-add-to-cart-form .cart .et-single-buy-now{
+	background-color:#662e91;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "4.5 oz. Libbey" Product                     */
+/*-----------------------------------------------*/
+body.postid-1762 .cart .quantity-select select{
+	background-color:transparent;
+	color:#000000;
+	border-width:1px;
+	border-style:solid;
+	border-color:#662e91;
+}
+
+body.postid-1762 .etheme-add-to-cart-form .cart .et-single-buy-now{
+	background-color:#662e91;
+}
+
+body.postid-1762 .pewc-main-price .woocommerce-Price-amount bdi{
+	color:#662e91;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "6 oz. Hex" Product                          */
+/*-----------------------------------------------*/
+body.postid-1772 .cart .quantity-select select{
+	background-color:transparent;
+	color:#000000;
+	border-width:1px;
+	border-style:solid;
+	border-color:#662e91;
+}
+
+body.postid-1772 .etheme-add-to-cart-form .cart .et-single-buy-now{
+	background-color:#662e91;
+}
+
+body.postid-1772 .pewc-main-price .woocommerce-Price-amount bdi{
+	color:#662e91;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "8 oz. Straight" Product                     */
+/*-----------------------------------------------*/
+body.postid-1777 .cart .quantity-select select{
+	background-color:transparent;
+	color:#000000;
+	border-width:1px;
+	border-style:solid;
+	border-color:#662e91;
+}
+
+body.postid-1777 .etheme-add-to-cart-form .cart .et-single-buy-now{
+	background-color:#662e91;
+}
+
+body.postid-1777 .pewc-main-price .woocommerce-Price-amount bdi{
+	color:#662e91;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "9 oz. Hex" Product                          */
+/*-----------------------------------------------*/
+body.postid-1782 .cart .quantity-select select{
+	background-color:transparent;
+	color:#000000;
+	border-width:1px;
+	border-style:solid;
+	border-color:#662e91;
+}
+
+body.postid-1782 .etheme-add-to-cart-form .cart .et-single-buy-now{
+	background-color:#662e91;
+}
+
+body.postid-1782 .pewc-main-price .woocommerce-Price-amount bdi{
+	color:#662e91;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "12 oz. Rock" Product                        */
+/*-----------------------------------------------*/
+body.postid-1787 .cart .quantity-select select{
+	background-color:transparent;
+	color:#000000;
+	border-width:1px;
+	border-style:solid;
+	border-color:#662e91;
+}
+
+body.postid-1787 .etheme-add-to-cart-form .cart .et-single-buy-now{
+	background-color:#662e91;
+}
+
+body.postid-1787 .pewc-main-price .woocommerce-Price-amount bdi{
+	color:#662e91;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Prayer in Hue" Product                      */
+/*-----------------------------------------------*/
+body.postid-1180 .pewc-main-price .woocommerce-Price-amount bdi{
+	color:#662e91;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Checkout" Page                              */
+/*-----------------------------------------------*/
+body.page-id-13 #shipping_method li .pickup-location-address{
+	display:none;
+}
+
+body.page-id-13 #shipping_method li p{
+	display:none;
+}
+
+body.page-id-13 .etheme-elementor-cart-checkout-page-wrapper .woocommerce-billing-fields div{
+	text-align:left !important;
+}
+
+body.page-id-13 #order_review .optional{
+	display:none;
+}
+
+body.page-id-13 #order_review .tgpc-enable-checkout-gift-wrapper--label_text{
+	display:none;
+}
+
+body.page-id-13 #order_review > div:nth-child(3){
+
+	text-align:left !important;
+	-webkit-transform:translatex(29px) translatey(-40px);	-ms-transform:translatex(29px) translatey(-40px);	transform:translatex(29px) translatey(-40px);
+}
+
+body.page-id-13 .etheme-elementor-cart-checkout-page-wrapper .woocommerce-billing-fields .tgpc-enable-checkout-gift-wrapper--label_text{
+	display:none;
+}
+
+body.page-id-13 .etheme-elementor-cart-checkout-page-wrapper .woocommerce-billing-fields .optional:nth-child(5){
+
+	display:none;
+}
+
+body.page-id-13 .woocommerce-checkout-review-order-table .woocommerce-shipping-totals th{
+	color:#f9f5fe;
+}
+
+body.page-id-13 .template-container .page-wrapper{
+	background-color:#f9f5fe;
+}
+
+body.page-id-13 .variation .variation-ExtraT-Shirt .pewc-cart-item-price span{
+	display:none;
+}
+
+body.page-id-13 .variation .variation-SelectT-shirt .pewc-cart-item-price span{
+	display:none;
+}
+
+body.page-id-13 .woocommerce-checkout-review-order-table .variation-FoamABCStickers .pewc-cart-item-price span{
+	display:none;
+}
+
+body.page-id-13 .woocommerce-checkout-review-order-table .variation-HeartsStarsFoamStickers .pewc-cart-item-price span{
+	display:none;
+}
+
+body.page-id-13 .woocommerce-checkout-review-order-table .variation-60secondRecordableChip .pewc-cart-item-price span{
+	display:none;
+}
+
+body.page-id-13 .page-wrapper .row .content .etheme-elementor-checkout-form .woocommerce-NoticeGroup-checkout div .woocommerce-error li a{
+	color:#ffffff !important;
+}
+
+body.page-id-13 .woocommerce-NoticeGroup-checkout div li{
+	color:#ffffff;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Cart" Page                                  */
+/*-----------------------------------------------*/
+body.page-id-12 #shipping_method li p{
+	display:none;
+}
+
+body.page-id-12 #shipping_method li .pickup-location-address{
+	display:none;
+}
+
+body.page-id-12 .variation .variation-PersonalizewithYourLogo3pershirt15setupfee15-shirtminimum p{
+	display:none;
+}
+
+body.page-id-12 .variation .variation-ExtraT-Shirt .pewc-cart-item-price span{
+	display:none;
+}
+
+body.page-id-12 .variation .variation-SelectT-shirt .pewc-cart-item-price span{
+	display:none;
+}
+
+body.page-id-12 .cart .variation-HeartsStarsFoamStickers .pewc-cart-item-price span{
+	display:none;
+}
+
+body.page-id-12 .cart .variation-60secondRecordableChip .pewc-cart-item-price span{
+	display:none;
+}
+
+body.page-id-12 .cart .variation-FoamABCStickers .pewc-cart-item-price span{
+	display:none;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Watermelon" Product                         */
+/*-----------------------------------------------*/
+body.postid-1189 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Custom Diamond Art" Product                 */
+/*-----------------------------------------------*/
+body.postid-2584 .cart .quantity-select select{
+	background-color:transparent;
+	color:#000000;
+	border-width:1px;
+	border-style:solid;
+	border-color:#662e91;
+}
+
+body.postid-2584 .etheme-add-to-cart-form .cart .et-single-buy-now{
+	background-color:#662e91;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Custom Teddy Bears" Product                 */
+/*-----------------------------------------------*/
+body.postid-2595 .add-to-cart-button-stretched .etheme-add-to-cart-form{
+	display:none;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Sailboat" Product                           */
+/*-----------------------------------------------*/
+body.postid-2671 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Bear with Balloons" Product                 */
+/*-----------------------------------------------*/
+body.postid-2676 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Parrot" Product                             */
+/*-----------------------------------------------*/
+body.postid-2681 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Flowers" Product                            */
+/*-----------------------------------------------*/
+body.postid-2686 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Ice Cream" Product                          */
+/*-----------------------------------------------*/
+body.postid-2691 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Duck" Product                               */
+/*-----------------------------------------------*/
+body.postid-2696 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Bear" Product                               */
+/*-----------------------------------------------*/
+body.postid-2701 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Fire Truck" Product                         */
+/*-----------------------------------------------*/
+body.postid-2706 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Fruit Bowl" Product                         */
+/*-----------------------------------------------*/
+body.postid-2850 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Yerushalayim" Product                       */
+/*-----------------------------------------------*/
+body.postid-2855 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Dreidel" Product                            */
+/*-----------------------------------------------*/
+body.postid-2860 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Modeh Ani" Product                          */
+/*-----------------------------------------------*/
+body.postid-2865 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Chanuka icons" Product                      */
+/*-----------------------------------------------*/
+body.postid-2870 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Torah" Product                              */
+/*-----------------------------------------------*/
+body.postid-2875 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Menorah" Product                            */
+/*-----------------------------------------------*/
+body.postid-2880 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Shema Yisroel" Product                      */
+/*-----------------------------------------------*/
+body.postid-2885 .pewc-item .pewc-item-field-image-wrapper .attachment-thumbnail{
+	height:103px;
+	min-width:68px;
+	position:relative;
+	top:-8px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "8” Bulldog" Product                       */
+/*-----------------------------------------------*/
+body.postid-2001 .pewc-product-extra-groups .pewc-item:nth-child(7) .pewc-checkbox-price{
+	display:none;
+}
+
+body.postid-2001 .pewc-product-extra-groups .pewc-item input[type=number]{
+	margin-right:19px;
+}
+
+body.postid-2001 .pewc-product-extra-groups .pewc-item:nth-child(7) input[type=number]{
+	position:relative;
+	top:21px;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Blank pillow" Product                       */
+/*-----------------------------------------------*/
+body.postid-2993 .cart .quantity-select select{
+	background-color:transparent;
+	color:#000000;
+	border-width:1px;
+	border-style:solid;
+	border-color:#662e91;
+}
+
+body.postid-2993 .etheme-add-to-cart-form .cart .et-single-buy-now{
+	background-color:#662e91;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Privacy Policy" Page                        */
+/*-----------------------------------------------*/
+body.page-id-3 .page-wrapper .elementor-location-header > .elementor-element{
+	background-color:#4d1b6e;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "TERMS &#038; CONDITIONS" Page               */
+/*-----------------------------------------------*/
+body.page-id-3025 .page-wrapper .elementor-location-header > .elementor-element{
+	background-color:#4d1b6e;
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Shipping &#038; Returns" Page               */
+/*-----------------------------------------------*/
+body.page-id-3028 .page-wrapper .elementor-location-header > .elementor-element{
+	background-color:#4d1b6e;
+}

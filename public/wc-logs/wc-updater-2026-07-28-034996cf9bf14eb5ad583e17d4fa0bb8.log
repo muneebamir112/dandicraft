@@ -1,0 +1,5 @@
+2026-07-28T14:19:43+00:00 INFO Automatic database update triggered.
+2026-07-28T14:19:43+00:00 INFO Scheduling database updates (from 10.8.1)...
+2026-07-28T14:19:43+00:00 INFO   [10.9.0] Scheduled 'wc_update_1090_remove_task_list_reminder_bar_hidden_option'.
+2026-07-28T14:19:43+00:00 INFO   [10.9.2] Scheduled 'wc_update_10902_remove_deprecated_push_notifications_option'.
+2026-07-28T14:19:43+00:00 INFO Database updates scheduled.

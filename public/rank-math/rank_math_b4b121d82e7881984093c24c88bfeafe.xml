@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//dandicraft.com/main-sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://dandicraft.com/product-category/paint-by-number/</loc>
+		<lastmod>2025-11-23T11:34:24+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://dandicraft.com/product-category/plaster-crafts/</loc>
+		<lastmod>2025-11-23T13:48:52+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://dandicraft.com/product-category/stuff-a-bear/</loc>
+		<lastmod>2025-11-28T15:23:27+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://dandicraft.com/product-category/candleart/</loc>
+		<lastmod>2025-11-23T10:46:32+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://dandicraft.com/product-category/washable-paint-by-number/</loc>
+		<lastmod>2026-03-02T18:14:32+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://dandicraft.com/product-category/photo-pillows/</loc>
+		<lastmod>2025-11-27T19:03:07+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://dandicraft.com/product-category/paint-and-supplies/</loc>
+		<lastmod>2025-11-23T14:23:03+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://dandicraft.com/product-category/custom/</loc>
+		<lastmod>2025-11-21T16:47:12+00:00</lastmod>
+	</url>
+</urlset>

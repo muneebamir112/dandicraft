@@ -7,6 +7,7 @@
     "price": 30.00,
     "description": "Unleash your inner artist with our premium Acrylic Paint-by-Number kits. Each kit comes complete with a high-quality canvas, numbered acrylic paint pots, and a set of professional brushes. Ideal for all skill levels.",
     "hasUpload": false,
+    "image": "/2025/11/Piano-at-Sunset.jpg",
     "options": [
       {
         "name": "Design Style",
@@ -30,6 +31,7 @@
     "price": 30.00,
     "description": "Transform your favorite personal photo into a custom paint-by-number canvas! Upload your photo, and we will translate it into a custom canvas with a matching numbered paint kit.",
     "hasUpload": true,
+    "image": "/2025/11/pb.png",
     "options": [
       {
         "name": "Canvas Size",
@@ -53,6 +55,7 @@
     "price": 25.00,
     "description": "Create a sparkling masterpiece from your own photograph. Upload your photo, and we'll create a custom adhesive canvas and supply all the diamonds and toolkits needed to complete your stunning diamond painting.",
     "hasUpload": true,
+    "image": "/2025/11/piano1.png",
     "options": [
       {
         "name": "Canvas Size",
@@ -70,6 +73,7 @@
     "price": 12.00,
     "description": "Fun, mess-free crafting for children! These kits include canvases outlined with adorable designs. Designed to coordinate with the Crayola 18-color washable paint set (sold separately). Note: This kit does not include paint.",
     "hasUpload": false,
+    "image": "/2025/11/Rainbow-1.png",
     "options": [
       {
         "name": "Design Style",
@@ -98,6 +102,7 @@
     "price": 10.00,
     "description": "Our mini stuff-a-bear kits are perfect for birthday parties, camps, and school activities! Each kit comes with an 8\" plush animal shell, premium fiber stuffing, a wishing star, and an official birth certificate.",
     "hasUpload": false,
+    "image": "/2025/11/teddy-1.jpg",
     "options": [
       {
         "name": "Animal Style",
@@ -126,6 +131,7 @@
     "price": 15.00,
     "description": "A full-sized, huggable plush friend! Our 16\" stuff-a-bear kits contain a large plush skin, high-loft cloud stuffing, a wishing star, and a birth certificate. Easy zip-and-tie closure (no sewing required).",
     "hasUpload": false,
+    "image": "/2025/11/Teddy-Bear.jpg",
     "options": [
       {
         "name": "Animal Style",
@@ -155,6 +161,7 @@
     "description": "A beautiful 3D plaster box of chocolates. Note: Plaster pieces are not available for direct online checkout. Please contact info@dandicraft.com to purchase.",
     "hasUpload": false,
     "requiresQuote": true,
+    "image": "/2025/11/Quilted-Heart.png",
     "options": [],
     "addons": []
   },
@@ -167,6 +174,7 @@
     "description": "Fun-shaped 3D plaster figures ready for painting. Perfect for camp activities and children's parties. Contact info@dandicraft.com for catalogs, listings, and pricing details.",
     "hasUpload": false,
     "requiresQuote": true,
+    "image": "/2025/11/Sneaker-Pen-Holder.png",
     "options": [],
     "addons": []
   },
@@ -178,6 +186,7 @@
     "price": 3.00,
     "description": "A high-quality 6-color acrylic paint set. Safe, certified non-toxic, and perfect for plaster crafts or paint-by-numbers.",
     "hasUpload": false,
+    "image": "/2025/11/Pencil.jpg",
     "options": [],
     "addons": []
   },
@@ -189,6 +198,7 @@
     "price": 6.00,
     "description": "The official Crayola 18-Color Washable Paint Set. Coordinates perfectly with our Washable Paint-by-Number series. Washable from skin and most clothing.",
     "hasUpload": false,
+    "image": "/2025/11/Pencil.jpg",
     "options": [],
     "addons": []
   },
@@ -200,6 +210,7 @@
     "price": 1.00,
     "description": "A basic pack of 2 paintbrushes, ideal for quick touch-ups or small crafting sessions.",
     "hasUpload": false,
+    "image": "/2025/11/Roller-1.jpg",
     "options": [],
     "addons": []
   },
@@ -212,6 +223,7 @@
     "description": "Create a fully personalized 12x12 inch canvas pillow shell. Upload your custom photo, drawing, or team logo. Perfect for camp activities, custom marking, and decorative projects. Note: Minimum order quantity of 15 pillows is required.",
     "hasUpload": true,
     "minQty": 15,
+    "image": "/2025/11/pillow.jpg",
     "options": [],
     "addons": [
       {
@@ -235,6 +247,7 @@
     "description": "Make your own premium jar candles! Our Libbey 4.5 oz glass jar candle kit contains quality wax granules, a wick, safety tabs, and selected scents. Safe, fun, and easy. Note: Minimum order of 6 CandleArt kits is required.",
     "hasUpload": false,
     "minQty": 6,
+    "image": "/2025/11/pot.jpg",
     "options": [
       {
         "name": "Fragrance Scent",
@@ -259,6 +272,7 @@
     "description": "Create custom candles in a stylish hexagonal 6 oz glass jar. Kit includes wax granules, wick, safety instructions, and fragrance choices. Note: Minimum order of 6 CandleArt kits is required.",
     "hasUpload": false,
     "minQty": 6,
+    "image": "/2025/11/pot.jpg",
     "options": [
       {
         "name": "Fragrance Scent",
@@ -283,6 +297,7 @@
     "description": "Classic 8 oz straight jar candle making kit. Safe for group activities, camps, and home setups. Includes premium fragrance options. Note: Minimum order of 6 CandleArt kits is required.",
     "hasUpload": false,
     "minQty": 6,
+    "image": "/2025/11/pot.jpg",
     "options": [
       {
         "name": "Fragrance Scent",
@@ -307,6 +322,7 @@
     "description": "Large hexagonal 9 oz jar candle making kit. Includes granular wax, high-quality wick, safety instructions, and customizable scents. Note: Minimum order of 6 CandleArt kits is required.",
     "hasUpload": false,
     "minQty": 6,
+    "image": "/2025/11/pot.jpg",
     "options": [
       {
         "name": "Fragrance Scent",
