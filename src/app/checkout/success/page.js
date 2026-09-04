@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useCart } from "../../../context/CartContext";
 import styles from "../Checkout.module.css";
 
-export default function CheckoutSuccess() {
+function CheckoutSuccessContent() {
   const searchParams = useSearchParams();
   const orderNumber = searchParams.get("order_number");
   const { clearCart, isLoaded } = useCart();
@@ -59,5 +59,13 @@ export default function CheckoutSuccess() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CheckoutSuccess() {
+  return (
+    <Suspense fallback={<div className={styles.successContainer}><div className="container"><h2 style={{textAlign: 'center'}}>Loading confirmation...</h2></div></div>}>
+      <CheckoutSuccessContent />
+    </Suspense>
   );
 }
