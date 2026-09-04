@@ -15,6 +15,9 @@ function createPool() {
     queueLimit: 0,
     charset: "utf8mb4",
     decimalNumbers: true,
+    ssl: process.env.MYSQL_HOST && process.env.MYSQL_HOST !== "127.0.0.1" && process.env.MYSQL_HOST !== "localhost"
+      ? { rejectUnauthorized: false }
+      : undefined,
   });
 }
 

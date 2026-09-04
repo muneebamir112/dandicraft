@@ -18,6 +18,9 @@ async function main() {
     user: process.env.MYSQL_USER || "root",
     password: process.env.MYSQL_PASSWORD || "",
     multipleStatements: true,
+    ssl: process.env.MYSQL_HOST && process.env.MYSQL_HOST !== "127.0.0.1" && process.env.MYSQL_HOST !== "localhost"
+      ? { rejectUnauthorized: false }
+      : undefined,
   });
 
   try {
