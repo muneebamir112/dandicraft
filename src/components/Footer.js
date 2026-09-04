@@ -79,7 +79,7 @@ export default function Footer() {
         {/* Bottom Banner */}
         <div className={styles.bottomBar}>
           <p className={styles.copyright}>
-            © {currentYear} Dandicraft. All rights reserved. Made with love for creators.
+            © {currentYear} Dandicraft All Rights Reserved.
           </p>
           <div className={styles.safetyDisclaimer}>
             ⚠️ All craft items comply with standard safety benchmarks. Not suitable for children under 3 years due to small parts.
