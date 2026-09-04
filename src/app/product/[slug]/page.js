@@ -125,7 +125,6 @@ export default function ProductDetail() {
     addToCart(product, selectedOptions, selectedAddons, quantity, uploadFile);
     
     setSuccessMsg("Success! Product has been added to your shopping cart.");
-    window.scrollTo({ top: 0, behavior: "smooth" });
 
     // Clear messages after 4 seconds
     setTimeout(() => {
@@ -149,23 +148,7 @@ export default function ProductDetail() {
           <span className={styles.activeCrumb}>{product.name}</span>
         </div>
 
-        {/* Success Alert Banner */}
-        {successMsg && (
-          <div className={styles.successBanner}>
-            <div className={styles.successIcon}>✓</div>
-            <div className={styles.successContent}>
-              <p>{successMsg}</p>
-              <div className={styles.successActions}>
-                <Link href="/cart" className={styles.bannerBtnCart}>
-                  View Shopping Cart
-                </Link>
-                <Link href="/shop" className={styles.bannerBtnShop}>
-                  Continue Shopping
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
+
 
         {/* Product Layout Grid */}
         <div className={styles.layoutGrid}>
@@ -381,6 +364,24 @@ export default function ProductDetail() {
                   >
                     Add to Shopping Cart
                   </button>
+
+                  {/* Success Alert Banner */}
+                  {successMsg && (
+                    <div className={styles.successBanner} style={{ marginTop: "20px" }}>
+                      <div className={styles.successIcon}>✓</div>
+                      <div className={styles.successContent}>
+                        <p>{successMsg}</p>
+                        <div className={styles.successActions}>
+                          <Link href="/cart" className={styles.bannerBtnCart}>
+                            View Shopping Cart
+                          </Link>
+                          <Link href="/shop" className={styles.bannerBtnShop}>
+                            Continue Shopping
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </form>
             )}

@@ -47,3 +47,35 @@ CREATE TABLE IF NOT EXISTS admin_sessions (
     FOREIGN KEY (admin_user_id) REFERENCES admin_users(id) ON DELETE CASCADE,
   INDEX idx_admin_sessions_expiry (expires_at)
 );
+
+CREATE TABLE IF NOT EXISTS orders (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  order_number VARCHAR(64) NOT NULL UNIQUE,
+  customer_name VARCHAR(255) NOT NULL,
+  customer_email VARCHAR(255) NOT NULL,
+  customer_phone VARCHAR(64) NOT NULL,
+  shipping_address VARCHAR(255) NOT NULL,
+  shipping_city VARCHAR(120) NOT NULL,
+  shipping_state VARCHAR(64) NOT NULL,
+  shipping_zip VARCHAR(32) NOT NULL,
+  order_notes TEXT,
+  total_amount DECIMAL(10, 2) NOT NULL DEFAULT 0,
+  status VARCHAR(64) NOT NULL DEFAULT 'Pending Payment',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_orders_status (status),
+  INDEX idx_orders_created (created_at)
+);
+
+CREATE TABLE IF NOT EXISTS order_items (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  order_id BIGINT UNSIGNED NOT NULL,
+  product_name VARCHAR(255) NOT NULL,
+  quantity INT NOT NULL DEFAULT 1,
+  price DECIMAL(10, 2) NOT NULL DEFAULT 0,
+  options_json JSON NOT NULL,
+  addons_json JSON NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_order_items_order
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);

@@ -10,13 +10,22 @@ export default function Header() {
   const { cartCount } = useCart();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [hideDropdown, setHideDropdown] = useState(false);
+
+  const handleDropdownClick = () => {
+    setHideDropdown(true);
+    setTimeout(() => setHideDropdown(false), 150);
+  };
 
   const navLinks = [
+    { name: "Home", path: "/" },
     { name: "Shop", path: "/shop" },
     { name: "FAQ", path: "/faq" },
     { name: "Policies", path: "/shipping-returns" },
     { name: "Contact", path: "/contact" }
   ];
+
+  const isAdmin = pathname?.startsWith("/admin");
 
   return (
     <>
@@ -49,88 +58,120 @@ export default function Header() {
       <header className={styles.stickyWrapper}>
         {/* Main Header Area */}
         <div className={styles.mainHeader}>
-        <div className="container">
-          <div className={styles.mainHeaderContent}>
-            {/* Logo */}
-            <Link href="/" className={styles.logoLink}>
-              <div className={styles.logo}>
-                <span className={styles.logoText}>Dandi<span className={styles.logoAlt}>craft</span></span>
-              </div>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <nav className={styles.desktopNav}>
-              {navLinks.map((link) => {
-                const isActive = pathname === link.path || (link.path !== '/' && pathname.startsWith(link.path));
-                return (
-                  <Link
-                    key={link.name}
-                    href={link.path}
-                    className={`${styles.navLink} ${isActive ? styles.navLinkActive : ""}`}
-                  >
-                    {link.name}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            {/* Cart & Actions */}
-            <div className={styles.actions}>
-              <Link href="/cart" className={styles.cartBtn} aria-label="Shopping Cart">
-                <svg className={styles.cartIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="9" cy="21" r="1" />
-                  <circle cx="20" cy="21" r="1" />
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                </svg>
-                {cartCount > 0 && <span className={styles.cartCount}>{cartCount}</span>}
+          <div className="container">
+            <div className={styles.mainHeaderContent}>
+              {/* Logo */}
+              <Link href="/" className={styles.logoLink}>
+                <div className={styles.logo}>
+                  <span className={styles.logoText}>Dandi<span className={styles.logoAlt}>craft</span></span>
+                </div>
               </Link>
 
-              {/* Mobile Menu Button */}
-              <button
-                className={styles.mobileMenuToggle}
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Toggle Menu"
-              >
-                {mobileMenuOpen ? (
-                  <svg className={styles.toggleIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                  </svg>
-                ) : (
-                  <svg className={styles.toggleIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <line x1="3" y1="12" x2="21" y2="12" />
-                    <line x1="3" y1="6" x2="21" y2="6" />
-                    <line x1="3" y1="18" x2="21" y2="18" />
-                  </svg>
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+              {!isAdmin && (
+                <>
+                  {/* Desktop Navigation */}
+                  <nav className={styles.desktopNav}>
+                    {navLinks.map((link) => {
+                      const isActive = pathname === link.path || (link.path !== '/' && pathname.startsWith(link.path));
 
-      {/* Mobile Navigation Drawer */}
-      {mobileMenuOpen && (
-        <div className={styles.mobileNav}>
-          <div className="container">
-            <div className={styles.mobileNavLinks}>
-              {navLinks.map((link) => {
-                const isActive = pathname === link.path || (link.path !== '/' && pathname.startsWith(link.path));
-                return (
-                  <Link
-                    key={link.name}
-                    href={link.path}
-                    className={`${styles.mobileNavLink} ${isActive ? styles.mobileNavLinkActive : ""}`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                );
-              })}
+                      if (link.name === "Shop") {
+                        return (
+                          <div key={link.name} className={styles.navItemWithDropdown}>
+                            <span
+                              className={`${styles.navLink} ${isActive ? styles.navLinkActive : ""}`}
+                              style={{ display: "flex", alignItems: "center", gap: "4px", cursor: "default" }}
+                            >
+                              {link.name}
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                              </svg>
+                            </span>
+                            <div className={styles.dropdownMenu} style={hideDropdown ? { display: "none" } : {}}>
+                              <Link href="/shop" className={styles.dropdownItem} onClick={handleDropdownClick}>All Products</Link>
+                              <Link href="/shop/paint-by-number" className={styles.dropdownItem} onClick={handleDropdownClick}>Paint-by-Number</Link>
+                              <Link href="/shop/washable-paint-by-number" className={styles.dropdownItem} onClick={handleDropdownClick}>Washable</Link>
+                              <Link href="/shop/custom" className={styles.dropdownItem} onClick={handleDropdownClick}>Custom Canvas</Link>
+                              <Link href="/shop/plaster" className={styles.dropdownItem} onClick={handleDropdownClick}>Plaster</Link>
+                              <Link href="/shop/stuff-a-bear" className={styles.dropdownItem} onClick={handleDropdownClick}>Stuff-a-Bear</Link>
+                              <Link href="/shop/paint-and-supplies" className={styles.dropdownItem} onClick={handleDropdownClick}>Supplies</Link>
+                              <Link href="/shop/photo-pillows" className={styles.dropdownItem} onClick={handleDropdownClick}>Photo Pillows</Link>
+                              <Link href="/shop/candleart" className={styles.dropdownItem} onClick={handleDropdownClick}>CandleArt</Link>
+                            </div>
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <Link
+                          key={link.name}
+                          href={link.path}
+                          className={`${styles.navLink} ${isActive ? styles.navLinkActive : ""}`}
+                        >
+                          {link.name}
+                        </Link>
+                      );
+                    })}
+                  </nav>
+
+                  {/* Cart & Actions */}
+                  <div className={styles.actions}>
+                    <Link href="/cart" className={styles.cartBtn} aria-label="Shopping Cart">
+                      <svg className={styles.cartIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                      </svg>
+                      {cartCount > 0 && <span className={styles.cartCount}>{cartCount}</span>}
+                    </Link>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                      className={styles.mobileMenuToggle}
+                      onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                      aria-label="Toggle Menu"
+                    >
+                      {mobileMenuOpen ? (
+                        <svg className={styles.toggleIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <line x1="18" y1="6" x2="6" y2="18" />
+                          <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                      ) : (
+                        <svg className={styles.toggleIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <line x1="3" y1="12" x2="21" y2="12" />
+                          <line x1="3" y1="6" x2="21" y2="6" />
+                          <line x1="3" y1="18" x2="21" y2="18" />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
-      )}
+
+        {/* Mobile Navigation Drawer */}
+        {mobileMenuOpen && !isAdmin && (
+          <div className={styles.mobileNav}>
+            <div className="container">
+              <div className={styles.mobileNavLinks}>
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.path || (link.path !== '/' && pathname.startsWith(link.path));
+                  return (
+                    <Link
+                      key={link.name}
+                      href={link.path}
+                      className={`${styles.mobileNavLink} ${isActive ? styles.mobileNavLinkActive : ""}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
       </header>
     </>
   );

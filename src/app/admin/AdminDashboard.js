@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import styles from "./Admin.module.css";
 
@@ -215,6 +216,7 @@ export default function AdminDashboard({ initialProducts, admin }) {
             <p className={styles.subhead}>Signed in as {admin.name}</p>
           </div>
           <div className={styles.topActions}>
+            <Link href="/admin/orders" className={styles.secondaryButton}>View Orders</Link>
             <button className={styles.secondaryButton} onClick={logout}>Sign out</button>
             <button className={styles.primaryButton} onClick={beginNewProduct}>+ Add product</button>
           </div>

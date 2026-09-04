@@ -216,20 +216,25 @@
 }
 
 .checkIconWrapper {
-  width: 72px;
-  height: 72px;
-  background-color: var(--success-bg);
-  color: var(--success);
+  width: 90px;
+  height: 90px;
+  background-color: var(--success);
+  color: var(--white);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+  animation: scaleUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 .checkIcon {
-  width: 36px;
-  height: 36px;
+  width: 48px;
+  height: 48px;
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: drawCheck 0.5s ease-out 0.4s forwards;
 }
 
 .successTitle {
@@ -313,8 +318,18 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleUp {
+  0% { opacity: 0; transform: scale(0); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes drawCheck {
+  0% { stroke-dashoffset: 50; }
+  100% { stroke-dashoffset: 0; }
 }
 
 /* Responsive Rules */

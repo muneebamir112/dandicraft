@@ -21,22 +21,23 @@ export default function Checkout() {
     orderNotes: ""
   });
 
+  const [paymentMethod, setPaymentMethod] = useState("card");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
   const [assignedOrderNum, setAssignedOrderNum] = useState("");
 
   // Redirect if cart is empty or MOQ validation fails (only after context loads)
   useEffect(() => {
-    if (isLoaded) {
+    if (isLoaded && !orderConfirmed) {
       if (cartItems.length === 0 || !validateCartMOQ()) {
         router.push("/cart");
       }
     }
-  }, [cartItems, isLoaded, router, validateCartMOQ]);
+  }, [cartItems, isLoaded, router, validateCartMOQ, orderConfirmed]);
 
   // Check if current location details qualify for Lakewood same-day MailPak shipping
-  const isLakewoodNJ = 
-    formData.state === "NJ" && 
+  const isLakewoodNJ =
+    formData.state === "NJ" &&
     formData.city.trim().toLowerCase() === "lakewood";
 
   const handleInputChange = (e) => {
@@ -47,27 +48,51 @@ export default function Checkout() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Quick validation
-    if (!formData.fullName || !formData.email || !formData.phone || !formData.streetAddress || !formData.city || !formData.zipCode) {
-      alert("Please fill in all the required delivery fields.");
-      return;
-    }
 
-    setIsSubmitting(true);
-
-    // Simulate database order creation
-    setTimeout(() => {
-      const orderNum = `DC-${Math.floor(100000 + Math.random() * 900000)}`;
-      setAssignedOrderNum(orderNum);
-      setIsSubmitting(false);
-      setOrderConfirmed(true);
-      
-      // Clear cart items from global context
-      clearCart();
-    }, 2000);
+      // Quick validation
+      if (!formData.fullName || !formData.email || !formData.phone || !formData.streetAddress || !formData.city || !formData.zipCode) {
+        alert("Please fill in all the required delivery fields.");
+        return;
+      }
+  
+      setIsSubmitting(true);
+  
+      try {
+        const response = await fetch("/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            formData,
+            cartItems,
+            cartSubtotal,
+            paymentMethod
+          })
+        });
+  
+        const result = await response.json();
+  
+        if (response.ok && result.success) {
+          if (paymentMethod === "card" && result.checkoutUrl) {
+            // Redirect to Stripe Checkout
+            window.location.href = result.checkoutUrl;
+          } else {
+            // Cash on delivery - show success immediately
+            setAssignedOrderNum(result.orderNumber);
+            setOrderConfirmed(true);
+            clearCart();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        } else {
+          alert(result.error || "Something went wrong. Please try again.");
+        }
+      } catch (error) {
+        console.error("Checkout error:", error);
+        alert("A network error occurred. Please try again later.");
+      } finally {
+        setIsSubmitting(false);
+      }
   };
 
   if (!isLoaded || (cartItems.length === 0 && !orderConfirmed)) {
@@ -89,14 +114,14 @@ export default function Checkout() {
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
-            
-            <h1 className={styles.successTitle}>Order Inquiry Confirmed!</h1>
+
+            <h1 className={styles.successTitle}>Order Confirmed!</h1>
             <p className={styles.orderNumberLabel}>
-              Provisional Reference Number: <strong>{assignedOrderNum}</strong>
+              Order Number: <strong>{assignedOrderNum}</strong>
             </p>
-            
+
             <div className={styles.successDivider}></div>
-            
+
             <div className={styles.successDetails}>
               <h3>What happens next?</h3>
               <ul className={styles.stepsList}>
@@ -128,14 +153,14 @@ export default function Checkout() {
   return (
     <div className={styles.checkoutContainer}>
       <div className="container">
-        <h1 className={styles.pageTitle}>Order Inquiry Checkout</h1>
-        
+        <h1 className={styles.pageTitle}>Checkout</h1>
+
         <div className={styles.checkoutLayout}>
           {/* Billing Form Column */}
           <div className={styles.formColumn}>
             <form onSubmit={handleSubmit} className={styles.form}>
               <h2 className={styles.sectionTitle}>Delivery Information</h2>
-              
+
               <div className={styles.formRow}>
                 <div className="form-group" style={{ flex: 1 }}>
                   <label className="form-label">Full Name *</label>
@@ -144,7 +169,7 @@ export default function Checkout() {
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    placeholder="e.g. John Doe"
+                    placeholder="Name"
                     className="form-control"
                     required
                   />
@@ -159,7 +184,7 @@ export default function Checkout() {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="e.g. john@example.com"
+                    placeholder="Email"
                     className="form-control"
                     required
                   />
@@ -256,17 +281,51 @@ export default function Checkout() {
                   rows="4"
                   placeholder="e.g. Deliver to front porch. For Lakewood orders: Please accommodate next-business-day shipping."
                   className="form-control"
-                  style={{ resize: "vertical" }}
+                  style={{ resize: "none" }}
                 ></textarea>
+              </div>
+
+              <h2 className={styles.sectionTitle} style={{ marginTop: "30px" }}>Payment Method</h2>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '30px' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '16px', border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', cursor: 'pointer', backgroundColor: paymentMethod === 'card' ? 'var(--primary-bg)' : 'white' }}>
+                  <input 
+                    type="radio" 
+                    name="paymentMethod" 
+                    value="card"
+                    checked={paymentMethod === 'card'} 
+                    onChange={(e) => setPaymentMethod(e.target.value)} 
+                    style={{ width: '18px', height: '18px', accentColor: 'var(--primary)' }}
+                  />
+                  <div>
+                    <div style={{ fontWeight: 600, color: 'var(--dark-text)' }}>Credit or Debit Card</div>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--medium-text)' }}>Secure payment via Stripe</div>
+                  </div>
+                </label>
+                
+                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '16px', border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', cursor: 'pointer', backgroundColor: paymentMethod === 'cash' ? 'var(--primary-bg)' : 'white' }}>
+                  <input 
+                    type="radio" 
+                    name="paymentMethod" 
+                    value="cash"
+                    checked={paymentMethod === 'cash'} 
+                    onChange={(e) => setPaymentMethod(e.target.value)} 
+                    style={{ width: '18px', height: '18px', accentColor: 'var(--primary)' }}
+                  />
+                  <div>
+                    <div style={{ fontWeight: 600, color: 'var(--dark-text)' }}>Cash / Pay upon arrangement</div>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--medium-text)' }}>We will contact you to finalize payment</div>
+                  </div>
+                </label>
               </div>
 
               {isSubmitting ? (
                 <button type="button" className="btn btn-disabled" style={{ width: "100%", padding: "14px" }} disabled>
-                  <span className={styles.spinner}></span> Submitting Order Request...
+                  <span className={styles.spinner}></span> Processing Order...
                 </button>
               ) : (
                 <button type="submit" className="btn btn-primary" style={{ width: "100%", padding: "14px" }}>
-                  Submit Order Inquiry
+                  {paymentMethod === 'card' ? 'Proceed to Payment' : 'Place Order'}
                 </button>
               )}
             </form>
@@ -276,7 +335,7 @@ export default function Checkout() {
           <div className={styles.summaryColumn}>
             <div className={styles.summaryCard}>
               <h2 className={styles.summaryTitle}>Your Order</h2>
-              
+
               <div className={styles.itemsSummaryList}>
                 {cartItems.map((item) => {
                   const itemPrice = getItemPrice(item);
@@ -316,13 +375,13 @@ export default function Checkout() {
                 </div>
                 <div className={styles.divider}></div>
                 <div className={styles.summaryRow} style={{ fontWeight: 700, fontSize: "1.1rem" }}>
-                  <span>Provisional Total:</span>
+                  <span>Total:</span>
                   <span className={styles.grandTotal}>${cartSubtotal.toFixed(2)}</span>
                 </div>
               </div>
 
               <div className={styles.checkoutDisclaimer}>
-                ⚠️ <strong>Order Inquiry Status:</strong> This is a custom ordering request. Online card processing is not completed on this screen. Once our specialists verify availability and custom graphics, a final payment link will be sent to your email.
+                Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <Link href="/privacy-policy" style={{ textDecoration: "underline", color: "var(--primary)" }}>privacy policy</Link>.
               </div>
             </div>
           </div>

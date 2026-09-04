@@ -21,8 +21,8 @@ function createPool() {
   });
 }
 
-export const db = globalForDb.__dandicraftDbPool || createPool();
+export const db = globalForDb.__dandicraftDbPoolV2 || createPool();
 
 if (process.env.NODE_ENV !== "production") {
-  globalForDb.__dandicraftDbPool = db;
+  globalForDb.__dandicraftDbPoolV2 = db;
 }

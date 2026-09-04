@@ -17,8 +17,8 @@ export default function Footer() {
               <span className={styles.logoText}>Dandi<span className={styles.logoAlt}>craft</span></span>
             </div>
             <p className={styles.description}>
-              Crafting premium creative moments for families, camps, schools, and craft enthusiasts. 
-              From Custom Paint-by-Numbers to Stuff-a-Bear kits, we supply high-quality materials 
+              Crafting premium creative moments for families, camps, schools, and craft enthusiasts.
+              From Custom Paint-by-Numbers to Stuff-a-Bear kits, we supply high-quality materials
               certified safe by SGS to bring your creative imagination to life.
             </p>
           </div>
@@ -45,7 +45,6 @@ export default function Footer() {
               <li><Link href="/terms-conditions">Terms & Conditions</Link></li>
               <li><Link href="/privacy-policy">Privacy Policy</Link></li>
               <li><Link href="/contact">Contact & Quotes</Link></li>
-              <li><Link href="/admin">Store Admin</Link></li>
             </ul>
           </div>
 
