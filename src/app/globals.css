@@ -254,3 +254,40 @@ input, select, textarea {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-light);
 }
+
+/* --- Graphics Polish & Glassmorphism --- */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(107, 33, 168, 0.05);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-deep) 0%, var(--primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg-animated {
+  background: linear-gradient(270deg, var(--primary-deep), var(--primary), var(--secondary));
+  background-size: 600% 600%;
+  animation: AnimationName 10s ease infinite;
+}
+
+@keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.hover-lift {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}

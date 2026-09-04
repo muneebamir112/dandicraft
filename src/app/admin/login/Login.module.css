@@ -1,0 +1,53 @@
+.page {
+  min-height: 72vh;
+  display: grid;
+  place-items: center;
+  padding: 64px 20px;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(244, 114, 182, 0.16), transparent 32%),
+    radial-gradient(circle at 85% 90%, rgba(124, 58, 237, 0.13), transparent 35%),
+    #fffaf7;
+}
+
+.card {
+  width: min(100%, 460px);
+  padding: 42px;
+  border: 1px solid rgba(69, 44, 42, 0.1);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 28px 70px rgba(75, 45, 39, 0.12);
+}
+
+.brandMark {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: #452c2a;
+  color: #fff;
+  font: 700 22px/1 Georgia, serif;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  color: #a24f72;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.card h1 { margin: 8px 0 10px; font-size: clamp(30px, 5vw, 42px); color: #2c1f1e; }
+.intro { color: #756563; line-height: 1.6; margin-bottom: 26px; }
+.form { display: grid; gap: 18px; }
+.form label { display: grid; gap: 7px; color: #4c3b39; font-size: 13px; font-weight: 700; }
+.form input { width: 100%; border: 1px solid #ded4d0; border-radius: 12px; padding: 13px 14px; font: inherit; outline: none; }
+.form input:focus { border-color: #a24f72; box-shadow: 0 0 0 3px rgba(162, 79, 114, 0.12); }
+.form button { border: 0; border-radius: 12px; padding: 14px 18px; background: #452c2a; color: white; font: inherit; font-weight: 800; cursor: pointer; }
+.form button:disabled { opacity: 0.65; cursor: wait; }
+.error { padding: 11px 13px; border-radius: 10px; background: #fff0f0; color: #a32c2c; font-size: 13px; }
+.help { margin-top: 22px; color: #938481; font-size: 12px; line-height: 1.5; }
+.help code { color: #704554; }
+
+@media (max-width: 560px) { .card { padding: 30px 22px; border-radius: 20px; } }

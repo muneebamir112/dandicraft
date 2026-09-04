@@ -19,7 +19,7 @@ export default function Header() {
   ];
 
   return (
-    <header className={styles.header}>
+    <>
       {/* Top Utility Bar */}
       <div className={styles.topBar}>
         <div className="container">
@@ -46,8 +46,9 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Main Header Area */}
-      <div className={styles.mainHeader}>
+      <header className={styles.stickyWrapper}>
+        {/* Main Header Area */}
+        <div className={styles.mainHeader}>
         <div className="container">
           <div className={styles.mainHeaderContent}>
             {/* Logo */}
@@ -130,6 +131,7 @@ export default function Header() {
           </div>
         </div>
       )}
-    </header>
+      </header>
+    </>
   );
 }

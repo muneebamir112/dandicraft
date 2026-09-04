@@ -3,13 +3,18 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
-import productsData from "../data/products.json";
+import { useProducts } from "@/hooks/useProducts";
+import { motion } from "framer-motion";
 
 export default function Home() {
+  const { products } = useProducts();
   // Get a few featured products for the homepage showcase
-  const featuredProducts = productsData.filter(p => 
-    ["custom-paint-by-number", "stuff-a-bear-large", "photo-pillows-custom", "candleart-libbey-4-5"].includes(p.id)
-  );
+  const hasDatabaseFlags = products.some((product) => Object.hasOwn(product, "featured"));
+  const featuredProducts = products.filter((product) =>
+    hasDatabaseFlags
+      ? product.featured
+      : ["custom-paint-by-number", "stuff-a-bear-large", "photo-pillows-custom", "candleart-libbey-4-5"].includes(product.id)
+  ).slice(0, 4);
 
   const categories = [
     {
@@ -98,35 +103,49 @@ export default function Home() {
       <section className={styles.hero}>
         <div className="container">
           <div className={styles.heroGrid}>
-            <div className={styles.heroContent}>
+            <motion.div 
+              className={styles.heroContent}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
               <span className={styles.heroBadge}>🎨 Welcome to Dandicraft</span>
               <h1 className={styles.heroTitle}>
                 Craft Moments.<br />
-                <span className={styles.titleGradient}>Create Memories.</span>
+                <span className={`${styles.titleGradient} gradient-text`}>Create Memories.</span>
               </h1>
               <p className={styles.heroSubtitle}>
                 Experience the magic of customized arts & crafts activities. Premium DIY projects, 
                 custom paint-by-numbers, and huggable plush bear kits tailored for camps, school events, and home creativity.
               </p>
               <div className={styles.heroButtons}>
-                <Link href="/shop/paint-by-number" className="btn btn-primary">
+                <Link href="/shop/paint-by-number" className="btn btn-primary hover-lift">
                   Shop Craft Kits
                 </Link>
-                <Link href="/faq" className="btn btn-secondary">
+                <Link href="/faq" className="btn btn-secondary hover-lift">
                   How It Works
                 </Link>
               </div>
-            </div>
+            </motion.div>
             
-            <div className={styles.heroVisual}>
-              <div className={styles.imageFrame}>
+            <motion.div 
+              className={styles.heroVisual}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            >
+              <motion.div 
+                className={`${styles.imageFrame} glass-panel`}
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
                 <img 
                   src="/hero_banner.jpg" 
                   alt="Dandicraft creative craft kits: custom paint by numbers, plush bears, candles" 
                   className={styles.bannerImage}
                 />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
         <div className={styles.heroBlobLeft}></div>
@@ -136,28 +155,42 @@ export default function Home() {
       {/* Categories Section */}
       <section className="section-padding">
         <div className="container">
-          <div className={styles.sectionHeader}>
+          <motion.div 
+            className={styles.sectionHeader}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
             <h2 className={styles.sectionTitle}>Explore Creative Categories</h2>
             <p className={styles.sectionSubtitle}>
               We curate premium, easy-to-use kits for individuals and bulk gatherings alike.
             </p>
-          </div>
+          </motion.div>
           
           <div className={styles.categoriesGrid}>
-            {categories.map((cat) => (
-              <Link key={cat.slug} href={`/shop/${cat.slug}`} className={styles.categoryCard}>
-                <div 
-                  className={styles.iconContainer} 
-                  style={{ backgroundColor: cat.color, color: cat.textColor }}
-                >
-                  {cat.icon}
-                </div>
-                <h3 className={styles.categoryName}>{cat.name}</h3>
-                <p className={styles.categoryDesc}>{cat.description}</p>
-                <span className={styles.categoryLink} style={{ color: cat.textColor }}>
-                  Browse Catalog →
-                </span>
-              </Link>
+            {categories.map((cat, idx) => (
+              <motion.div
+                key={cat.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: idx * 0.1 }}
+                whileHover={{ y: -8 }}
+              >
+                <Link href={`/shop/${cat.slug}`} className={`${styles.categoryCard} hover-lift`}>
+                  <div 
+                    className={styles.iconContainer} 
+                    style={{ backgroundColor: cat.color, color: cat.textColor }}
+                  >
+                    {cat.icon}
+                  </div>
+                  <h3 className={styles.categoryName}>{cat.name}</h3>
+                  <p className={styles.categoryDesc}>{cat.description}</p>
+                  <span className={styles.categoryLink} style={{ color: cat.textColor }}>
+                    Browse Catalog →
+                  </span>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -167,7 +200,13 @@ export default function Home() {
       <section className={styles.infoSection}>
         <div className="container">
           <div className={styles.infoGrid}>
-            <div className={styles.infoTextColumn}>
+            <motion.div 
+              className={styles.infoTextColumn}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5 }}
+            >
               <span className={styles.infoBadge}>SGS Certified Safety</span>
               <h2 className={styles.infoTitle}>Safe, High-Quality Craft Materials</h2>
               <p className={styles.infoDesc}>
@@ -192,10 +231,16 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
             
-            <div className={styles.infoCardColumn}>
-              <div className={styles.safetyCard}>
+            <motion.div 
+              className={styles.infoCardColumn}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <div className={`${styles.safetyCard} glass-panel hover-lift`}>
                 <div className={styles.safetyIcon}>🛡️</div>
                 <h3>Dandicraft Quality Shield</h3>
                 <p>All paints manufactured to highest safety protocols, SGS certified non-toxic, and water-soluble for easy cleanup.</p>
@@ -204,7 +249,7 @@ export default function Home() {
                   <span>Camp Approved</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -220,15 +265,26 @@ export default function Home() {
           </div>
 
           <div className={styles.productsGrid}>
-            {featuredProducts.map((prod) => (
-              <div key={prod.id} className={styles.productCard}>
+            {featuredProducts.map((prod, idx) => (
+              <motion.div
+                key={prod.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: idx * 0.15 }}
+                whileHover={{ y: -5 }}
+                className={`${styles.productCard} hover-lift`}
+              >
                 <div className={styles.productImageWrapper}>
-                  {/* CSS Mock Image for premium feel */}
-                  <div className={styles.productMockImage} style={{ 
-                    background: `linear-gradient(135deg, var(--primary-bg) 0%, var(--primary-accent) 100%)`
-                  }}>
-                    <span className={styles.mockText}>🎨 {prod.category}</span>
-                  </div>
+                  {prod.image ? (
+                    <img src={prod.image} alt={prod.name} className={styles.productRealImage} />
+                  ) : (
+                    <div className={styles.productMockImage} style={{
+                      background: `linear-gradient(135deg, var(--primary-bg) 0%, var(--primary-accent) 100%)`
+                    }}>
+                      <span className={styles.mockText}>🎨 {prod.category}</span>
+                    </div>
+                  )}
                 </div>
                 
                 <div className={styles.productInfo}>
@@ -239,12 +295,12 @@ export default function Home() {
                   </p>
                   
                   <div className={styles.productAction}>
-                    <Link href={`/product/${prod.slug}`} className="btn btn-outline" style={{ width: "100%", padding: "10px" }}>
+                    <Link href={`/product/${prod.slug}`} className="btn btn-outline hover-lift" style={{ width: "100%", padding: "10px" }}>
                       View Kit Options
                     </Link>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

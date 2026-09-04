@@ -4,10 +4,11 @@ import React from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import styles from "./Shop.module.css";
-import productsData from "../../../data/products.json";
+import { useProducts } from "@/hooks/useProducts";
 
 export default function Shop() {
   const params = useParams();
+  const { products } = useProducts();
   
   // Extract category slug from optional catch-all param
   const categorySlug = params.category ? params.category[0] : null;
@@ -28,8 +29,8 @@ export default function Shop() {
 
   // Filter products based on URL parameter
   const filteredProducts = activeCategoryName
-    ? productsData.filter(p => p.category === activeCategoryName)
-    : productsData;
+    ? products.filter(p => p.category === activeCategoryName)
+    : products;
 
   const filterTabs = [
     { name: "All Products", slug: null },
@@ -94,8 +95,8 @@ export default function Shop() {
               {filteredProducts.map((prod) => (
                 <div key={prod.id} className={styles.productCard}>
                   <div className={styles.productImageWrapper}>
-                    {prod.image ? (
-                      <img src={prod.image} alt={prod.name} className={styles.productRealImage} />
+                    {(prod.images?.[0] || prod.image) ? (
+                      <img src={prod.images?.[0] || prod.image} alt={prod.name} className={styles.productRealImage} />
                     ) : (
                       /* CSS Mock Image for premium graphics */
                       <div className={styles.productMockImage} style={{ 

@@ -53,6 +53,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product, selectedOptions = {}, selectedAddons = [], quantity = 1, uploadFile = null) => {
     const key = getCartItemKey(product.id, selectedOptions, selectedAddons, uploadFile);
+    const parsedQty = parseInt(quantity, 10) || 1;
     
     setCartItems(prevItems => {
       const existingItemIndex = prevItems.findIndex(item => item.key === key);
@@ -60,7 +61,7 @@ export const CartProvider = ({ children }) => {
       if (existingItemIndex > -1) {
         // Update quantity of existing item
         const updatedItems = [...prevItems];
-        updatedItems[existingItemIndex].quantity += quantity;
+        updatedItems[existingItemIndex].quantity += parsedQty;
         return updatedItems;
       } else {
         // Add new item
@@ -75,7 +76,7 @@ export const CartProvider = ({ children }) => {
             basePrice: product.price,
             options: selectedOptions,
             addons: selectedAddons,
-            quantity: quantity,
+            quantity: parsedQty,
             uploadFile: uploadFile, // base64 string or file info
             image: product.image || "",
             minQty: product.minQty || 1,
@@ -91,13 +92,16 @@ export const CartProvider = ({ children }) => {
   };
 
   const updateQuantity = (key, newQuantity) => {
-    if (newQuantity <= 0) {
+    const parsedQty = parseInt(newQuantity, 10);
+    if (isNaN(parsedQty)) return;
+
+    if (parsedQty <= 0) {
       removeFromCart(key);
       return;
     }
     setCartItems(prevItems =>
       prevItems.map(item =>
-        item.key === key ? { ...item, quantity: newQuantity } : item
+        item.key === key ? { ...item, quantity: parsedQty } : item
       )
     );
   };

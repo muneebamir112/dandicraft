@@ -2,6 +2,29 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### MySQL and admin setup
+
+The storefront catalog is managed at `/admin` and stored in the local MySQL 8 server that can be managed through MySQL Workbench.
+
+1. Copy `.env.local.example` to `.env.local`.
+2. Enter the password used by the `root` connection in MySQL Workbench.
+3. Replace `ADMIN_EMAIL` and `ADMIN_PASSWORD` with the private administrator login you want to use. The admin password must be at least 12 characters.
+4. Create the database, tables, administrator, and seed the existing catalog:
+
+```bash
+npm run db:setup
+```
+
+5. Start the site and open `http://localhost:3000/admin`:
+
+```bash
+npm run dev
+```
+
+Product records, configuration options, add-ons, visibility, pricing, and uploaded product images are stored in MySQL. Uploaded images are limited to JPG, PNG, WebP, or GIF files up to 5 MB.
+
+### Development server
+
 First, run the development server:
 
 ```bash

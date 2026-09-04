@@ -117,14 +117,16 @@ export default function Cart() {
                       <div className={styles.itemQuantityControl}>
                         <div className={styles.qtySelector}>
                           <button 
-                            onClick={() => updateQuantity(item.key, item.quantity - 1)}
+                            type="button"
+                            onClick={(e) => { e.preventDefault(); updateQuantity(item.key, item.quantity - 1); }}
                             className={styles.qtyBtn}
                           >
                             -
                           </button>
                           <span className={styles.qtyValue}>{item.quantity}</span>
                           <button 
-                            onClick={() => updateQuantity(item.key, item.quantity + 1)}
+                            type="button"
+                            onClick={(e) => { e.preventDefault(); updateQuantity(item.key, item.quantity + 1); }}
                             className={styles.qtyBtn}
                           >
                             +

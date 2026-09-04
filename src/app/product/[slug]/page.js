@@ -4,13 +4,14 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useCart } from "../../../context/CartContext";
-import productsData from "../../../data/products.json";
+import { useProducts } from "@/hooks/useProducts";
 import styles from "./ProductDetail.module.css";
 
 export default function ProductDetail() {
   const params = useParams();
   const router = useRouter();
   const { addToCart } = useCart();
+  const { products, loading } = useProducts();
   const fileInputRef = useRef(null);
 
   const [product, setProduct] = useState(null);
@@ -24,7 +25,7 @@ export default function ProductDetail() {
   // Find product on mount / parameter change
   useEffect(() => {
     if (params.slug) {
-      const foundProduct = productsData.find(p => p.slug === params.slug);
+      const foundProduct = products.find(p => p.slug === params.slug);
       if (foundProduct) {
         setProduct(foundProduct);
         // Initialize default options
@@ -44,9 +45,12 @@ export default function ProductDetail() {
         setSuccessMsg("");
       }
     }
-  }, [params.slug]);
+  }, [params.slug, products]);
 
   if (!product) {
+    if (loading) {
+      return <div className="container section-padding" style={{ textAlign: "center" }}>Loading product…</div>;
+    }
     return (
       <div className="container section-padding" style={{ textAlign: "center" }}>
         <h2>Product not found</h2>
@@ -173,8 +177,8 @@ export default function ProductDetail() {
             }}>
               {uploadFile ? (
                 <img src={uploadFile} alt="Custom upload preview" className={styles.previewImage} />
-              ) : product.image ? (
-                <img src={product.image} alt={product.name} className={styles.previewImage} />
+              ) : (product.images?.[0] || product.image) ? (
+                <img src={product.images?.[0] || product.image} alt={product.name} className={styles.previewImage} />
               ) : (
                 <div className={styles.mockIllustration}>
                   <span className={styles.mockEmoji}>🎨</span>
