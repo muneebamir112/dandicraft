@@ -24,7 +24,6 @@ export default async function AdminLoginPage() {
         <h1>Admin sign in</h1>
         <p className={styles.intro}>Manage the products, pricing, images, and availability shown in your store.</p>
         <LoginForm />
-        <p className={styles.help}>Credentials are created by running <code>npm run db:setup</code>.</p>
       </div>
     </section>
   );
