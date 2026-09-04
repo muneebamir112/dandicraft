@@ -31,7 +31,11 @@ export default async function AdminOrderDetailPage({ params }) {
       [orderId]
     );
     
-    items = itemRows;
+    items = itemRows.map(row => ({
+      ...row,
+      options_json: typeof row.options_json === 'string' ? JSON.parse(row.options_json || '{}') : (row.options_json || {}),
+      addons_json: typeof row.addons_json === 'string' ? JSON.parse(row.addons_json || '[]') : (row.addons_json || [])
+    }));
   } finally {
     connection.release();
   }
