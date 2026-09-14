@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS products (
   requires_quote BOOLEAN NOT NULL DEFAULT FALSE,
   min_qty INT NOT NULL DEFAULT 1,
   image VARCHAR(2048) NOT NULL DEFAULT '',
+  images_json JSON NOT NULL,
   options_json JSON NOT NULL,
   addons_json JSON NOT NULL,
   featured BOOLEAN NOT NULL DEFAULT FALSE,

@@ -35,6 +35,10 @@ export default function Checkout() {
 
   const [expMonth, setExpMonth] = useState("");
   const [expYear, setExpYear] = useState("");
+  const [cardIssuer, setCardIssuer] = useState("");
+  const paymentTokensRef = useRef({ card: "", cvv: "" });
+  const tokenizationTimeoutRef = useRef(null);
+  const paymentStartedRef = useRef(false);
   const ifieldRef = useRef(null);
   const cvvRef = useRef(null);
 
@@ -70,35 +74,79 @@ export default function Checkout() {
     }
 
     if (paymentMethod === "card") {
-      if (!expMonth || !expYear) {
-        alert("Please enter card expiration date.");
+      const month = Number(expMonth);
+      const yearDigits = expYear.trim();
+      const fullYear = yearDigits.length === 2 ? 2000 + Number(yearDigits) : Number(yearDigits);
+      const currentDate = new Date();
+      const isExpired = fullYear < currentDate.getFullYear() ||
+        (fullYear === currentDate.getFullYear() && month < currentDate.getMonth() + 1);
+      if (!/^(0?[1-9]|1[0-2])$/.test(expMonth) || !/^\d{2}(\d{2})?$/.test(yearDigits) || isExpired) {
+        alert("Please enter a valid card expiration date.");
+        return;
+      }
+      if (!ifieldRef.current || !cvvRef.current) {
+        alert("Card payment fields are not ready. Please refresh and try again.");
         return;
       }
       setIsSubmitting(true);
-      // Wait for token from iField
+      paymentStartedRef.current = false;
+      paymentTokensRef.current = { card: "", cvv: "" };
+      tokenizationTimeoutRef.current = setTimeout(() => {
+        setIsSubmitting(false);
+        alert("Card verification timed out. Please check your card details and try again.");
+      }, 15000);
       ifieldRef.current.getToken();
     } else {
       processOrder();
     }
   };
 
-  const handleToken = (data) => {
+  const handleCardToken = (data) => {
     const { xToken } = data;
     if (!xToken) {
+      clearTimeout(tokenizationTimeoutRef.current);
       setIsSubmitting(false);
-      alert("Failed to securely tokenize card. Please try again.");
+      alert("Failed to securely verify the card number. Please try again.");
       return;
     }
-    processOrder(xToken);
+    paymentTokensRef.current.card = xToken;
+    cvvRef.current?.getToken();
+  };
+
+  const handleCardUpdate = (data) => {
+    if (data.issuer) setCardIssuer(data.issuer);
+  };
+
+  const handleCvvToken = (data) => {
+    const { xToken } = data;
+    if (!xToken) {
+      clearTimeout(tokenizationTimeoutRef.current);
+      setIsSubmitting(false);
+      alert("Failed to securely verify the CVV. Please try again.");
+      return;
+    }
+    paymentTokensRef.current.cvv = xToken;
+    const { card, cvv } = paymentTokensRef.current;
+    if (card && cvv && !paymentStartedRef.current) {
+      paymentStartedRef.current = true;
+      clearTimeout(tokenizationTimeoutRef.current);
+      processOrder(card, cvv);
+    }
   };
 
   const handleError = (data) => {
+    clearTimeout(tokenizationTimeoutRef.current);
     setIsSubmitting(false);
     console.error("iField Error:", data);
-    alert(data.errorMessage || "Error processing card details.");
+    if (data.errorMessage === "Transaction timed out.") {
+      alert("Card verification could not contact Cardknox. Please verify the iFields key, allowed website domain, and internet connection.");
+      return;
+    }
+    const fieldName = data.xTokenType === "cvv" ? "CVV" : "card number";
+    alert(data.errorMessage || `Error verifying ${fieldName}.`);
   };
 
-  const processOrder = async (token = null) => {
+  const processOrder = async (token = null, cvvToken = null) => {
     setIsSubmitting(true);
     try {
       let expDate = undefined;
@@ -112,12 +160,14 @@ export default function Checkout() {
       const response = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: AbortSignal.timeout(30000),
         body: JSON.stringify({
           formData,
           cartItems,
           cartSubtotal,
           paymentMethod,
           token,
+          cvvToken,
           expDate
         })
       });
@@ -134,7 +184,9 @@ export default function Checkout() {
       }
     } catch (error) {
       console.error("Checkout error:", error);
-      alert("A network error occurred. Please try again later.");
+      alert(error.name === "TimeoutError"
+        ? "Payment processing timed out. Please check your order status before trying again."
+        : "A network error occurred. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
@@ -358,7 +410,8 @@ export default function Checkout() {
                             type={CARD_TYPE}
                             account={account}
                             ref={ifieldRef}
-                            onToken={handleToken}
+                            onToken={handleCardToken}
+                            onUpdate={handleCardUpdate}
                             onError={handleError}
                             options={{
                               autoSubmit: false,
@@ -385,6 +438,8 @@ export default function Checkout() {
                           <div style={{ display: 'flex', gap: '10px' }}>
                             <input
                               type="text"
+                              name="expMonth"
+                              inputMode="numeric"
                               value={expMonth}
                               onChange={(e) => setExpMonth(e.target.value.replace(/\D/g, '').substring(0, 2))}
                               placeholder="MM"
@@ -395,6 +450,8 @@ export default function Checkout() {
                             <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.2rem' }}>/</span>
                             <input
                               type="text"
+                              name="expYear"
+                              inputMode="numeric"
                               value={expYear}
                               onChange={(e) => setExpYear(e.target.value.replace(/\D/g, '').substring(0, 4))}
                               placeholder="YYYY"
@@ -411,6 +468,8 @@ export default function Checkout() {
                               type={CVV_TYPE}
                               account={account}
                               ref={cvvRef}
+                              issuer={cardIssuer}
+                              onToken={handleCvvToken}
                               options={{
                                 autoSubmit: false,
                                 placeholder: "•••",

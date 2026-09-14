@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import styles from "./Shop.module.css";
@@ -9,6 +9,8 @@ import { useProducts } from "@/hooks/useProducts";
 export default function Shop() {
   const params = useParams();
   const { products } = useProducts();
+  const [page, setPage] = useState(1);
+  const productsPerPage = 12;
   
   // Extract category slug from optional catch-all param
   const categorySlug = params.category ? params.category[0] : null;
@@ -31,6 +33,12 @@ export default function Shop() {
   const filteredProducts = activeCategoryName
     ? products.filter(p => p.category === activeCategoryName)
     : products;
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const currentPage = totalPages > 0 ? Math.min(page, totalPages) : 1;
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * productsPerPage,
+    currentPage * productsPerPage
+  );
 
   const filterTabs = [
     { name: "All Products", slug: null },
@@ -70,6 +78,7 @@ export default function Shop() {
                   key={tab.name}
                   href={tab.slug ? `/shop/${tab.slug}` : "/shop"}
                   className={`${styles.filterTab} ${isActive ? styles.filterTabActive : ""}`}
+                  onClick={() => setPage(1)}
                 >
                   {tab.name}
                 </Link>
@@ -92,7 +101,7 @@ export default function Shop() {
             </div>
           ) : (
             <div className={styles.productsGrid}>
-              {filteredProducts.map((prod) => (
+              {paginatedProducts.map((prod) => (
                 <div key={prod.id} className={styles.productCard}>
                   <div className={styles.productImageWrapper}>
                     {(prod.images?.[0] || prod.image) ? (
@@ -145,6 +154,27 @@ export default function Shop() {
                 </div>
               ))}
             </div>
+          )}
+          {totalPages > 1 && (
+            <nav className={styles.pagination} aria-label="Shop pages">
+              <button
+                type="button"
+                className={styles.paginationButton}
+                onClick={() => setPage((current) => current - 1)}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </button>
+              <span className={styles.paginationStatus}>Page {currentPage} of {totalPages}</span>
+              <button
+                type="button"
+                className={styles.paginationButton}
+                onClick={() => setPage((current) => current + 1)}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </button>
+            </nav>
           )}
         </div>
       </section>

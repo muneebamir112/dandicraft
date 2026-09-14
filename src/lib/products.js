@@ -11,6 +11,11 @@ function parseJson(value, fallback = []) {
   }
 }
 
+function uniqueImages(value) {
+  const images = parseJson(value);
+  return [...new Set((Array.isArray(images) ? images : []).filter((image) => typeof image === "string" && image))];
+}
+
 function mapProduct(row) {
   return {
     id: row.id,
@@ -23,7 +28,7 @@ function mapProduct(row) {
     requiresQuote: Boolean(row.requires_quote),
     minQty: Number(row.min_qty || 1),
     image: row.image || "",
-    images: parseJson(row.images_json),
+    images: uniqueImages(row.images_json),
     options: parseJson(row.options_json),
     addons: parseJson(row.addons_json),
     featured: Boolean(row.featured),

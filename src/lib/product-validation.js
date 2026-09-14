@@ -56,9 +56,9 @@ export function validateProductInput(body, existingId = "") {
 
   let images = [];
   if (Array.isArray(body?.images)) {
-    images = body.images.map(img => text(img, 2048)).filter(img => 
+    images = [...new Set(body.images.map(img => text(img, 2048)).filter(img =>
       img && (img.startsWith("/") || /^https:\/\//i.test(img))
-    ).slice(0, 20); // allow up to 20 images
+    ))].slice(0, 20); // allow up to 20 images
   }
 
   return {

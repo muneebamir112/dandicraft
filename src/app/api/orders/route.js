@@ -4,7 +4,14 @@ import { db } from "@/lib/db";
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { formData, cartItems, cartSubtotal, paymentMethod, token, expDate } = body;
+    const { formData, cartItems, cartSubtotal, paymentMethod, token, cvvToken, expDate } = body;
+
+    if (!['card', 'cash'].includes(paymentMethod)) {
+      return NextResponse.json({ error: "Please select a valid payment method." }, { status: 400 });
+    }
+    if (paymentMethod === "card" && (!token || !cvvToken || !/^\d{4}$/.test(String(expDate || "")))) {
+      return NextResponse.json({ error: "Card payment details are incomplete." }, { status: 400 });
+    }
 
     // Generate a unique order number (e.g. DC-738192)
     const orderNumber = `DC-${Math.floor(100000 + Math.random() * 900000)}`;
@@ -77,6 +84,7 @@ export async function POST(request) {
           xCommand: "cc:sale",
           xAmount: calculatedTotal.toFixed(2),
           xCardNum: token,
+          xCVV: cvvToken,
           xExp: expDate,
           xName: formData.fullName,
           xStreet: formData.streetAddress,
@@ -89,6 +97,7 @@ export async function POST(request) {
         try {
           const solaRes = await fetch("https://x1.cardknox.com/gatewayapi", {
             method: "POST",
+            signal: AbortSignal.timeout(30000),
             body: solaPayload.toString(),
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -113,7 +122,7 @@ export async function POST(request) {
             return NextResponse.json({
               success: false,
               error: xError || "Payment declined or failed."
-            });
+            }, { status: 402 });
           }
         } catch (solaError) {
           console.error("Sola gateway error:", solaError);
@@ -121,7 +130,7 @@ export async function POST(request) {
           return NextResponse.json({
             success: false,
             error: "Failed to connect to payment gateway."
-          });
+            }, { status: 502 });
         }
       }
 

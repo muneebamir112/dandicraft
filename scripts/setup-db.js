@@ -32,6 +32,17 @@ async function main() {
     const schema = fs.readFileSync(path.join(process.cwd(), "database", "schema.sql"), "utf8");
     await connection.query(schema);
 
+    const [imageColumns] = await connection.query(
+      `SELECT COUNT(*) AS count
+       FROM information_schema.columns
+       WHERE table_schema = DATABASE() AND table_name = 'products' AND column_name = 'images_json'`
+    );
+    if (!imageColumns[0].count) {
+      await connection.query(`ALTER TABLE products ADD COLUMN images_json JSON NOT NULL AFTER image`);
+      await connection.query(`UPDATE products SET images_json = JSON_ARRAY(image) WHERE image <> ''`);
+      await connection.query(`UPDATE products SET images_json = JSON_ARRAY() WHERE image = ''`);
+    }
+
     const products = JSON.parse(
       fs.readFileSync(path.join(process.cwd(), "src", "data", "products.json"), "utf8")
     );
@@ -46,8 +57,8 @@ async function main() {
       await connection.execute(
         `INSERT IGNORE INTO products
           (id, slug, name, category, price, description, has_upload, requires_quote,
-           min_qty, image, options_json, addons_json, featured, active)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, TRUE)`,
+           min_qty, image, images_json, options_json, addons_json, featured, active)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, TRUE)`,
         [
           product.id,
           product.slug,
@@ -59,6 +70,7 @@ async function main() {
           Boolean(product.requiresQuote),
           Math.max(1, Number(product.minQty || 1)),
           product.image || "",
+          JSON.stringify(product.images || (product.image ? [product.image] : [])),
           JSON.stringify(product.options || []),
           JSON.stringify(product.addons || []),
           featuredIds.has(product.id),

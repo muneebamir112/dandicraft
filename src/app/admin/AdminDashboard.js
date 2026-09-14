@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import styles from "./Admin.module.css";
@@ -46,6 +46,13 @@ export default function AdminDashboard({ initialProducts, admin }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const editorRef = useRef(null);
+  const [page, setPage] = useState(1);
+  const productsPerPage = 12;
+
+  useEffect(() => {
+    if (editing) editorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [editing]);
 
   const visibleProducts = useMemo(() => {
     const value = query.trim().toLowerCase();
@@ -55,13 +62,17 @@ export default function AdminDashboard({ initialProducts, admin }) {
     );
   }, [products, query]);
 
+  const totalPages = Math.ceil(visibleProducts.length / productsPerPage);
+  const currentPage = totalPages > 0 ? Math.min(page, totalPages) : 1;
+  const paginatedProducts = visibleProducts.slice(
+    (currentPage - 1) * productsPerPage,
+    currentPage * productsPerPage
+  );
+
   function beginNewProduct() {
     setEditing({ ...EMPTY_PRODUCT, images: [] });
     setError("");
     setNotice("");
-    setTimeout(() => {
-      if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 50);
   }
 
   function beginEdit(product) {
@@ -70,15 +81,12 @@ export default function AdminDashboard({ initialProducts, admin }) {
     
     setEditing({
       ...product,
-      images: Array.isArray(product.images) ? product.images : [],
+      images: Array.isArray(product.images) ? [...new Set(product.images)] : [],
       options: safeOptions.map((option) => ({ ...option, values: Array.isArray(option.values) ? [...option.values] : [] })),
       addons: safeAddons.map((addon) => ({ ...addon })),
     });
     setError("");
     setNotice("");
-    setTimeout(() => {
-      if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 50);
   }
 
   async function handleImageUpload(e) {
@@ -101,7 +109,7 @@ export default function AdminDashboard({ initialProducts, admin }) {
       
       setEditing(current => ({
         ...current,
-        images: [...(current.images || []), ...newImages]
+        images: [...new Set([...(current.images || []), ...newImages])]
       }));
     } catch (err) {
       setError(err.message);
@@ -233,7 +241,7 @@ export default function AdminDashboard({ initialProducts, admin }) {
         {error && <div className={styles.error} role="alert">{error}</div>}
 
         {editing && (
-          <form className={styles.editor} onSubmit={saveProduct}>
+          <form ref={editorRef} className={styles.editor} onSubmit={saveProduct}>
             <div className={styles.editorHeader}>
               <div>
                 <p className={styles.eyebrow}>{editing.id ? "Edit listing" : "New listing"}</p>
@@ -321,11 +329,11 @@ export default function AdminDashboard({ initialProducts, admin }) {
 
         <div className={styles.catalogHeader}>
           <div><h2>Catalog</h2><p>Changes are reflected on the storefront immediately.</p></div>
-          <input className={styles.search} type="search" placeholder="Search products…" value={query} onChange={(e) => setQuery(e.target.value)} />
+          <input className={styles.search} type="search" placeholder="Search products…" value={query} onChange={(e) => { setQuery(e.target.value); setPage(1); }} />
         </div>
 
         <div className={styles.productGrid}>
-          {visibleProducts.map((product) => (
+          {paginatedProducts.map((product) => (
             <article className={styles.productCard} key={product.id}>
               <div className={styles.cardImage}>
                 {(product.images?.[0] || product.image) ? (
@@ -338,12 +346,39 @@ export default function AdminDashboard({ initialProducts, admin }) {
                 <div className={styles.cardMeta}><span>{product.category}</span><span className={product.active ? styles.live : styles.draft}>{product.active ? "Live" : "Draft"}</span></div>
                 <h3>{product.name}</h3>
                 <p className={styles.slug}>/{product.slug}</p>
-                <div className={styles.cardFooter}><strong>${Number(product.price).toFixed(2)}</strong><div><button onClick={() => beginEdit(product)}>Edit</button><button className={styles.dangerLink} onClick={() => removeProduct(product)}>Delete</button></div></div>
+                <div className={styles.cardFooter}>
+                  <strong>${Number(product.price).toFixed(2)}</strong>
+                  <div>
+                    <button type="button" onClick={(event) => { event.preventDefault(); beginEdit(product); }}>Edit</button>
+                    <button type="button" className={styles.dangerLink} onClick={(event) => { event.preventDefault(); removeProduct(product); }}>Delete</button>
+                  </div>
+                </div>
               </div>
             </article>
           ))}
           {!visibleProducts.length && <div className={styles.noResults}>No products match your search.</div>}
         </div>
+        {totalPages > 1 && (
+          <nav className={styles.pagination} aria-label="Admin product pages">
+            <button
+              type="button"
+              className={styles.paginationButton}
+              onClick={() => setPage((current) => current - 1)}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <span className={styles.paginationStatus}>Page {currentPage} of {totalPages}</span>
+            <button
+              type="button"
+              className={styles.paginationButton}
+              onClick={() => setPage((current) => current + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </nav>
+        )}
       </div>
     </section>
   );
