@@ -7,6 +7,11 @@ export const metadata = {
   title: "Dandicraft | Arts & Crafts Kits | Lakewood, NJ",
   description: "Craft Moments. Create Memories. Experience the Magic of Dandicraft. Premium paint-by-numbers, washable paint kits, custom canvas, stuff-a-bear kits, custom photo pillows, and candle art.",
   metadataBase: new URL("https://dandicraft.com"),
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   openGraph: {
     title: "Dandicraft | Arts & Crafts Kits",
     description: "Premium paint-by-numbers, washable paint kits, stuff-a-bear kits, custom photo pillows, and candle art.",
