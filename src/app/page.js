@@ -9,11 +9,16 @@ import { motion } from "framer-motion";
 export default function Home() {
   const { products } = useProducts();
   // Get a few featured products for the homepage showcase
-  const hasDatabaseFlags = products.some((product) => Object.hasOwn(product, "featured"));
-  const featuredProducts = products.filter((product) =>
-    hasDatabaseFlags
-      ? product.featured
-      : ["custom-paint-by-number", "stuff-a-bear-large", "photo-pillows-custom", "candleart-libbey-4-5"].includes(product.id)
+  const fallbackFeaturedIds = [
+    "custom-paint-by-number",
+    "stuff-a-bear-large",
+    "photo-pillows-custom",
+    "candleart-libbey-4-5",
+  ];
+  const flaggedProducts = products.filter((product) => product.featured);
+  const featuredProducts = (flaggedProducts.length > 0
+    ? flaggedProducts
+    : products.filter((product) => fallbackFeaturedIds.includes(product.id))
   ).slice(0, 4);
 
   const categories = [
