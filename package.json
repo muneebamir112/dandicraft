@@ -10,14 +10,13 @@
     "db:setup": "node scripts/setup-db.js"
   },
   "dependencies": {
-    "@stripe/stripe-js": "^9.15.0",
+    "@cardknox/react-ifields": "^2.2.86",
     "bcryptjs": "^3.0.3",
     "framer-motion": "^13.2.0",
     "mysql2": "^3.24.2",
     "next": "16.3.2",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "stripe": "^22.6.1"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "eslint": "^9",

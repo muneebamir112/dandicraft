@@ -296,7 +296,7 @@
 }
 
 .stepsList li::before {
-  content: "✦";
+  content: "âœ¦";
   position: absolute;
   left: 0;
   top: 0;
@@ -362,7 +362,20 @@
     padding: 30px 20px;
   }
   
-  .successTitle {
-    font-size: 1.8rem;
-  }
+}
+
+.ifieldWrapper {
+  height: 42px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.ifieldWrapper iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
 }

@@ -138,7 +138,7 @@ export default function Shop() {
                         {prod.price > 0 ? `$${prod.price.toFixed(2)}` : "Contact to Buy"}
                       </span>
                       <Link href={`/product/${prod.slug}`} className={`btn ${styles.productBtn}`}>
-                        {prod.requiresQuote ? "Request Quote" : "Configure Kit"}
+                        {prod.requiresQuote ? "Request Quote" : "Add to Cart"}
                       </Link>
                     </div>
                   </div>

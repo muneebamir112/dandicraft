@@ -1,10 +1,17 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCart } from "../../context/CartContext";
 import styles from "./Checkout.module.css";
+import IField, { CARD_TYPE, CVV_TYPE } from '@cardknox/react-ifields';
+
+const account = {
+  xKey: process.env.NEXT_PUBLIC_IFIELDS_KEY || "ifields_dandicraftd3ce0667ba9f4405bde6d195a01",
+  xSoftwareName: "Dandicraft",
+  xSoftwareVersion: "1.0"
+};
 
 export default function Checkout() {
   const router = useRouter();
@@ -25,6 +32,11 @@ export default function Checkout() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
   const [assignedOrderNum, setAssignedOrderNum] = useState("");
+  
+  const [expMonth, setExpMonth] = useState("");
+  const [expYear, setExpYear] = useState("");
+  const ifieldRef = useRef(null);
+  const cvvRef = useRef(null);
 
   // Redirect if cart is empty or MOQ validation fails (only after context loads)
   useEffect(() => {
@@ -51,48 +63,81 @@ export default function Checkout() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-      // Quick validation
-      if (!formData.fullName || !formData.email || !formData.phone || !formData.streetAddress || !formData.city || !formData.zipCode) {
-        alert("Please fill in all the required delivery fields.");
+    // Quick validation
+    if (!formData.fullName || !formData.email || !formData.phone || !formData.streetAddress || !formData.city || !formData.zipCode) {
+      alert("Please fill in all the required delivery fields.");
+      return;
+    }
+  
+    if (paymentMethod === "card") {
+      if (!expMonth || !expYear) {
+        alert("Please enter card expiration date.");
         return;
       }
-  
       setIsSubmitting(true);
-  
-      try {
-        const response = await fetch("/api/orders", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            formData,
-            cartItems,
-            cartSubtotal,
-            paymentMethod
-          })
-        });
-  
-        const result = await response.json();
-  
-        if (response.ok && result.success) {
-          if (paymentMethod === "card" && result.checkoutUrl) {
-            // Redirect to Stripe Checkout
-            window.location.href = result.checkoutUrl;
-          } else {
-            // Cash on delivery - show success immediately
-            setAssignedOrderNum(result.orderNumber);
-            setOrderConfirmed(true);
-            clearCart();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }
-        } else {
-          alert(result.error || "Something went wrong. Please try again.");
-        }
-      } catch (error) {
-        console.error("Checkout error:", error);
-        alert("A network error occurred. Please try again later.");
-      } finally {
-        setIsSubmitting(false);
+      // Wait for token from iField
+      ifieldRef.current.getToken();
+    } else {
+      processOrder();
+    }
+  };
+
+  const handleToken = (data) => {
+    const { xToken } = data;
+    if (!xToken) {
+      setIsSubmitting(false);
+      alert("Failed to securely tokenize card. Please try again.");
+      return;
+    }
+    processOrder(xToken);
+  };
+
+  const handleError = (data) => {
+    setIsSubmitting(false);
+    console.error("iField Error:", data);
+    alert(data.errorMessage || "Error processing card details.");
+  };
+
+  const processOrder = async (token = null) => {
+    setIsSubmitting(true);
+    try {
+      let expDate = undefined;
+      if (paymentMethod === "card" && expMonth && expYear) {
+        // Cardknox expects MMYY
+        const monthPad = expMonth.padStart(2, '0');
+        const yearLast2 = expYear.slice(-2);
+        expDate = monthPad + yearLast2;
       }
+
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          formData,
+          cartItems,
+          cartSubtotal,
+          paymentMethod,
+          token,
+          expDate
+        })
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok && result.success) {
+        setAssignedOrderNum(result.orderNumber);
+        setOrderConfirmed(true);
+        clearCart();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        alert(result.error || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      alert("A network error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isLoaded || (cartItems.length === 0 && !orderConfirmed)) {
@@ -288,20 +333,106 @@ export default function Checkout() {
               <h2 className={styles.sectionTitle} style={{ marginTop: "30px" }}>Payment Method</h2>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '30px' }}>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '16px', border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', cursor: 'pointer', backgroundColor: paymentMethod === 'card' ? 'var(--primary-bg)' : 'white' }}>
-                  <input 
-                    type="radio" 
-                    name="paymentMethod" 
-                    value="card"
-                    checked={paymentMethod === 'card'} 
-                    onChange={(e) => setPaymentMethod(e.target.value)} 
-                    style={{ width: '18px', height: '18px', accentColor: 'var(--primary)' }}
-                  />
-                  <div>
-                    <div style={{ fontWeight: 600, color: 'var(--dark-text)' }}>Credit or Debit Card</div>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--medium-text)' }}>Secure payment via Stripe</div>
-                  </div>
-                </label>
+                <div style={{ padding: '16px', border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', backgroundColor: paymentMethod === 'card' ? 'var(--primary-bg)' : 'white' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', marginBottom: paymentMethod === 'card' ? '16px' : '0' }}>
+                    <input 
+                      type="radio" 
+                      name="paymentMethod" 
+                      value="card"
+                      checked={paymentMethod === 'card'} 
+                      onChange={(e) => setPaymentMethod(e.target.value)} 
+                      style={{ width: '18px', height: '18px', accentColor: 'var(--primary)' }}
+                    />
+                    <div>
+                      <div style={{ fontWeight: 600, color: 'var(--dark-text)' }}>Credit or Debit Card</div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--medium-text)' }}>Secure payment via Sola</div>
+                    </div>
+                  </label>
+                  
+                  {paymentMethod === 'card' && (
+                    <div style={{ padding: '16px', backgroundColor: '#fff', borderRadius: '4px', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                      <div className="form-group">
+                        <label className="form-label">Card Number *</label>
+                        <div className={styles.ifieldWrapper}>
+                          <IField 
+                            type={CARD_TYPE} 
+                            account={account} 
+                            ref={ifieldRef} 
+                            onToken={handleToken}
+                            onError={handleError}
+                            options={{ 
+                              autoSubmit: false, 
+                              placeholder: "•••• •••• •••• ••••",
+                              iFieldstyle: {
+                                width: '100%',
+                                boxSizing: 'border-box',
+                                margin: '0',
+                                padding: '0',
+                                border: 'none',
+                                outline: 'none',
+                                fontSize: '16px',
+                                fontFamily: 'inherit',
+                                backgroundColor: 'transparent'
+                              }
+                            }}
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className={styles.formGrid}>
+                        <div className="form-group">
+                          <label className="form-label">Expiration Date *</label>
+                          <div style={{ display: 'flex', gap: '10px' }}>
+                            <input
+                              type="text"
+                              value={expMonth}
+                              onChange={(e) => setExpMonth(e.target.value.replace(/\D/g, '').substring(0, 2))}
+                              placeholder="MM"
+                              className="form-control"
+                              style={{ flex: 1 }}
+                              required={paymentMethod === 'card'}
+                            />
+                            <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.2rem' }}>/</span>
+                            <input
+                              type="text"
+                              value={expYear}
+                              onChange={(e) => setExpYear(e.target.value.replace(/\D/g, '').substring(0, 4))}
+                              placeholder="YYYY"
+                              className="form-control"
+                              style={{ flex: 1 }}
+                              required={paymentMethod === 'card'}
+                            />
+                          </div>
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label">CVV *</label>
+                          <div className={styles.ifieldWrapper}>
+                            <IField 
+                              type={CVV_TYPE} 
+                              account={account} 
+                              ref={cvvRef} 
+                              options={{ 
+                                autoSubmit: false, 
+                                placeholder: "•••",
+                                iFieldstyle: {
+                                  width: '100%',
+                                  boxSizing: 'border-box',
+                                  margin: '0',
+                                  padding: '0',
+                                  border: 'none',
+                                  outline: 'none',
+                                  fontSize: '16px',
+                                  fontFamily: 'inherit',
+                                  backgroundColor: 'transparent'
+                                }
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
                 
                 <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '16px', border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', cursor: 'pointer', backgroundColor: paymentMethod === 'cash' ? 'var(--primary-bg)' : 'white' }}>
                   <input 

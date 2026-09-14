@@ -296,7 +296,7 @@ export default function Home() {
                   
                   <div className={styles.productAction}>
                     <Link href={`/product/${prod.slug}`} className="btn btn-outline hover-lift" style={{ width: "100%", padding: "10px" }}>
-                      View Kit Options
+                      {prod.requiresQuote ? "Request Quote" : "Add to Cart"}
                     </Link>
                   </div>
                 </div>
