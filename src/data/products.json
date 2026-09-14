@@ -7,7 +7,7 @@
     "price": 30,
     "description": "Unleash your inner artist with our premium Acrylic Paint-by-Number kits. Each kit comes complete with a high-quality canvas, numbered acrylic paint pots, and a set of professional brushes. Ideal for all skill levels.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_15_piano.png",
+    "image": "/paint-by-number---dandicraft/imgi_15_piano.png",
     "options": [
       {
         "name": "Design Style",
@@ -37,7 +37,7 @@
     "price": 30,
     "description": "Transform your favorite personal photo into a custom paint-by-number canvas! Upload your photo, and we will translate it into a custom canvas with a matching numbered paint kit.",
     "hasUpload": true,
-    "image": "/Custom - Dandicraft/imgi_5_canvas.jpg",
+    "image": "/custom---dandicraft/imgi_5_canvas.jpg",
     "options": [
       {
         "name": "Canvas Size",
@@ -64,7 +64,7 @@
     "price": 25,
     "description": "Create a sparkling masterpiece from your own photograph. Upload your photo, and we'll create a custom adhesive canvas and supply all the diamonds and toolkits needed to complete your stunning diamond painting.",
     "hasUpload": true,
-    "image": "/Custom - Dandicraft/imgi_3_content-50.jpg",
+    "image": "/custom---dandicraft/imgi_3_content-50.jpg",
     "options": [
       {
         "name": "Canvas Size",
@@ -85,7 +85,7 @@
     "price": 12,
     "description": "Fun, mess-free crafting for children! These kits include canvases outlined with adorable designs. Designed to coordinate with the Crayola 18-color washable paint set (sold separately). Note: This kit does not include paint.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_17_Rainbow-1.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_17_Rainbow-1.png",
     "options": [
       {
         "name": "Design Style",
@@ -119,7 +119,7 @@
     "price": 10,
     "description": "Our mini stuff-a-bear kits are perfect for birthday parties, camps, and school activities! Each kit comes with an 8\" plush animal shell, premium fiber stuffing, a wishing star, and an official birth certificate.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_5_Bear-1.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_5_Bear-1.png",
     "options": [
       {
         "name": "Animal Style",
@@ -154,7 +154,7 @@
     "price": 15,
     "description": "A full-sized, huggable plush friend! Our 16\" stuff-a-bear kits contain a large plush skin, high-loft cloud stuffing, a wishing star, and a birth certificate. Easy zip-and-tie closure (no sewing required).",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_19_Grizzly.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_19_Grizzly.png",
     "options": [
       {
         "name": "Animal Style",
@@ -190,7 +190,7 @@
     "description": "A beautiful 3D plaster box of chocolates. Note: Plaster pieces are not available for direct online checkout. Please contact info@dandicraft.com to purchase.",
     "hasUpload": false,
     "requiresQuote": true,
-    "image": "/Plaster Crafts - Dandicraft/imgi_3_Box-of-Chocolates.png",
+    "image": "/plaster-crafts---dandicraft/imgi_3_Box-of-Chocolates.png",
     "options": [],
     "addons": []
   },
@@ -203,7 +203,7 @@
     "description": "Fun-shaped 3D plaster figures ready for painting. Perfect for camp activities and children's parties. Contact info@dandicraft.com for catalogs, listings, and pricing details.",
     "hasUpload": false,
     "requiresQuote": true,
-    "image": "/Plaster Crafts - Dandicraft/imgi_14_Sneaker-Pen-Holder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_14_Sneaker-Pen-Holder.png",
     "options": [],
     "addons": []
   },
@@ -215,7 +215,7 @@
     "price": 3,
     "description": "A high-quality 6-color acrylic paint set. Safe, certified non-toxic, and perfect for plaster crafts or paint-by-numbers.",
     "hasUpload": false,
-    "image": "/Paint and Supplies - Dandicraft/imgi_4_paints-scaled.png",
+    "image": "/paint-and-supplies---dandicraft/imgi_4_paints-scaled.png",
     "options": [],
     "addons": []
   },
@@ -227,7 +227,7 @@
     "price": 6,
     "description": "The official Crayola 18-Color Washable Paint Set. Coordinates perfectly with our Washable Paint-by-Number series. Washable from skin and most clothing.",
     "hasUpload": false,
-    "image": "/Paint and Supplies - Dandicraft/imgi_5_CRAYLO.png",
+    "image": "/paint-and-supplies---dandicraft/imgi_5_CRAYLO.png",
     "options": [],
     "addons": []
   },
@@ -239,7 +239,7 @@
     "price": 1,
     "description": "A basic pack of 2 paintbrushes, ideal for quick touch-ups or small crafting sessions.",
     "hasUpload": false,
-    "image": "/Paint and Supplies - Dandicraft/imgi_3_pb-2.png",
+    "image": "/paint-and-supplies---dandicraft/imgi_3_pb-2.png",
     "options": [],
     "addons": []
   },
@@ -252,7 +252,7 @@
     "description": "Create a fully personalized 12x12 inch canvas pillow shell. Upload your custom photo, drawing, or team logo. Perfect for camp activities, custom marking, and decorative projects. Note: Minimum order quantity of 15 pillows is required.",
     "hasUpload": true,
     "minQty": 15,
-    "image": "/Photo Pillows - Dandicraft/imgi_14_pillow.jpg",
+    "image": "/photo-pillows---dandicraft/imgi_14_pillow.jpg",
     "options": [],
     "addons": [
       {
@@ -399,7 +399,7 @@
     "price": 30,
     "description": "Premium content 50 kit. Perfect for your next creative project.",
     "hasUpload": true,
-    "image": "/Custom - Dandicraft/imgi_3_content-50.jpg",
+    "image": "/custom---dandicraft/imgi_3_content-50.jpg",
     "options": [],
     "addons": []
   },
@@ -411,7 +411,7 @@
     "price": 30,
     "description": "Premium Grizzly kit. Perfect for your next creative project.",
     "hasUpload": true,
-    "image": "/Custom - Dandicraft/imgi_4_Grizzly.jpg",
+    "image": "/custom---dandicraft/imgi_4_Grizzly.jpg",
     "options": [],
     "addons": []
   },
@@ -423,7 +423,7 @@
     "price": 30,
     "description": "Premium canvas kit. Perfect for your next creative project.",
     "hasUpload": true,
-    "image": "/Custom - Dandicraft/imgi_5_canvas.jpg",
+    "image": "/custom---dandicraft/imgi_5_canvas.jpg",
     "options": [],
     "addons": []
   },
@@ -435,7 +435,7 @@
     "price": 5,
     "description": "Premium pb 2 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint and Supplies - Dandicraft/imgi_3_pb-2.png",
+    "image": "/paint-and-supplies---dandicraft/imgi_3_pb-2.png",
     "options": [],
     "addons": []
   },
@@ -447,7 +447,7 @@
     "price": 5,
     "description": "Premium paints scaled kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint and Supplies - Dandicraft/imgi_4_paints-scaled.png",
+    "image": "/paint-and-supplies---dandicraft/imgi_4_paints-scaled.png",
     "options": [],
     "addons": []
   },
@@ -459,7 +459,7 @@
     "price": 5,
     "description": "Premium CRAYLO kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint and Supplies - Dandicraft/imgi_5_CRAYLO.png",
+    "image": "/paint-and-supplies---dandicraft/imgi_5_CRAYLO.png",
     "options": [],
     "addons": []
   },
@@ -471,7 +471,7 @@
     "price": 18,
     "description": "Premium pillow kit. Perfect for your next creative project.",
     "hasUpload": true,
-    "image": "/Photo Pillows - Dandicraft/imgi_14_pillow.jpg",
+    "image": "/photo-pillows---dandicraft/imgi_14_pillow.jpg",
     "options": [],
     "addons": []
   },
@@ -483,7 +483,7 @@
     "price": 18,
     "description": "Premium pillow 2 kit. Perfect for your next creative project.",
     "hasUpload": true,
-    "image": "/Photo Pillows - Dandicraft/imgi_3_pillow-2.jpg",
+    "image": "/photo-pillows---dandicraft/imgi_3_pillow-2.jpg",
     "options": [],
     "addons": []
   },
@@ -495,7 +495,7 @@
     "price": 0,
     "description": "Premium Convertible Statue kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_10_Convertible-Statue.png",
+    "image": "/plaster-crafts---dandicraft/imgi_10_Convertible-Statue.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -508,7 +508,7 @@
     "price": 0,
     "description": "Premium Dropped Ice Cream Cone Statue kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_11_Dropped-Ice-Cream-Cone-Statue.png",
+    "image": "/plaster-crafts---dandicraft/imgi_11_Dropped-Ice-Cream-Cone-Statue.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -521,7 +521,7 @@
     "price": 0,
     "description": "Premium Basketball Tshirt kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_12_Basketball-Tshirt.png",
+    "image": "/plaster-crafts---dandicraft/imgi_12_Basketball-Tshirt.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -534,7 +534,7 @@
     "price": 0,
     "description": "Premium Speedster Pencil Holder kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_13_Speedster-Pencil-Holder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_13_Speedster-Pencil-Holder.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -547,7 +547,7 @@
     "price": 0,
     "description": "Premium Sneaker Pen Holder kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_14_Sneaker-Pen-Holder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_14_Sneaker-Pen-Holder.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -560,7 +560,7 @@
     "price": 0,
     "description": "Premium Sailboat 1 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_15_Sailboat-1.png",
+    "image": "/plaster-crafts---dandicraft/imgi_15_Sailboat-1.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -573,7 +573,7 @@
     "price": 0,
     "description": "Premium Raspberries Peaches Oranges Basket kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_16_Raspberries-Peaches-Oranges-Basket.png",
+    "image": "/plaster-crafts---dandicraft/imgi_16_Raspberries-Peaches-Oranges-Basket.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -586,7 +586,7 @@
     "price": 0,
     "description": "Premium Men at Kosel kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_17_Men-at-Kosel.png",
+    "image": "/plaster-crafts---dandicraft/imgi_17_Men-at-Kosel.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -599,7 +599,7 @@
     "price": 0,
     "description": "Premium Initials A Z kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_18_Initials-A-Z.png",
+    "image": "/plaster-crafts---dandicraft/imgi_18_Initials-A-Z.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -612,7 +612,7 @@
     "price": 0,
     "description": "Premium Rocking Horse with Doll and Ball kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_19_Rocking-Horse-with-Doll-and-Ball.png",
+    "image": "/plaster-crafts---dandicraft/imgi_19_Rocking-Horse-with-Doll-and-Ball.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -625,7 +625,7 @@
     "price": 0,
     "description": "Premium Hello Kitty kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_20_Hello-Kitty.png",
+    "image": "/plaster-crafts---dandicraft/imgi_20_Hello-Kitty.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -638,7 +638,7 @@
     "price": 0,
     "description": "Premium Grapes Apples Pears Basket kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_21_Grapes-Apples-Pears-Basket.png",
+    "image": "/plaster-crafts---dandicraft/imgi_21_Grapes-Apples-Pears-Basket.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -651,7 +651,7 @@
     "price": 0,
     "description": "Premium Heart Rainbow kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_22_Heart-Rainbow.png",
+    "image": "/plaster-crafts---dandicraft/imgi_22_Heart-Rainbow.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -664,7 +664,7 @@
     "price": 0,
     "description": "Premium Bear on Rocking Horse kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_23_Bear-on-Rocking-Horse.png",
+    "image": "/plaster-crafts---dandicraft/imgi_23_Bear-on-Rocking-Horse.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -677,7 +677,7 @@
     "price": 0,
     "description": "Premium Bob The Builder kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_24_Bob-The-Builder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_24_Bob-The-Builder.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -690,7 +690,7 @@
     "price": 0,
     "description": "Premium Hot Air Balloon kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_25_Hot-Air-Balloon.png",
+    "image": "/plaster-crafts---dandicraft/imgi_25_Hot-Air-Balloon.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -703,7 +703,7 @@
     "price": 0,
     "description": "Premium Ice Cream Cone kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_26_Ice-Cream-Cone.png",
+    "image": "/plaster-crafts---dandicraft/imgi_26_Ice-Cream-Cone.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -716,7 +716,7 @@
     "price": 0,
     "description": "Premium Happy Clown kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_27_Happy-Clown.png",
+    "image": "/plaster-crafts---dandicraft/imgi_27_Happy-Clown.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -729,7 +729,7 @@
     "price": 0,
     "description": "Premium Helicopter kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_28_Helicopter.png",
+    "image": "/plaster-crafts---dandicraft/imgi_28_Helicopter.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -742,7 +742,7 @@
     "price": 0,
     "description": "Premium Gumball Machine kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_29_Gumball-Machine.png",
+    "image": "/plaster-crafts---dandicraft/imgi_29_Gumball-Machine.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -755,7 +755,7 @@
     "price": 0,
     "description": "Premium Long Tractor Trailer kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_30_Long-Tractor-Trailer.png",
+    "image": "/plaster-crafts---dandicraft/imgi_30_Long-Tractor-Trailer.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -768,7 +768,7 @@
     "price": 0,
     "description": "Premium Police Boy kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_31_Police-Boy.png",
+    "image": "/plaster-crafts---dandicraft/imgi_31_Police-Boy.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -781,7 +781,7 @@
     "price": 0,
     "description": "Premium Peek aboo Bear on Pillow kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_32_Peek-aboo-Bear-on-Pillow.png",
+    "image": "/plaster-crafts---dandicraft/imgi_32_Peek-aboo-Bear-on-Pillow.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -794,7 +794,7 @@
     "price": 0,
     "description": "Premium Quilted Heart kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_33_Quilted-Heart.png",
+    "image": "/plaster-crafts---dandicraft/imgi_33_Quilted-Heart.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -807,7 +807,7 @@
     "price": 0,
     "description": "Premium Smile with Smileys kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_34_Smile-with-Smileys.png",
+    "image": "/plaster-crafts---dandicraft/imgi_34_Smile-with-Smileys.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -820,7 +820,7 @@
     "price": 0,
     "description": "Premium Tennis Bear Girl kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_35_Tennis-Bear-Girl.png",
+    "image": "/plaster-crafts---dandicraft/imgi_35_Tennis-Bear-Girl.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -833,7 +833,7 @@
     "price": 0,
     "description": "Premium Roller Blade kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_36_Roller-Blade.png",
+    "image": "/plaster-crafts---dandicraft/imgi_36_Roller-Blade.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -846,7 +846,7 @@
     "price": 0,
     "description": "Premium Sports Car kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_37_Sports-Car.png",
+    "image": "/plaster-crafts---dandicraft/imgi_37_Sports-Car.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -859,7 +859,7 @@
     "price": 0,
     "description": "Premium Tow Truck kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_38_Tow-Truck.png",
+    "image": "/plaster-crafts---dandicraft/imgi_38_Tow-Truck.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -872,7 +872,7 @@
     "price": 0,
     "description": "Premium Cement Mixer Truck kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_39_Cement-Mixer-Truck.png",
+    "image": "/plaster-crafts---dandicraft/imgi_39_Cement-Mixer-Truck.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -885,7 +885,7 @@
     "price": 0,
     "description": "Premium Box of Chocolates kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_3_Box-of-Chocolates.png",
+    "image": "/plaster-crafts---dandicraft/imgi_3_Box-of-Chocolates.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -898,7 +898,7 @@
     "price": 0,
     "description": "Premium Girl with Flower Basket kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_40_Girl-with-Flower-Basket.png",
+    "image": "/plaster-crafts---dandicraft/imgi_40_Girl-with-Flower-Basket.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -911,7 +911,7 @@
     "price": 0,
     "description": "Premium Fire Boy kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_41_Fire-Boy.png",
+    "image": "/plaster-crafts---dandicraft/imgi_41_Fire-Boy.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -924,7 +924,7 @@
     "price": 0,
     "description": "Premium cupcake 1 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_42_cupcake-1.png",
+    "image": "/plaster-crafts---dandicraft/imgi_42_cupcake-1.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -937,7 +937,7 @@
     "price": 0,
     "description": "Premium Rainbows and Stars Cup kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_43_Rainbows-and-Stars-Cup.png",
+    "image": "/plaster-crafts---dandicraft/imgi_43_Rainbows-and-Stars-Cup.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -950,7 +950,7 @@
     "price": 0,
     "description": "Premium Sports Cup kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_44_Sports-Cup.png",
+    "image": "/plaster-crafts---dandicraft/imgi_44_Sports-Cup.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -963,7 +963,7 @@
     "price": 0,
     "description": "Premium Flower Cup kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_45_Flower-Cup.png",
+    "image": "/plaster-crafts---dandicraft/imgi_45_Flower-Cup.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -976,7 +976,7 @@
     "price": 0,
     "description": "Premium Truck Pen Holder kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_46_Truck-Pen-Holder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_46_Truck-Pen-Holder.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -989,7 +989,7 @@
     "price": 0,
     "description": "Premium Smiley Face Cup kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_47_Smiley-Face-Cup.png",
+    "image": "/plaster-crafts---dandicraft/imgi_47_Smiley-Face-Cup.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1002,7 +1002,7 @@
     "price": 0,
     "description": "Premium Turtle Holder kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_48_Turtle-Holder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_48_Turtle-Holder.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1015,7 +1015,7 @@
     "price": 0,
     "description": "Premium Rotary Phone Pen Holder kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_49_Rotary-Phone-Pen-Holder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_49_Rotary-Phone-Pen-Holder.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1028,7 +1028,7 @@
     "price": 0,
     "description": "Premium Fire Truck 1 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_4_Fire-Truck-1.png",
+    "image": "/plaster-crafts---dandicraft/imgi_4_Fire-Truck-1.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1041,7 +1041,7 @@
     "price": 0,
     "description": "Premium Ice Cream Soda kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_50_Ice-Cream-Soda.png",
+    "image": "/plaster-crafts---dandicraft/imgi_50_Ice-Cream-Soda.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1054,7 +1054,7 @@
     "price": 0,
     "description": "Premium Donut Box kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_51_Donut-Box.png",
+    "image": "/plaster-crafts---dandicraft/imgi_51_Donut-Box.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1067,7 +1067,7 @@
     "price": 0,
     "description": "Premium Stuff Holder kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_52_Stuff-Holder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_52_Stuff-Holder.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1080,7 +1080,7 @@
     "price": 0,
     "description": "Premium Teddy Bear Name Plaque kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_53_Teddy-Bear-Name-Plaque.png",
+    "image": "/plaster-crafts---dandicraft/imgi_53_Teddy-Bear-Name-Plaque.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1093,7 +1093,7 @@
     "price": 0,
     "description": "Premium Pickup Truck Statue kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_54_Pickup-Truck-Statue.png",
+    "image": "/plaster-crafts---dandicraft/imgi_54_Pickup-Truck-Statue.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1106,7 +1106,7 @@
     "price": 0,
     "description": "Premium Hello Kitty Statue kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_55_Hello-Kitty-Statue.png",
+    "image": "/plaster-crafts---dandicraft/imgi_55_Hello-Kitty-Statue.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1119,7 +1119,7 @@
     "price": 0,
     "description": "Premium Roller Skate Pen Holder kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_56_Roller-Skate-Pen-Holder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_56_Roller-Skate-Pen-Holder.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1132,7 +1132,7 @@
     "price": 0,
     "description": "Premium Ice Cream Sundae Statue kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_57_Ice-Cream-Sundae-Statue.png",
+    "image": "/plaster-crafts---dandicraft/imgi_57_Ice-Cream-Sundae-Statue.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1145,7 +1145,7 @@
     "price": 0,
     "description": "Premium Pencil Holder kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_58_Pencil-Holder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_58_Pencil-Holder.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1158,7 +1158,7 @@
     "price": 0,
     "description": "Premium Beach Cocktails kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_59_Beach-Cocktails.png",
+    "image": "/plaster-crafts---dandicraft/imgi_59_Beach-Cocktails.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1171,7 +1171,7 @@
     "price": 0,
     "description": "Premium baseball kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_5_baseball.png",
+    "image": "/plaster-crafts---dandicraft/imgi_5_baseball.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1184,7 +1184,7 @@
     "price": 0,
     "description": "Premium Clowns Relaxing Bookend Set kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_60_Clowns-Relaxing-Bookend-Set.png",
+    "image": "/plaster-crafts---dandicraft/imgi_60_Clowns-Relaxing-Bookend-Set.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1197,7 +1197,7 @@
     "price": 0,
     "description": "Premium Dancing Bears Plaque kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_61_Dancing-Bears-Plaque.png",
+    "image": "/plaster-crafts---dandicraft/imgi_61_Dancing-Bears-Plaque.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1210,7 +1210,7 @@
     "price": 0,
     "description": "Premium Bear with Balloons Bookend Set kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_62_Bear-with-Balloons-Bookend-Set.png",
+    "image": "/plaster-crafts---dandicraft/imgi_62_Bear-with-Balloons-Bookend-Set.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1223,7 +1223,7 @@
     "price": 0,
     "description": "Premium Baseball Glove Bookend kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_63_Baseball-Glove-Bookend.png",
+    "image": "/plaster-crafts---dandicraft/imgi_63_Baseball-Glove-Bookend.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1236,7 +1236,7 @@
     "price": 0,
     "description": "Premium Victorian Chair Statue kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_64_Victorian-Chair-Statue.png",
+    "image": "/plaster-crafts---dandicraft/imgi_64_Victorian-Chair-Statue.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1249,7 +1249,7 @@
     "price": 0,
     "description": "Premium Nautical Octagon Plaque kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_65_Nautical-Octagon-Plaque.png",
+    "image": "/plaster-crafts---dandicraft/imgi_65_Nautical-Octagon-Plaque.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1262,7 +1262,7 @@
     "price": 0,
     "description": "Premium Oval Roses Plaque kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_66_Oval-Roses-Plaque.png",
+    "image": "/plaster-crafts---dandicraft/imgi_66_Oval-Roses-Plaque.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1275,7 +1275,7 @@
     "price": 0,
     "description": "Premium Pineapple and Fruits Plaque kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_67_Pineapple-and-Fruits-Plaque.png",
+    "image": "/plaster-crafts---dandicraft/imgi_67_Pineapple-and-Fruits-Plaque.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1288,7 +1288,7 @@
     "price": 0,
     "description": "Premium Fruit Basket Napkin Holder kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_68_Fruit-Basket-Napkin-Holder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_68_Fruit-Basket-Napkin-Holder.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1301,7 +1301,7 @@
     "price": 0,
     "description": "Premium Oval Tulips Plaque kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_69_Oval-Tulips-Plaque.png",
+    "image": "/plaster-crafts---dandicraft/imgi_69_Oval-Tulips-Plaque.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1314,7 +1314,7 @@
     "price": 0,
     "description": "Premium backpack kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_6_backpack.png",
+    "image": "/plaster-crafts---dandicraft/imgi_6_backpack.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1327,7 +1327,7 @@
     "price": 0,
     "description": "Premium Stack of Books Statue kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_70_Stack-of-Books-Statue.png",
+    "image": "/plaster-crafts---dandicraft/imgi_70_Stack-of-Books-Statue.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1340,7 +1340,7 @@
     "price": 0,
     "description": "Premium Carousel Trotting Horse kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_71_Carousel-Trotting-Horse.png",
+    "image": "/plaster-crafts---dandicraft/imgi_71_Carousel-Trotting-Horse.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1353,7 +1353,7 @@
     "price": 0,
     "description": "Premium Large Patchwork Rocking Horse kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_72_Large-Patchwork-Rocking-Horse.png",
+    "image": "/plaster-crafts---dandicraft/imgi_72_Large-Patchwork-Rocking-Horse.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1366,7 +1366,7 @@
     "price": 0,
     "description": "Premium banana kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_73_banana.png",
+    "image": "/plaster-crafts---dandicraft/imgi_73_banana.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1379,7 +1379,7 @@
     "price": 0,
     "description": "Premium Napkin Holder kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_74_Napkin-Holder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_74_Napkin-Holder.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1392,7 +1392,7 @@
     "price": 0,
     "description": "Premium Baseball Bank kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_75_Baseball-Bank.png",
+    "image": "/plaster-crafts---dandicraft/imgi_75_Baseball-Bank.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1405,7 +1405,7 @@
     "price": 0,
     "description": "Premium Football Bank kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_76_Football-Bank.png",
+    "image": "/plaster-crafts---dandicraft/imgi_76_Football-Bank.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1418,7 +1418,7 @@
     "price": 0,
     "description": "Premium Basketball Bank kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_77_Basketball-Bank.png",
+    "image": "/plaster-crafts---dandicraft/imgi_77_Basketball-Bank.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1431,7 +1431,7 @@
     "price": 0,
     "description": "Premium Train Bank kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_78_Train-Bank.png",
+    "image": "/plaster-crafts---dandicraft/imgi_78_Train-Bank.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1444,7 +1444,7 @@
     "price": 0,
     "description": "Premium Bear with Blocks Bank kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_79_Bear-with-Blocks-Bank.png",
+    "image": "/plaster-crafts---dandicraft/imgi_79_Bear-with-Blocks-Bank.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1457,7 +1457,7 @@
     "price": 0,
     "description": "Premium Bear with Four Balloons kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_7_Bear-with-Four-Balloons.png",
+    "image": "/plaster-crafts---dandicraft/imgi_7_Bear-with-Four-Balloons.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1470,7 +1470,7 @@
     "price": 0,
     "description": "Premium Gumball Machine Bank kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_80_Gumball-Machine-Bank.png",
+    "image": "/plaster-crafts---dandicraft/imgi_80_Gumball-Machine-Bank.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1483,7 +1483,7 @@
     "price": 0,
     "description": "Premium Penguin with Scarf Bank kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_81_Penguin-with-Scarf-Bank.png",
+    "image": "/plaster-crafts---dandicraft/imgi_81_Penguin-with-Scarf-Bank.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1496,7 +1496,7 @@
     "price": 0,
     "description": "Premium Jack inthe Box Bank kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_82_Jack-inthe-Box-Bank.png",
+    "image": "/plaster-crafts---dandicraft/imgi_82_Jack-inthe-Box-Bank.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1509,7 +1509,7 @@
     "price": 0,
     "description": "Premium ballet kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_8_ballet.png",
+    "image": "/plaster-crafts---dandicraft/imgi_8_ballet.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1522,7 +1522,7 @@
     "price": 0,
     "description": "Premium Basketball Pen Holder kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Plaster Crafts - Dandicraft/imgi_9_Basketball-Pen-Holder.png",
+    "image": "/plaster-crafts---dandicraft/imgi_9_Basketball-Pen-Holder.png",
     "options": [],
     "addons": [],
     "requiresQuote": true
@@ -1535,7 +1535,7 @@
     "price": 15,
     "description": "Premium tab kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_10_tab.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_10_tab.png",
     "options": [],
     "addons": []
   },
@@ -1547,7 +1547,7 @@
     "price": 15,
     "description": "Premium Bear11 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_11_Bear11.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_11_Bear11.png",
     "options": [],
     "addons": []
   },
@@ -1559,7 +1559,7 @@
     "price": 15,
     "description": "Premium Smiley 1 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_13_Smiley-1.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_13_Smiley-1.png",
     "options": [],
     "addons": []
   },
@@ -1571,7 +1571,7 @@
     "price": 15,
     "description": "Premium Twist kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_14_Twist.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_14_Twist.png",
     "options": [],
     "addons": []
   },
@@ -1583,7 +1583,7 @@
     "price": 15,
     "description": "Premium Cow kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_15_Cow.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_15_Cow.png",
     "options": [],
     "addons": []
   },
@@ -1595,7 +1595,7 @@
     "price": 15,
     "description": "Premium Elephant1 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_16_Elephant1.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_16_Elephant1.png",
     "options": [],
     "addons": []
   },
@@ -1607,7 +1607,7 @@
     "price": 15,
     "description": "Premium Rainbow 1 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_17_Rainbow-1.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_17_Rainbow-1.png",
     "options": [],
     "addons": []
   },
@@ -1619,7 +1619,7 @@
     "price": 15,
     "description": "Premium tabby1 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_18_tabby1.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_18_tabby1.png",
     "options": [],
     "addons": []
   },
@@ -1631,7 +1631,7 @@
     "price": 15,
     "description": "Premium Bulldog kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_20_Bulldog.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_20_Bulldog.png",
     "options": [],
     "addons": []
   },
@@ -1643,7 +1643,7 @@
     "price": 15,
     "description": "Premium White 11 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_21_White-11.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_21_White-11.png",
     "options": [],
     "addons": []
   },
@@ -1655,7 +1655,7 @@
     "price": 15,
     "description": "Premium brown kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_3_brown.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_3_brown.png",
     "options": [],
     "addons": []
   },
@@ -1667,7 +1667,7 @@
     "price": 15,
     "description": "Premium Elephant kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_4_Elephant.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_4_Elephant.png",
     "options": [],
     "addons": []
   },
@@ -1679,7 +1679,7 @@
     "price": 15,
     "description": "Premium Bear 1 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_5_Bear-1.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_5_Bear-1.png",
     "options": [],
     "addons": []
   },
@@ -1691,7 +1691,7 @@
     "price": 15,
     "description": "Premium Bear1 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_6_Bear1.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_6_Bear1.png",
     "options": [],
     "addons": []
   },
@@ -1703,7 +1703,7 @@
     "price": 15,
     "description": "Premium Rainbow kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_7_Rainbow.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_7_Rainbow.png",
     "options": [],
     "addons": []
   },
@@ -1715,7 +1715,7 @@
     "price": 15,
     "description": "Premium Smiley kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_8_Smiley.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_8_Smiley.png",
     "options": [],
     "addons": []
   },
@@ -1727,7 +1727,7 @@
     "price": 15,
     "description": "Premium White kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Stuff-a-Bear - Dandicraft/imgi_9_White.png",
+    "image": "/stuff-a-bear---dandicraft/imgi_9_White.png",
     "options": [],
     "addons": []
   },
@@ -1739,7 +1739,7 @@
     "price": 12,
     "description": "Premium Bear kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_10_Bear.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_10_Bear.png",
     "options": [],
     "addons": []
   },
@@ -1751,7 +1751,7 @@
     "price": 12,
     "description": "Premium Fire Truck kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_11_Fire-Truck.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_11_Fire-Truck.png",
     "options": [],
     "addons": []
   },
@@ -1763,7 +1763,7 @@
     "price": 12,
     "description": "Premium fruit 1 kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_12_fruit-1.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_12_fruit-1.png",
     "options": [],
     "addons": []
   },
@@ -1775,7 +1775,7 @@
     "price": 12,
     "description": "Premium Yerushalayim kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_13_Yerushalayim.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_13_Yerushalayim.png",
     "options": [],
     "addons": []
   },
@@ -1787,7 +1787,7 @@
     "price": 12,
     "description": "Premium dreidel kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_14_dreidel.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_14_dreidel.png",
     "options": [],
     "addons": []
   },
@@ -1799,7 +1799,7 @@
     "price": 12,
     "description": "Premium Modeh Ani kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_15_Modeh-Ani.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_15_Modeh-Ani.png",
     "options": [],
     "addons": []
   },
@@ -1811,7 +1811,7 @@
     "price": 12,
     "description": "Premium Chanuka icons kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_16_Chanuka-icons.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_16_Chanuka-icons.png",
     "options": [],
     "addons": []
   },
@@ -1823,7 +1823,7 @@
     "price": 12,
     "description": "Premium Torah kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_17_Torah.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_17_Torah.png",
     "options": [],
     "addons": []
   },
@@ -1835,7 +1835,7 @@
     "price": 12,
     "description": "Premium Menorah kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_18_Menorah.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_18_Menorah.png",
     "options": [],
     "addons": []
   },
@@ -1847,7 +1847,7 @@
     "price": 12,
     "description": "Premium Shema Yisroel kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_19_Shema-Yisroel.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_19_Shema-Yisroel.png",
     "options": [],
     "addons": []
   },
@@ -1859,7 +1859,7 @@
     "price": 12,
     "description": "Premium Watermelon kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_3_Watermelon.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_3_Watermelon.png",
     "options": [],
     "addons": []
   },
@@ -1871,7 +1871,7 @@
     "price": 12,
     "description": "Premium Sailboat kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_4_Sailboat.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_4_Sailboat.png",
     "options": [],
     "addons": []
   },
@@ -1883,7 +1883,7 @@
     "price": 12,
     "description": "Premium Bear with Balloons kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_5_Bear-with-Balloons.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_5_Bear-with-Balloons.png",
     "options": [],
     "addons": []
   },
@@ -1895,7 +1895,7 @@
     "price": 12,
     "description": "Premium Parrot kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_6_Parrot.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_6_Parrot.png",
     "options": [],
     "addons": []
   },
@@ -1907,7 +1907,7 @@
     "price": 12,
     "description": "Premium Flowers kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_7_Flowers.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_7_Flowers.png",
     "options": [],
     "addons": []
   },
@@ -1919,7 +1919,7 @@
     "price": 12,
     "description": "Premium Ice Cream kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_8_Ice-Cream.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_8_Ice-Cream.png",
     "options": [],
     "addons": []
   },
@@ -1931,7 +1931,7 @@
     "price": 12,
     "description": "Premium Duck kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Washable Paint-by-Number - Dandicraft/imgi_9_Duck.png",
+    "image": "/Washable paint-by-number---dandicraft/imgi_9_Duck.png",
     "options": [],
     "addons": []
   },
@@ -1943,7 +1943,7 @@
     "price": 30,
     "description": "Premium Fish Bowl kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_3_fish.png",
+    "image": "/paint-by-number---dandicraft/imgi_3_fish.png",
     "options": [],
     "addons": []
   },
@@ -1955,7 +1955,7 @@
     "price": 30,
     "description": "Premium Cupcake kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_4_cupcake.png",
+    "image": "/paint-by-number---dandicraft/imgi_4_cupcake.png",
     "options": [],
     "addons": []
   },
@@ -1967,7 +1967,7 @@
     "price": 30,
     "description": "Premium Shivas Haminim kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_5_flo-1.png",
+    "image": "/paint-by-number---dandicraft/imgi_5_flo-1.png",
     "options": [],
     "addons": []
   },
@@ -1979,7 +1979,7 @@
     "price": 30,
     "description": "Premium Teddy Bear kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_6_teddy.png",
+    "image": "/paint-by-number---dandicraft/imgi_6_teddy.png",
     "options": [],
     "addons": []
   },
@@ -1991,7 +1991,7 @@
     "price": 30,
     "description": "Premium Small Kever Rochel kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_9_shabos.png",
+    "image": "/paint-by-number---dandicraft/imgi_9_shabos.png",
     "options": [],
     "addons": []
   },
@@ -2003,7 +2003,7 @@
     "price": 30,
     "description": "Premium Kosel kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_10_sha.png",
+    "image": "/paint-by-number---dandicraft/imgi_10_sha.png",
     "options": [],
     "addons": []
   },
@@ -2015,7 +2015,7 @@
     "price": 30,
     "description": "Premium Pastel Bears kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_12_pastle.png",
+    "image": "/paint-by-number---dandicraft/imgi_12_pastle.png",
     "options": [],
     "addons": []
   },
@@ -2027,7 +2027,7 @@
     "price": 30,
     "description": "Premium Roses on Piano kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_13_rose.png",
+    "image": "/paint-by-number---dandicraft/imgi_13_rose.png",
     "options": [],
     "addons": []
   },
@@ -2039,7 +2039,7 @@
     "price": 30,
     "description": "Premium Rocking Horse kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_14_horse.png",
+    "image": "/paint-by-number---dandicraft/imgi_14_horse.png",
     "options": [],
     "addons": []
   },
@@ -2051,7 +2051,7 @@
     "price": 30,
     "description": "Premium Piano at Sunset kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_15_piano.png",
+    "image": "/paint-by-number---dandicraft/imgi_15_piano.png",
     "options": [],
     "addons": []
   },
@@ -2063,7 +2063,7 @@
     "price": 30,
     "description": "Premium Teddy Bears Swing kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_16_swing.png",
+    "image": "/paint-by-number---dandicraft/imgi_16_swing.png",
     "options": [],
     "addons": []
   },
@@ -2075,7 +2075,7 @@
     "price": 30,
     "description": "Premium Kever Rochel kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_17_kov.png",
+    "image": "/paint-by-number---dandicraft/imgi_17_kov.png",
     "options": [],
     "addons": []
   },
@@ -2087,7 +2087,7 @@
     "price": 30,
     "description": "Premium Piano kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_18_piano1.png",
+    "image": "/paint-by-number---dandicraft/imgi_18_piano1.png",
     "options": [],
     "addons": []
   },
@@ -2099,7 +2099,7 @@
     "price": 30,
     "description": "Premium Shivas Haminim Basket kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_19_fruit.png",
+    "image": "/paint-by-number---dandicraft/imgi_19_fruit.png",
     "options": [],
     "addons": []
   },
@@ -2111,7 +2111,7 @@
     "price": 30,
     "description": "Premium Teddy Bears on Bench kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_20_bench.png",
+    "image": "/paint-by-number---dandicraft/imgi_20_bench.png",
     "options": [],
     "addons": []
   },
@@ -2123,7 +2123,7 @@
     "price": 30,
     "description": "Premium Shabbos Scene kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_21_night-shab.png",
+    "image": "/paint-by-number---dandicraft/imgi_21_night-shab.png",
     "options": [],
     "addons": []
   },
@@ -2135,7 +2135,7 @@
     "price": 30,
     "description": "Premium Touched by the Wall kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_22_123.png",
+    "image": "/paint-by-number---dandicraft/imgi_22_123.png",
     "options": [],
     "addons": []
   },
@@ -2147,7 +2147,7 @@
     "price": 30,
     "description": "Premium Studying the Torah kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_23_0.png",
+    "image": "/paint-by-number---dandicraft/imgi_23_0.png",
     "options": [],
     "addons": []
   },
@@ -2159,7 +2159,7 @@
     "price": 30,
     "description": "Premium Prayer in Hue kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_24_hue.png",
+    "image": "/paint-by-number---dandicraft/imgi_24_hue.png",
     "options": [],
     "addons": []
   },
@@ -2171,7 +2171,7 @@
     "price": 30,
     "description": "Premium Children Klezmers kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_25_ck.png",
+    "image": "/paint-by-number---dandicraft/imgi_25_ck.png",
     "options": [],
     "addons": []
   },
@@ -2183,7 +2183,7 @@
     "price": 30,
     "description": "Premium Kriyas Yam Suf kit. Perfect for your next creative project.",
     "hasUpload": false,
-    "image": "/Paint-by-Number - Dandicraft/imgi_26_23.png",
+    "image": "/paint-by-number---dandicraft/imgi_26_23.png",
     "options": [],
     "addons": []
   }
