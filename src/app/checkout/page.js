@@ -32,7 +32,7 @@ export default function Checkout() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
   const [assignedOrderNum, setAssignedOrderNum] = useState("");
-  
+
   const [expMonth, setExpMonth] = useState("");
   const [expYear, setExpYear] = useState("");
   const ifieldRef = useRef(null);
@@ -68,7 +68,7 @@ export default function Checkout() {
       alert("Please fill in all the required delivery fields.");
       return;
     }
-  
+
     if (paymentMethod === "card") {
       if (!expMonth || !expYear) {
         alert("Please enter card expiration date.");
@@ -121,9 +121,9 @@ export default function Checkout() {
           expDate
         })
       });
-  
+
       const result = await response.json();
-  
+
       if (response.ok && result.success) {
         setAssignedOrderNum(result.orderNumber);
         setOrderConfirmed(true);
@@ -331,16 +331,16 @@ export default function Checkout() {
               </div>
 
               <h2 className={styles.sectionTitle} style={{ marginTop: "30px" }}>Payment Method</h2>
-              
+
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '30px' }}>
                 <div style={{ padding: '16px', border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', backgroundColor: paymentMethod === 'card' ? 'var(--primary-bg)' : 'white' }}>
                   <label style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', marginBottom: paymentMethod === 'card' ? '16px' : '0' }}>
-                    <input 
-                      type="radio" 
-                      name="paymentMethod" 
+                    <input
+                      type="radio"
+                      name="paymentMethod"
                       value="card"
-                      checked={paymentMethod === 'card'} 
-                      onChange={(e) => setPaymentMethod(e.target.value)} 
+                      checked={paymentMethod === 'card'}
+                      onChange={(e) => setPaymentMethod(e.target.value)}
                       style={{ width: '18px', height: '18px', accentColor: 'var(--primary)' }}
                     />
                     <div>
@@ -348,20 +348,20 @@ export default function Checkout() {
                       <div style={{ fontSize: '0.85rem', color: 'var(--medium-text)' }}>Secure payment via Sola</div>
                     </div>
                   </label>
-                  
+
                   {paymentMethod === 'card' && (
                     <div style={{ padding: '16px', backgroundColor: '#fff', borderRadius: '4px', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                       <div className="form-group">
                         <label className="form-label">Card Number *</label>
                         <div className={styles.ifieldWrapper}>
-                          <IField 
-                            type={CARD_TYPE} 
-                            account={account} 
-                            ref={ifieldRef} 
+                          <IField
+                            type={CARD_TYPE}
+                            account={account}
+                            ref={ifieldRef}
                             onToken={handleToken}
                             onError={handleError}
-                            options={{ 
-                              autoSubmit: false, 
+                            options={{
+                              autoSubmit: false,
                               placeholder: "•••• •••• •••• ••••",
                               iFieldstyle: {
                                 width: '100%',
@@ -378,7 +378,7 @@ export default function Checkout() {
                           />
                         </div>
                       </div>
-                      
+
                       <div className={styles.formGrid}>
                         <div className="form-group">
                           <label className="form-label">Expiration Date *</label>
@@ -407,12 +407,12 @@ export default function Checkout() {
                         <div className="form-group">
                           <label className="form-label">CVV *</label>
                           <div className={styles.ifieldWrapper}>
-                            <IField 
-                              type={CVV_TYPE} 
-                              account={account} 
-                              ref={cvvRef} 
-                              options={{ 
-                                autoSubmit: false, 
+                            <IField
+                              type={CVV_TYPE}
+                              account={account}
+                              ref={cvvRef}
+                              options={{
+                                autoSubmit: false,
                                 placeholder: "•••",
                                 iFieldstyle: {
                                   width: '100%',
@@ -433,14 +433,14 @@ export default function Checkout() {
                     </div>
                   )}
                 </div>
-                
+
                 <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '16px', border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', cursor: 'pointer', backgroundColor: paymentMethod === 'cash' ? 'var(--primary-bg)' : 'white' }}>
-                  <input 
-                    type="radio" 
-                    name="paymentMethod" 
+                  <input
+                    type="radio"
+                    name="paymentMethod"
                     value="cash"
-                    checked={paymentMethod === 'cash'} 
-                    onChange={(e) => setPaymentMethod(e.target.value)} 
+                    checked={paymentMethod === 'cash'}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
                     style={{ width: '18px', height: '18px', accentColor: 'var(--primary)' }}
                   />
                   <div>

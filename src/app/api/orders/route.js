@@ -10,7 +10,7 @@ export async function POST(request) {
     const orderNumber = `DC-${Math.floor(100000 + Math.random() * 900000)}`;
 
     const connection = await db.getConnection();
-    
+
     try {
       await connection.beginTransaction();
 
@@ -94,7 +94,7 @@ export async function POST(request) {
               "Content-Type": "application/x-www-form-urlencoded"
             }
           });
-          
+
           const responseText = await solaRes.text();
           const responseParams = new URLSearchParams(responseText);
           const xResult = responseParams.get("xResult");
@@ -102,34 +102,34 @@ export async function POST(request) {
 
           if (xResult === "A") {
             await connection.execute(`UPDATE orders SET status = 'Processing' WHERE id = ?`, [orderId]);
-            return NextResponse.json({ 
-              success: true, 
+            return NextResponse.json({
+              success: true,
               orderNumber,
-              message: "Payment successful" 
+              message: "Payment successful"
             });
           } else {
             console.error("Sola payment failed:", responseText);
             await connection.execute(`UPDATE orders SET status = 'Failed Payment' WHERE id = ?`, [orderId]);
-            return NextResponse.json({ 
-              success: false, 
-              error: xError || "Payment declined or failed." 
+            return NextResponse.json({
+              success: false,
+              error: xError || "Payment declined or failed."
             });
           }
         } catch (solaError) {
           console.error("Sola gateway error:", solaError);
           await connection.execute(`UPDATE orders SET status = 'Failed Payment' WHERE id = ?`, [orderId]);
-          return NextResponse.json({ 
-            success: false, 
-            error: "Failed to connect to payment gateway." 
+          return NextResponse.json({
+            success: false,
+            error: "Failed to connect to payment gateway."
           });
         }
       }
 
       // Cash payment response
-      return NextResponse.json({ 
-        success: true, 
+      return NextResponse.json({
+        success: true,
         orderNumber,
-        message: "Order placed successfully" 
+        message: "Order placed successfully"
       });
 
     } catch (error) {

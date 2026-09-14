@@ -90,7 +90,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Summary Column */
@@ -313,23 +315,49 @@
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes scaleUp {
-  0% { opacity: 0; transform: scale(0); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes drawCheck {
-  0% { stroke-dashoffset: 50; }
-  100% { stroke-dashoffset: 0; }
+  0% {
+    stroke-dashoffset: 50;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
 /* Responsive Rules */
@@ -337,7 +365,7 @@
   .checkoutLayout {
     grid-template-columns: 1fr;
   }
-  
+
   .summaryColumn {
     position: static;
   }
@@ -347,21 +375,21 @@
   .formColumn {
     padding: 24px;
   }
-  
+
   .formGrid {
     grid-template-columns: 1fr;
     gap: 0;
   }
-  
+
   .addressGrid {
     flex-direction: column;
     gap: 0;
   }
-  
+
   .successCard {
     padding: 30px 20px;
   }
-  
+
 }
 
 .ifieldWrapper {
