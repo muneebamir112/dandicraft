@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { startTransition, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useCart } from "../../../context/CartContext";
@@ -21,28 +21,38 @@ export default function ProductDetail() {
   const [uploadFile, setUploadFile] = useState(null);
   const [uploadFileName, setUploadFileName] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+  const [reviews, setReviews] = useState([]);
+  const [reviewForm, setReviewForm] = useState({ name: "", email: "", rating: 5, review: "" });
+  const [reviewStatus, setReviewStatus] = useState("");
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 
   // Find product on mount / parameter change
   useEffect(() => {
     if (params.slug) {
       const foundProduct = products.find(p => p.slug === params.slug);
       if (foundProduct) {
-        setProduct(foundProduct);
         // Initialize default options
         const initialOpts = {};
         foundProduct.options?.forEach(opt => {
           initialOpts[opt.name] = opt.values[0];
         });
-        setSelectedOptions(initialOpts);
-        
-        // Initialize default quantity to MOQ
-        setQuantity(foundProduct.minQty || 1);
-        
-        // Reset local states
-        setSelectedAddons([]);
-        setUploadFile(null);
-        setUploadFileName("");
-        setSuccessMsg("");
+
+        startTransition(() => {
+          setProduct(foundProduct);
+          setSelectedOptions(initialOpts);
+          setQuantity(foundProduct.minQty || 1);
+          setSelectedAddons([]);
+          setUploadFile(null);
+          setUploadFileName("");
+          setSuccessMsg("");
+          setReviewForm({ name: "", email: "", rating: 5, review: "" });
+          setReviewStatus("");
+        });
+
+        fetch(`/api/products/${encodeURIComponent(foundProduct.slug)}/reviews`, { cache: "no-store" })
+          .then((response) => response.ok ? response.json() : [])
+          .then((productReviews) => setReviews(Array.isArray(productReviews) ? productReviews : []))
+          .catch(() => setReviews([]));
       }
     }
   }, [params.slug, products]);
@@ -131,6 +141,40 @@ export default function ProductDetail() {
       setSuccessMsg("");
     }, 4000);
   };
+
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmittingReview(true);
+    setReviewStatus("");
+
+    try {
+      const response = await fetch(`/api/products/${encodeURIComponent(product.slug)}/reviews`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(reviewForm)
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Could not submit your review.");
+
+      setReviews((current) => [{
+        id: `new-${Date.now()}`,
+        name: reviewForm.name.trim(),
+        rating: Number(reviewForm.rating),
+        review: reviewForm.review.trim(),
+        createdAt: new Date().toISOString()
+      }, ...current]);
+      setReviewForm({ name: "", email: "", rating: 5, review: "" });
+      setReviewStatus("Thank you. Your review has been posted.");
+    } catch (error) {
+      setReviewStatus(error.message);
+    } finally {
+      setIsSubmittingReview(false);
+    }
+  };
+
+  const reviewAverage = reviews.length
+    ? reviews.reduce((total, review) => total + Number(review.rating), 0) / reviews.length
+    : 0;
 
   return (
     <div className={styles.detailContainer}>
@@ -387,6 +431,89 @@ export default function ProductDetail() {
             )}
           </div>
         </div>
+
+        <section className={styles.reviewsSection} aria-labelledby="reviews-heading">
+          <div className={styles.reviewsHeader}>
+            <div>
+              <span className={styles.sectionEyebrow}>Customer feedback</span>
+              <h2 id="reviews-heading">Reviews for {product.name}</h2>
+            </div>
+            <div className={styles.ratingSummary}>
+              <strong>{reviewAverage ? reviewAverage.toFixed(1) : "New"}</strong>
+              <span>{reviewAverage ? "★★★★★" : "No ratings yet"}</span>
+              <small>{reviews.length} {reviews.length === 1 ? "review" : "reviews"}</small>
+            </div>
+          </div>
+
+          <div className={styles.reviewsGrid}>
+            <div className={styles.reviewList}>
+              {reviews.length ? reviews.map((review) => (
+                <article className={styles.reviewCard} key={review.id}>
+                  <div className={styles.reviewCardHeader}>
+                    <strong>{review.name}</strong>
+                    <span className={styles.reviewStars} aria-label={`${review.rating} out of 5 stars`}>
+                      {"★".repeat(Number(review.rating))}{"☆".repeat(5 - Number(review.rating))}
+                    </span>
+                  </div>
+                  <p>{review.review}</p>
+                </article>
+              )) : (
+                <p className={styles.emptyReviews}>Be the first to review this product.</p>
+              )}
+            </div>
+
+            <form className={styles.reviewForm} onSubmit={handleReviewSubmit}>
+              <h3>Leave a review</h3>
+              <label className="form-group">
+                <span className="form-label">Your name *</span>
+                <input
+                  className="form-control"
+                  value={reviewForm.name}
+                  onChange={(e) => setReviewForm((current) => ({ ...current, name: e.target.value }))}
+                  required
+                />
+              </label>
+              <label className="form-group">
+                <span className="form-label">Email address *</span>
+                <input
+                  type="email"
+                  className="form-control"
+                  value={reviewForm.email}
+                  onChange={(e) => setReviewForm((current) => ({ ...current, email: e.target.value }))}
+                  required
+                />
+              </label>
+              <label className="form-group">
+                <span className="form-label">Rating *</span>
+                <select
+                  className="form-control"
+                  value={reviewForm.rating}
+                  onChange={(e) => setReviewForm((current) => ({ ...current, rating: Number(e.target.value) }))}
+                >
+                  <option value="5">5 - Excellent</option>
+                  <option value="4">4 - Very good</option>
+                  <option value="3">3 - Good</option>
+                  <option value="2">2 - Fair</option>
+                  <option value="1">1 - Poor</option>
+                </select>
+              </label>
+              <label className="form-group">
+                <span className="form-label">Your review *</span>
+                <textarea
+                  className="form-control"
+                  rows="5"
+                  value={reviewForm.review}
+                  onChange={(e) => setReviewForm((current) => ({ ...current, review: e.target.value }))}
+                  required
+                />
+              </label>
+              {reviewStatus && <p className={styles.reviewStatus} role="status">{reviewStatus}</p>}
+              <button type="submit" className="btn btn-primary" disabled={isSubmittingReview}>
+                {isSubmittingReview ? "Posting review..." : "Post review"}
+              </button>
+            </form>
+          </div>
+        </section>
       </div>
     </div>
   );

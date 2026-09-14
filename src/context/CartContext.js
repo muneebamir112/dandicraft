@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, startTransition, useState, useEffect } from "react";
 
 const CartContext = createContext();
 
@@ -35,12 +35,12 @@ export const CartProvider = ({ children }) => {
       const storedCart = localStorage.getItem("dandicraft_cart");
       if (storedCart) {
         try {
-          setCartItems(JSON.parse(storedCart));
+          startTransition(() => setCartItems(JSON.parse(storedCart)));
         } catch (e) {
           console.error("Error parsing cart storage:", e);
         }
       }
-      setIsLoaded(true);
+      startTransition(() => setIsLoaded(true));
     }
   }, []);
 
@@ -95,13 +95,11 @@ export const CartProvider = ({ children }) => {
     const parsedQty = parseInt(newQuantity, 10);
     if (isNaN(parsedQty)) return;
 
-    if (parsedQty <= 0) {
-      removeFromCart(key);
-      return;
-    }
     setCartItems(prevItems =>
       prevItems.map(item =>
-        item.key === key ? { ...item, quantity: parsedQty } : item
+        item.key === key
+          ? { ...item, quantity: Math.max(item.minQty || 1, parsedQty) }
+          : item
       )
     );
   };
@@ -122,6 +120,7 @@ export const CartProvider = ({ children }) => {
   }, 0);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const cartItemCount = cartItems.length;
 
   // Validate if all items meet their MOQ (Minimum Order Quantity)
   const validateCartMOQ = () => {
@@ -134,6 +133,7 @@ export const CartProvider = ({ children }) => {
         cartItems,
         isLoaded,
         cartCount,
+        cartItemCount,
         cartSubtotal,
         addToCart,
         removeFromCart,

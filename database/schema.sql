@@ -29,6 +29,20 @@ CREATE TABLE IF NOT EXISTS product_images (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS product_reviews (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  product_id VARCHAR(128) NOT NULL,
+  reviewer_name VARCHAR(120) NOT NULL,
+  reviewer_email VARCHAR(255) NOT NULL,
+  rating TINYINT UNSIGNED NOT NULL,
+  review TEXT NOT NULL,
+  approved BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_product_reviews_product
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+  INDEX idx_product_reviews_product (product_id, approved, created_at)
+);
+
 CREATE TABLE IF NOT EXISTS admin_users (
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(120) NOT NULL,

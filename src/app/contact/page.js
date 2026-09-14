@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { startTransition, useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import styles from "./Contact.module.css";
 
@@ -17,15 +17,18 @@ function ContactForm() {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   // Prefill subject line from query parameters if present
   useEffect(() => {
     const subjectParam = searchParams.get("subject");
     if (subjectParam) {
-      setFormData(prev => ({
-        ...prev,
-        subject: decodeURIComponent(subjectParam)
-      }));
+      startTransition(() => {
+        setFormData(prev => ({
+          ...prev,
+          subject: decodeURIComponent(subjectParam)
+        }));
+      });
     }
   }, [searchParams]);
 
@@ -37,7 +40,7 @@ function ContactForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       alert("Please fill in all the required fields.");
@@ -45,12 +48,26 @@ function ContactForm() {
     }
 
     setIsSubmitting(true);
+    setSubmitError("");
 
-    // Simulate sending message
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || "Unable to send your message.");
+      }
+
       setIsSent(true);
-    }, 1500);
+    } catch (error) {
+      setSubmitError(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -76,7 +93,7 @@ function ContactForm() {
                   <div className={styles.successIcon}>✓</div>
                   <h2>Message Sent Successfully!</h2>
                   <p>
-                    Thank you for reaching out to Dandicraft. We have received your inquiry regarding <strong>"{formData.subject || "General Inquiry"}"</strong>.
+                    Thank you for reaching out to Dandicraft. We have received your inquiry regarding <strong>&quot;{formData.subject || "General Inquiry"}&quot;</strong>.
                   </p>
                   <p style={{ marginTop: "8px" }}>
                     A customer representative will review your request and respond to your email address (<strong>{formData.email}</strong>) within <strong>24 business hours</strong>.
@@ -177,6 +194,12 @@ function ContactForm() {
                       required
                     ></textarea>
                   </div>
+
+                  {submitError && (
+                    <p role="alert" style={{ color: "var(--error)", marginBottom: "16px" }}>
+                      {submitError}
+                    </p>
+                  )}
 
                   {isSubmitting ? (
                     <button type="button" className="btn btn-disabled" style={{ width: "100%" }} disabled>

@@ -120,6 +120,7 @@ export default function Cart() {
                             type="button"
                             onClick={(e) => { e.preventDefault(); updateQuantity(item.key, item.quantity - 1); }}
                             className={styles.qtyBtn}
+                            disabled={item.quantity <= (item.minQty || 1)}
                           >
                             -
                           </button>
@@ -180,11 +181,11 @@ export default function Cart() {
                 <div className={styles.shippingNotice}>
                   <p><strong>Shipping Methods:</strong></p>
                   <p>Standard delivery is fulfilled via <strong>UPS Ground</strong> (handling time: 1–2 days, transit: 1–3 business days).</p>
-                  <p style={{ marginTop: "8px" }}>📦 <em>Lakewood, NJ orders shipped via MailPak. Same-day requests accepted in checkout order notes.</em></p>
+                  <p style={{ marginTop: "8px" }}> <em>Lakewood, NJ orders shipped via MailPak. Same-day requests accepted in checkout order notes.</em></p>
                 </div>
 
                 <div className={styles.policyDisclaimer}>
-                  🔒 <strong>All Sales Final.</strong> Review your customized variations, photo uploads, and sizes before checking out. No returns or cancellations accepted once processed.
+                  <strong>All Sales Final.</strong> Review your customized variations, photo uploads, and sizes before checking out. No returns or cancellations accepted once processed.
                 </div>
 
                 {isCartValid ? (

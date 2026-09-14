@@ -254,7 +254,7 @@ export default function AdminDashboard({ initialProducts, admin }) {
               <label className={styles.field}><span>Product name</span><input value={editing.name} onChange={(e) => updateField("name", e.target.value)} required /></label>
               <label className={styles.field}><span>URL slug</span><input value={editing.slug} onChange={(e) => updateField("slug", slugify(e.target.value))} required /></label>
               <label className={`${styles.field} ${styles.categorySelect}`}><span>Category</span><select value={editing.category} onChange={(e) => updateField("category", e.target.value)}>{CATEGORIES.map((category) => <option key={category}>{category}</option>)}</select></label>
-              <label className={styles.field}><span>Price ($)</span><input type="number" min="0" step="0.01" value={editing.price} onChange={(e) => updateField("price", Number(e.target.value))} required /></label>
+              <label className={styles.field}><span>Price ($)</span><input type="number" min="0" step="0.01" value={editing.price ?? ""} onChange={(e) => updateField("price", e.target.value === "" ? "" : Number(e.target.value))} required /></label>
               <label className={`${styles.field} ${styles.fullWidth}`}><span>Description</span><textarea rows="5" value={editing.description} onChange={(e) => updateField("description", e.target.value)} required /></label>
 
               <div className={`${styles.field} ${styles.fullWidth}`}>
@@ -286,7 +286,7 @@ export default function AdminDashboard({ initialProducts, admin }) {
                 </div>
               </div>
 
-              <label className={styles.field}><span>Minimum quantity</span><input type="number" min="1" value={editing.minQty} onChange={(e) => updateField("minQty", Number(e.target.value))} /></label>
+              <label className={styles.field}><span>Minimum quantity</span><input type="number" min="1" value={editing.minQty ?? ""} onChange={(e) => updateField("minQty", e.target.value === "" ? "" : Number(e.target.value))} /></label>
               <div className={styles.switches}>
                 {[["active", "Published"], ["featured", "Featured"], ["hasUpload", "Customer photo upload"], ["requiresQuote", "Quote required"]].map(([field, label]) => (
                   <label key={field}><input type="checkbox" checked={editing[field]} onChange={(e) => updateField(field, e.target.checked)} /><span>{label}</span></label>

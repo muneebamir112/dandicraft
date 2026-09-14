@@ -12,6 +12,9 @@ export async function POST(request) {
     if (paymentMethod === "card" && (!token || !cvvToken || !/^\d{4}$/.test(String(expDate || "")))) {
       return NextResponse.json({ error: "Card payment details are incomplete." }, { status: 400 });
     }
+    if (!Array.isArray(cartItems) || cartItems.length === 0) {
+      return NextResponse.json({ error: "Your cart is empty." }, { status: 400 });
+    }
 
     // Generate a unique order number (e.g. DC-738192)
     const orderNumber = `DC-${Math.floor(100000 + Math.random() * 900000)}`;
@@ -20,6 +23,29 @@ export async function POST(request) {
 
     try {
       await connection.beginTransaction();
+
+      const productIds = [...new Set(cartItems.map((item) => item.id).filter(Boolean))];
+      if (productIds.length !== cartItems.length) {
+        throw new Error("Invalid cart items.");
+      }
+      const placeholders = productIds.map(() => "?").join(", ");
+      const [productRows] = await connection.execute(
+        `SELECT id, min_qty AS minQty FROM products WHERE id IN (${placeholders}) AND active = TRUE`,
+        productIds
+      );
+      const minimums = new Map(productRows.map((product) => [product.id, Number(product.minQty)]));
+      const invalidItem = cartItems.find((item) => {
+        const quantity = Number(item.quantity);
+        const minQty = minimums.get(item.id);
+        return !minQty || !Number.isInteger(quantity) || quantity < minQty;
+      });
+      if (invalidItem) {
+        const validationError = new Error(
+          `Minimum order quantity for ${invalidItem.name || "this product"} is ${minimums.get(invalidItem.id) || 1}.`
+        );
+        validationError.status = 400;
+        throw validationError;
+      }
 
       // 1. Insert order
       const [orderResult] = await connection.execute(
@@ -151,8 +177,8 @@ export async function POST(request) {
   } catch (error) {
     console.error("Error creating order:", error);
     return NextResponse.json(
-      { error: "Failed to create order. " + error.message, stack: error.stack },
-      { status: 500 }
+      { error: error.status === 400 ? error.message : "Failed to create order." },
+      { status: error.status || 500 }
     );
   }
 }

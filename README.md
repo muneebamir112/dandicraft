@@ -9,7 +9,8 @@ The storefront catalog is managed at `/admin` and stored in the local MySQL 8 se
 1. Copy `.env.local.example` to `.env.local`.
 2. Enter the password used by the `root` connection in MySQL Workbench.
 3. Replace `ADMIN_EMAIL` and `ADMIN_PASSWORD` with the private administrator login you want to use. The admin password must be at least 12 characters.
-4. Create the database, tables, administrator, and seed the existing catalog:
+4. Configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, and `SMTP_PASSWORD` with your email provider's SMTP settings. Set `CONTACT_EMAIL` to the inbox that should receive contact form submissions (currently `info@dandicraft.com`).
+5. Create the database, tables, administrator, and seed the existing catalog:
 
 ```bash
 npm run db:setup

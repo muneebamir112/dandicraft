@@ -7,7 +7,7 @@ import { useCart } from "../context/CartContext";
 import styles from "./Header.module.css";
 
 export default function Header() {
-  const { cartCount } = useCart();
+  const { cartItemCount } = useCart();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hideDropdown, setHideDropdown] = useState(false);
@@ -121,7 +121,7 @@ export default function Header() {
                         <circle cx="20" cy="21" r="1" />
                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
                       </svg>
-                      {cartCount > 0 && <span className={styles.cartCount}>{cartCount}</span>}
+                      {cartItemCount > 0 && <span className={styles.cartCount}>{cartItemCount}</span>}
                     </Link>
 
                     {/* Mobile Menu Button */}

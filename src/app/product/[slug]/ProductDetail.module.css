@@ -495,6 +495,123 @@
   color: var(--primary-deep);
 }
 
+/* Product reviews */
+.reviewsSection {
+  margin-top: 72px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-light);
+}
+
+.reviewsHeader {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.sectionEyebrow {
+  display: block;
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.reviewsHeader h2 {
+  color: var(--dark-text);
+  font-size: 1.8rem;
+}
+
+.ratingSummary {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--muted-text);
+  white-space: nowrap;
+}
+
+.ratingSummary strong {
+  color: var(--dark-text);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+}
+
+.ratingSummary span,
+.reviewStars {
+  color: #d28b19;
+  letter-spacing: 0.08em;
+}
+
+.ratingSummary small {
+  color: var(--muted-text);
+}
+
+.reviewsGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.reviewCard,
+.reviewForm {
+  background-color: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 22px;
+}
+
+.reviewCardHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.reviewCardHeader strong {
+  color: var(--dark-text);
+}
+
+.reviewCard p,
+.emptyReviews {
+  color: var(--medium-text);
+  line-height: 1.6;
+}
+
+.emptyReviews {
+  padding: 22px 0;
+}
+
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.reviewForm h3 {
+  color: var(--dark-text);
+  font-size: 1.2rem;
+}
+
+.reviewForm .form-group {
+  margin: 0;
+}
+
+.reviewStatus {
+  color: var(--primary-deep);
+  font-size: 0.9rem;
+}
+
 @keyframes slideDownToast {
   0% { opacity: 0; transform: translateY(-50px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -505,5 +622,14 @@
   .layoutGrid {
     grid-template-columns: 1fr;
     gap: 30px;
+  }
+
+  .reviewsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .reviewsHeader {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }

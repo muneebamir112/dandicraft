@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import fallbackProducts from "@/data/products.json";
 
 export function useProducts() {
-  const [products, setProducts] = useState(fallbackProducts);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
