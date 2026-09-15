@@ -104,6 +104,15 @@
   gap: 30px;
 }
 
+.catalogLoading {
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-text);
+  font-weight: 600;
+}
+
 .pagination {
   display: flex;
   align-items: center;
@@ -224,6 +233,14 @@
   background-color: var(--primary-deep);
   color: var(--white);
   right: 12px;
+}
+
+.badgeStock {
+  top: auto;
+  bottom: 12px;
+  left: 12px;
+  background-color: #047857;
+  color: var(--white);
 }
 
 .productInfo {

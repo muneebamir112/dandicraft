@@ -8,17 +8,25 @@ export async function GET(_request, context) {
     return new Response("Not found", { status: 404 });
   }
 
-  const [rows] = await db.execute(
-    "SELECT mime_type, image_data FROM product_images WHERE id = ? LIMIT 1",
-    [id]
-  );
-  if (!rows[0]) return new Response("Not found", { status: 404 });
+  try {
+    const [rows] = await db.execute(
+      "SELECT mime_type, image_data FROM product_images WHERE id = ? LIMIT 1",
+      [id]
+    );
+    if (!rows[0]) return new Response("Not found", { status: 404 });
 
-  return new Response(rows[0].image_data, {
-    headers: {
-      "Content-Type": rows[0].mime_type,
-      "Cache-Control": "public, max-age=31536000, immutable",
-      "X-Content-Type-Options": "nosniff",
-    },
-  });
+    return new Response(rows[0].image_data, {
+      headers: {
+        "Content-Type": rows[0].mime_type,
+        "Cache-Control": "public, max-age=31536000, immutable",
+        "X-Content-Type-Options": "nosniff",
+      },
+    });
+  } catch (error) {
+    console.error("MySQL image unavailable:", error.message);
+    return new Response("Image temporarily unavailable", {
+      status: 503,
+      headers: { "Cache-Control": "no-store", "Retry-After": "30" },
+    });
+  }
 }

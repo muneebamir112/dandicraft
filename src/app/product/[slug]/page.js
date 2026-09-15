@@ -10,7 +10,7 @@ import styles from "./ProductDetail.module.css";
 export default function ProductDetail() {
   const params = useParams();
   const router = useRouter();
-  const { addToCart } = useCart();
+  const { addToCart, cartItems } = useCart();
   const { products, loading } = useProducts();
   const fileInputRef = useRef(null);
 
@@ -53,9 +53,11 @@ export default function ProductDetail() {
           .then((response) => response.ok ? response.json() : [])
           .then((productReviews) => setReviews(Array.isArray(productReviews) ? productReviews : []))
           .catch(() => setReviews([]));
+      } else if (!loading) {
+        startTransition(() => setProduct(null));
       }
     }
-  }, [params.slug, products]);
+  }, [params.slug, products, loading]);
 
   if (!product) {
     if (loading) {
@@ -107,12 +109,21 @@ export default function ProductDetail() {
     }
   };
 
+  const quantityInCart = cartItems.reduce(
+    (total, item) => total + (item.id === product.id ? item.quantity : 0),
+    0
+  );
+  const availableToAdd = product.trackInventory
+    ? Math.max(0, product.stockQuantity - quantityInCart)
+    : Number.POSITIVE_INFINITY;
+  const canAddToCart = !product.trackInventory || availableToAdd >= (product.minQty || 1);
+
   // Handle quantity changes
   const changeQuantity = (amount) => {
     const min = product.minQty || 1;
     setQuantity(prev => {
       const next = prev + amount;
-      return next >= min ? next : prev;
+      return next >= min && next <= availableToAdd ? next : prev;
     });
   };
 
@@ -132,7 +143,16 @@ export default function ProductDetail() {
       return;
     }
 
-    addToCart(product, selectedOptions, selectedAddons, quantity, uploadFile);
+    if (!canAddToCart) {
+      alert("The remaining stock for this product is already in your cart.");
+      return;
+    }
+
+    const result = addToCart(product, selectedOptions, selectedAddons, quantity, uploadFile);
+    if (!result.added) {
+      alert(result.message);
+      return;
+    }
     
     setSuccessMsg("Success! Product has been added to your shopping cart.");
 
@@ -258,6 +278,13 @@ export default function ProductDetail() {
                 <p>
                   <strong>Wholesale Minimum Limit:</strong> A minimum order quantity of <strong>{product.minQty} units</strong> is required for this product.
                 </p>
+              </div>
+            )}
+
+            {product.trackInventory && (
+              <div className={styles.stockAlert}>
+                <strong>{product.stockQuantity} units available</strong>
+                {quantityInCart > 0 && <span>{quantityInCart} already in your cart</span>}
               </div>
             )}
 
@@ -389,6 +416,7 @@ export default function ProductDetail() {
                         type="button" 
                         onClick={() => changeQuantity(1)}
                         className={styles.qtyBtn}
+                        disabled={product.trackInventory && quantity >= availableToAdd}
                       >
                         +
                       </button>
@@ -405,8 +433,9 @@ export default function ProductDetail() {
                     type="submit" 
                     className="btn btn-primary"
                     style={{ width: "100%", padding: "14px 20px" }}
+                    disabled={!canAddToCart}
                   >
-                    Add to Shopping Cart
+                    {canAddToCart ? "Add to Shopping Cart" : "Maximum Available Stock in Cart"}
                   </button>
 
                   {/* Success Alert Banner */}

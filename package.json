@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:setup": "node scripts/setup-db.js"
+    "db:setup": "node scripts/setup-db.js",
+    "db:migrate:inventory": "node scripts/migrate-inventory.js"
   },
   "dependencies": {
     "@cardknox/react-ifields": "^2.2.86",

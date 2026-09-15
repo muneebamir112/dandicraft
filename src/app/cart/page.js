@@ -13,10 +13,11 @@ export default function Cart() {
     updateQuantity, 
     removeFromCart, 
     getItemPrice, 
-    validateCartMOQ 
+    validateCartMOQ,
+    validateCartStock
   } = useCart();
 
-  const isCartValid = validateCartMOQ();
+  const isCartValid = validateCartMOQ() && validateCartStock();
 
   return (
     <div className={styles.cartContainer}>
@@ -54,6 +55,11 @@ export default function Cart() {
                   const singleItemPrice = getItemPrice(item);
                   const itemTotalPrice = singleItemPrice * item.quantity;
                   const isMoqViolated = item.quantity < item.minQty;
+                  const productQuantityInCart = cartItems.reduce(
+                    (total, cartItem) => total + (cartItem.id === item.id ? cartItem.quantity : 0),
+                    0
+                  );
+                  const isAtStockLimit = item.trackInventory && productQuantityInCart >= item.stockQuantity;
 
                   return (
                     <div 
@@ -129,6 +135,7 @@ export default function Cart() {
                             type="button"
                             onClick={(e) => { e.preventDefault(); updateQuantity(item.key, item.quantity + 1); }}
                             className={styles.qtyBtn}
+                            disabled={isAtStockLimit}
                           >
                             +
                           </button>
@@ -137,6 +144,11 @@ export default function Cart() {
                         {item.minQty > 1 && (
                           <div className={`${styles.itemMoqLabel} ${isMoqViolated ? styles.itemMoqLabelError : ""}`}>
                             Min. order: {item.minQty}
+                          </div>
+                        )}
+                        {item.trackInventory && (
+                          <div className={styles.itemStockLabel}>
+                            {item.stockQuantity} available total
                           </div>
                         )}
                       </div>

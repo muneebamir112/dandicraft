@@ -20,6 +20,7 @@ export function validateProductInput(body, existingId = "") {
   const image = text(body?.image, 2048);
   const price = Number(body?.price);
   const minQty = Math.max(1, Math.floor(Number(body?.minQty || 1)));
+  const stockQuantity = Math.max(0, Math.floor(Number(body?.stockQuantity ?? 0)));
 
   if (!name || !slug || !category || !description) {
     return { error: "Name, slug, category, and description are required." };
@@ -29,6 +30,9 @@ export function validateProductInput(body, existingId = "") {
   }
   if (!Number.isFinite(minQty) || minQty > 1000000) {
     return { error: "Minimum quantity is invalid." };
+  }
+  if (!Number.isFinite(stockQuantity) || stockQuantity > 1000000000) {
+    return { error: "Available quantity is invalid." };
   }
   if (image && !image.startsWith("/") && !/^https:\/\//i.test(image)) {
     return { error: "Image must be an uploaded image path or an HTTPS URL." };
@@ -72,6 +76,8 @@ export function validateProductInput(body, existingId = "") {
       hasUpload: Boolean(body?.hasUpload),
       requiresQuote: Boolean(body?.requiresQuote),
       minQty,
+      trackInventory: Boolean(body?.trackInventory),
+      stockQuantity,
       image: image || (images.length > 0 ? images[0] : ""), // fallback primary image
       images,
       options,

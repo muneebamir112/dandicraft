@@ -43,6 +43,25 @@ async function main() {
       await connection.query(`UPDATE products SET images_json = JSON_ARRAY() WHERE image = ''`);
     }
 
+    const [inventoryColumns] = await connection.query(
+      `SELECT column_name AS columnName
+       FROM information_schema.columns
+       WHERE table_schema = DATABASE()
+         AND table_name = 'products'
+         AND column_name IN ('track_inventory', 'stock_quantity')`
+    );
+    const inventoryColumnNames = new Set(inventoryColumns.map((column) => column.columnName));
+    if (!inventoryColumnNames.has("track_inventory")) {
+      await connection.query(
+        `ALTER TABLE products ADD COLUMN track_inventory BOOLEAN NOT NULL DEFAULT FALSE AFTER min_qty`
+      );
+    }
+    if (!inventoryColumnNames.has("stock_quantity")) {
+      await connection.query(
+        `ALTER TABLE products ADD COLUMN stock_quantity INT UNSIGNED NOT NULL DEFAULT 0 AFTER track_inventory`
+      );
+    }
+
     const products = JSON.parse(
       fs.readFileSync(path.join(process.cwd(), "src", "data", "products.json"), "utf8")
     );

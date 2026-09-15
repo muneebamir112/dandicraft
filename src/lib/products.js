@@ -27,6 +27,8 @@ function mapProduct(row) {
     hasUpload: Boolean(row.has_upload),
     requiresQuote: Boolean(row.requires_quote),
     minQty: Number(row.min_qty || 1),
+    trackInventory: Boolean(row.track_inventory),
+    stockQuantity: Number(row.stock_quantity || 0),
     image: row.image || "",
     images: uniqueImages(row.images_json),
     options: parseJson(row.options_json),
@@ -40,14 +42,14 @@ function mapProduct(row) {
 
 export async function listProducts({ includeInactive = false } = {}) {
   const [rows] = await db.query(
-    `SELECT * FROM products ${includeInactive ? "" : "WHERE active = TRUE"} ORDER BY updated_at DESC, name ASC`
+    `SELECT * FROM products ${includeInactive ? "" : "WHERE active = TRUE AND (track_inventory = FALSE OR stock_quantity >= min_qty)"} ORDER BY updated_at DESC, name ASC`
   );
   return rows.map(mapProduct);
 }
 
 export async function findProductBySlug(slug, { includeInactive = false } = {}) {
   const [rows] = await db.execute(
-    `SELECT * FROM products WHERE slug = ? ${includeInactive ? "" : "AND active = TRUE"} LIMIT 1`,
+    `SELECT * FROM products WHERE slug = ? ${includeInactive ? "" : "AND active = TRUE AND (track_inventory = FALSE OR stock_quantity >= min_qty)"} LIMIT 1`,
     [slug]
   );
   return rows[0] ? mapProduct(rows[0]) : null;
@@ -57,8 +59,8 @@ export async function createProduct(product) {
   await db.execute(
     `INSERT INTO products
       (id, slug, name, category, price, description, has_upload, requires_quote,
-       min_qty, image, images_json, options_json, addons_json, featured, active)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       min_qty, track_inventory, stock_quantity, image, images_json, options_json, addons_json, featured, active)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       product.id,
       product.slug,
@@ -69,6 +71,8 @@ export async function createProduct(product) {
       product.hasUpload,
       product.requiresQuote,
       product.minQty,
+      product.trackInventory,
+      product.stockQuantity,
       product.image,
       JSON.stringify(product.images || []),
       JSON.stringify(product.options),
@@ -88,7 +92,8 @@ export async function updateProduct(id, product) {
   const [result] = await db.execute(
     `UPDATE products SET
       slug = ?, name = ?, category = ?, price = ?, description = ?, has_upload = ?,
-      requires_quote = ?, min_qty = ?, image = ?, images_json = ?, options_json = ?, addons_json = ?,
+      requires_quote = ?, min_qty = ?, track_inventory = ?, stock_quantity = ?,
+      image = ?, images_json = ?, options_json = ?, addons_json = ?,
       featured = ?, active = ?
      WHERE id = ?`,
     [
@@ -100,6 +105,8 @@ export async function updateProduct(id, product) {
       product.hasUpload,
       product.requiresQuote,
       product.minQty,
+      product.trackInventory,
+      product.stockQuantity,
       product.image,
       JSON.stringify(product.images || []),
       JSON.stringify(product.options),

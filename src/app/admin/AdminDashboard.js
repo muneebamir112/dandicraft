@@ -27,6 +27,8 @@ const EMPTY_PRODUCT = {
   hasUpload: false,
   requiresQuote: false,
   minQty: 1,
+  trackInventory: false,
+  stockQuantity: 0,
   featured: false,
   active: true,
   options: [],
@@ -287,8 +289,18 @@ export default function AdminDashboard({ initialProducts, admin }) {
               </div>
 
               <label className={styles.field}><span>Minimum quantity</span><input type="number" min="1" value={editing.minQty ?? ""} onChange={(e) => updateField("minQty", e.target.value === "" ? "" : Number(e.target.value))} /></label>
+              <label className={styles.field}>
+                <span>Available quantity</span>
+                <input
+                  type="number"
+                  min="0"
+                  value={editing.stockQuantity ?? 0}
+                  disabled={!editing.trackInventory}
+                  onChange={(e) => updateField("stockQuantity", e.target.value === "" ? "" : Number(e.target.value))}
+                />
+              </label>
               <div className={styles.switches}>
-                {[["active", "Published"], ["featured", "Featured"], ["hasUpload", "Customer photo upload"], ["requiresQuote", "Quote required"]].map(([field, label]) => (
+                {[["active", "Published"], ["trackInventory", "Track inventory"], ["featured", "Featured"], ["hasUpload", "Customer photo upload"], ["requiresQuote", "Quote required"]].map(([field, label]) => (
                   <label key={field}><input type="checkbox" checked={editing[field]} onChange={(e) => updateField(field, e.target.checked)} /><span>{label}</span></label>
                 ))}
               </div>
@@ -346,6 +358,13 @@ export default function AdminDashboard({ initialProducts, admin }) {
                 <div className={styles.cardMeta}><span>{product.category}</span><span className={product.active ? styles.live : styles.draft}>{product.active ? "Live" : "Draft"}</span></div>
                 <h3>{product.name}</h3>
                 <p className={styles.slug}>/{product.slug}</p>
+                {product.trackInventory && (
+                  <p className={styles.inventoryStatus}>
+                    {product.stockQuantity >= product.minQty
+                      ? `${product.stockQuantity} available`
+                      : "Out of stock"}
+                  </p>
+                )}
                 <div className={styles.cardFooter}>
                   <strong>${Number(product.price).toFixed(2)}</strong>
                   <div>

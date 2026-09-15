@@ -8,7 +8,7 @@ import { useProducts } from "@/hooks/useProducts";
 
 export default function Shop() {
   const params = useParams();
-  const { products } = useProducts();
+  const { products, loading } = useProducts();
   const [page, setPage] = useState(1);
   const productsPerPage = 12;
   
@@ -91,7 +91,11 @@ export default function Shop() {
       {/* Products Grid Section */}
       <section className="section-padding" style={{ paddingTop: "40px" }}>
         <div className="container">
-          {filteredProducts.length === 0 ? (
+          {loading ? (
+            <div className={styles.catalogLoading} role="status" aria-live="polite">
+              Loading products...
+            </div>
+          ) : filteredProducts.length === 0 ? (
             <div className={styles.noProducts}>
               <h3>No products found in this category.</h3>
               <p>Please browse another section or contact us for inquiries.</p>
@@ -129,6 +133,11 @@ export default function Shop() {
                     {prod.hasUpload && (
                       <span className={`${styles.badge} ${styles.badgeCustom}`}>
                         Photo Upload
+                      </span>
+                    )}
+                    {prod.trackInventory && (
+                      <span className={`${styles.badge} ${styles.badgeStock}`}>
+                        {prod.stockQuantity} available
                       </span>
                     )}
                   </div>

@@ -104,6 +104,7 @@
 .draft { background: rgba(100, 116, 139, 0.15); color: #475569; }
 .cardBody h3 { margin: 0 0 4px; font-size: 20px; font-weight: 700; color: #0f172a; line-height: 1.3; }
 .slug { color: #64748b; font-size: 13px; }
+.inventoryStatus { color: #047857; font-size: 13px; font-weight: 700; margin-top: 6px; }
 .cardFooter { margin-top: auto; padding-top: 20px; }
 .cardFooter strong { font-size: 24px; font-weight: 800; color: #0f172a; }
 .cardFooter button { border: none; background: rgba(241, 245, 249, 0.8); color: #0f172a; font-weight: 600; padding: 8px 16px; border-radius: 10px; cursor: pointer; transition: all 0.2s; font-size: 13px; }

@@ -4,11 +4,14 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    return Response.json(await listProducts());
+    return Response.json(await listProducts(), {
+      headers: { "Cache-Control": "no-store" },
+    });
   } catch (error) {
-    console.error("MySQL catalog unavailable; serving an empty catalog:", error.message);
-    return Response.json([], {
-      headers: { "X-Catalog-Source": "empty" },
+    console.error("MySQL catalog unavailable:", error.message);
+    return Response.json({ error: "Product catalog temporarily unavailable." }, {
+      status: 503,
+      headers: { "Cache-Control": "no-store", "Retry-After": "30" },
     });
   }
 }

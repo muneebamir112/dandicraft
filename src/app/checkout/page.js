@@ -15,7 +15,7 @@ const account = {
 
 export default function Checkout() {
   const router = useRouter();
-  const { cartItems, cartCount, cartSubtotal, getItemPrice, clearCart, isLoaded, validateCartMOQ } = useCart();
+  const { cartItems, cartCount, cartSubtotal, getItemPrice, clearCart, isLoaded, validateCartMOQ, validateCartStock } = useCart();
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -45,11 +45,11 @@ export default function Checkout() {
   // Redirect if cart is empty or MOQ validation fails (only after context loads)
   useEffect(() => {
     if (isLoaded && !orderConfirmed) {
-      if (cartItems.length === 0 || !validateCartMOQ()) {
+      if (cartItems.length === 0 || !validateCartMOQ() || !validateCartStock()) {
         router.push("/cart");
       }
     }
-  }, [cartItems, isLoaded, router, validateCartMOQ, orderConfirmed]);
+  }, [cartItems, isLoaded, router, validateCartMOQ, validateCartStock, orderConfirmed]);
 
   // Check if current location details qualify for Lakewood same-day MailPak shipping
   const isLakewoodNJ =

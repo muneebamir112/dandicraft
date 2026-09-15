@@ -255,6 +255,12 @@
   font-weight: 700;
 }
 
+.itemStockLabel {
+  font-size: 0.75rem;
+  color: #047857;
+  font-weight: 700;
+}
+
 /* Item Pricing */
 .itemPricing {
   display: flex;

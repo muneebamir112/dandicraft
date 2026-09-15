@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS products (
   has_upload BOOLEAN NOT NULL DEFAULT FALSE,
   requires_quote BOOLEAN NOT NULL DEFAULT FALSE,
   min_qty INT NOT NULL DEFAULT 1,
+  track_inventory BOOLEAN NOT NULL DEFAULT FALSE,
+  stock_quantity INT UNSIGNED NOT NULL DEFAULT 0,
   image VARCHAR(2048) NOT NULL DEFAULT '',
   images_json JSON NOT NULL,
   options_json JSON NOT NULL,
