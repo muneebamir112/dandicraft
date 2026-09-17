@@ -3,6 +3,8 @@ import { db } from "@/lib/db";
 import Link from "next/link";
 import styles from "../../Admin.module.css";
 import { notFound } from "next/navigation";
+import DeleteOrderButton from "../DeleteOrderButton";
+import OrderStatusSelect from "./OrderStatusSelect";
 
 export const dynamic = "force-dynamic";
 
@@ -50,6 +52,7 @@ export default async function AdminOrderDetailPage({ params }) {
             <p className={styles.subhead}>Placed on {new Date(order.created_at).toLocaleString()}</p>
           </div>
           <div className={styles.topActions}>
+            <DeleteOrderButton orderId={orderId} redirectAfterDelete={true} />
             <Link href="/admin/orders" className={styles.secondaryButton}>Back to Orders</Link>
           </div>
         </header>
@@ -129,17 +132,7 @@ export default async function AdminOrderDetailPage({ params }) {
             
             <div style={{ backgroundColor: 'var(--white)', borderRadius: 'var(--radius-md)', padding: '24px', border: '1px solid var(--border-light)' }}>
               <h2 style={{ fontSize: '1.2rem', marginBottom: '20px', borderBottom: '1px solid var(--border-light)', paddingBottom: '10px' }}>Status</h2>
-              <span style={{ 
-                backgroundColor: order.status === 'Pending Payment' ? '#fef3c7' : '#d1fae5', 
-                color: order.status === 'Pending Payment' ? '#92400e' : '#065f46', 
-                padding: '8px 12px', 
-                borderRadius: '6px', 
-                fontSize: '0.9rem',
-                fontWeight: 600,
-                display: 'inline-block'
-              }}>
-                {order.status}
-              </span>
+              <OrderStatusSelect orderId={order.id} currentStatus={order.status} />
             </div>
           </div>
 

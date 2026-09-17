@@ -2,6 +2,7 @@ import { requireAdmin } from "@/lib/admin-auth";
 import { db } from "@/lib/db";
 import Link from "next/link";
 import styles from "../Admin.module.css";
+import DeleteOrderButton from "./DeleteOrderButton";
 
 export const dynamic = "force-dynamic";
 
@@ -78,7 +79,10 @@ export default async function AdminOrdersPage() {
                       </span>
                     </td>
                     <td style={{ padding: '12px' }}>
-                      <Link href={`/admin/orders/${order.id}`} className={styles.secondaryButton} style={{ padding: '6px 12px', fontSize: '0.85rem' }}>View</Link>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        <Link href={`/admin/orders/${order.id}`} className={styles.secondaryButton} style={{ padding: '6px 12px', fontSize: '0.85rem' }}>View</Link>
+                        <DeleteOrderButton orderId={order.id} />
+                      </div>
                     </td>
                   </tr>
                 ))}

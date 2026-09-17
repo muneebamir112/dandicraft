@@ -1,5 +1,51 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import nodemailer from "nodemailer";
+
+async function sendOrderConfirmation(orderNumber, formData, cartItems, totalAmount) {
+  if (!process.env.SMTP_HOST || !process.env.SMTP_USER) return;
+  try {
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      secure: process.env.SMTP_SECURE === "true",
+      auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASSWORD }
+    });
+
+    const itemsList = cartItems.map(item => {
+      const price = item.basePrice ?? item.price ?? 0;
+      return `- ${item.name} x${item.quantity} ($${price.toFixed(2)})`;
+    }).join('\n');
+    
+    const emailBody = `Hello ${formData.fullName},
+
+Thank you for your order! Your order has been successfully placed.
+
+Order Number: ${orderNumber}
+Total Amount: $${Number(totalAmount).toFixed(2)}
+
+Items Ordered:
+${itemsList}
+
+Shipping Address:
+${formData.streetAddress}
+${formData.city}, ${formData.state} ${formData.zipCode}
+
+We will notify you with tracking details once your order ships.
+
+Thank you,
+Dandicraft`;
+
+    await transporter.sendMail({
+      from: process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER,
+      to: formData.email,
+      subject: `Order Confirmation - ${orderNumber}`,
+      text: emailBody
+    });
+  } catch (err) {
+    console.error("Failed to send confirmation email:", err);
+  }
+}
 
 function checkoutError(message, status = 400) {
   const error = new Error(message);
@@ -188,7 +234,7 @@ export async function POST(request) {
 
         let responseText;
         try {
-          const solaRes = await fetch("https://x1.cardknox.com/gatewayapi", {
+          const solaRes = await fetch("https://x1.cardknox.com/gateway", {
             method: "POST",
             signal: AbortSignal.timeout(30000),
             body: solaPayload.toString(),
@@ -212,6 +258,9 @@ export async function POST(request) {
 
         if (xResult === "A") {
           await connection.execute(`UPDATE orders SET status = 'Processing' WHERE id = ?`, [orderId]);
+          
+          sendOrderConfirmation(orderNumber, formData, cartItems, calculatedTotal).catch(console.error);
+
           return NextResponse.json({
             success: true,
             orderNumber,
@@ -226,6 +275,8 @@ export async function POST(request) {
           error: xError || "Payment declined or failed."
         }, { status: 402 });
       }
+
+      sendOrderConfirmation(orderNumber, formData, cartItems, cartSubtotal).catch(console.error);
 
       // Cash payment response
       return NextResponse.json({
