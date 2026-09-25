@@ -1,0 +1,74 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # We need a MySQL service to run npm run db:setup during the build
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: dandicraft
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Or your preferred Node version
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Project (Includes DB Setup)
+        env:
+          # Match these with the MySQL service above
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_PORT: 3306
+          MYSQL_USER: root
+          MYSQL_PASSWORD: rootpassword
+          MYSQL_DATABASE: dandicraft
+        run: npm run build
+
+      # Deployment to Hostinger VPS
+      - name: Deploy to Hostinger VPS
+        if: github.ref == 'refs/heads/main'
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          # If you use SSH keys instead of a password, comment out the password above and uncomment the line below:
+          # key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            # Navigate to your project folder (change this to your actual folder path on the server)
+            cd /path/to/your/project/folder
+
+            # Pull the latest changes from GitHub
+            git pull origin main
+
+            # Install dependencies
+            npm install
+
+            # Build the Next.js project (this will also run npm run db:setup as configured in package.json)
+            npm run build
+
+            # Restart the Next.js app using PM2 (assuming your PM2 process is named 'dandicraft' or similar)
+            pm2 restart dandicraft || pm2 start npm --name "dandicraft" -- run start
