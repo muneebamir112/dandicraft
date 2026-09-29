@@ -80,7 +80,9 @@ export function isSameOrigin(request) {
   const origin = request.headers.get("origin");
   if (!origin) return true;
   try {
-    return new URL(origin).host === new URL(request.url).host;
+    const forwardedHost = request.headers.get("x-forwarded-host");
+    const host = forwardedHost || new URL(request.url).host;
+    return new URL(origin).host === host;
   } catch {
     return false;
   }
