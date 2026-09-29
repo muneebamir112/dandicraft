@@ -16,10 +16,19 @@ export default function Home() {
     "candleart-libbey-4-5",
   ];
   const flaggedProducts = products.filter((product) => product.featured);
-  const featuredProducts = (flaggedProducts.length > 0
-    ? flaggedProducts
-    : products.filter((product) => fallbackFeaturedIds.includes(product.id))
-  ).slice(0, 4);
+  let featuredProducts = flaggedProducts;
+  
+  if (featuredProducts.length < 4) {
+    const fallbackProducts = products.filter((product) => fallbackFeaturedIds.includes(product.id) && !product.featured);
+    featuredProducts = [...featuredProducts, ...fallbackProducts];
+  }
+  
+  if (featuredProducts.length < 4) {
+    const additionalProducts = products.filter((product) => !featuredProducts.some(fp => fp.id === product.id));
+    featuredProducts = [...featuredProducts, ...additionalProducts];
+  }
+  
+  featuredProducts = featuredProducts.slice(0, 4);
 
   const categories = [
     {
