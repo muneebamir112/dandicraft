@@ -59,7 +59,7 @@ jobs:
           port: ${{ secrets.VPS_PORT || 22 }}
           script: |
             # Navigate to your project folder (change this to your actual folder path on the server)
-            cd /path/to/your/project/folder
+            cd /var/www/dandicraft
 
             # Pull the latest changes from GitHub
             git pull origin main
