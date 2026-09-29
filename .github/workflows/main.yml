@@ -70,5 +70,9 @@ jobs:
             # Build the Next.js project (this will also run npm run db:setup as configured in package.json)
             npm run build
 
+            # Import the latest products from CSVs and fix variations
+            node scripts/import-woocommerce.js
+            node scripts/fix-variation-images.js
+
             # Restart the Next.js app using PM2 (assuming your PM2 process is named 'dandicraft' or similar)
             pm2 restart dandicraft || pm2 start npm --name "dandicraft" -- run start
