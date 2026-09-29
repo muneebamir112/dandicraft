@@ -22,8 +22,8 @@ export function validateProductInput(body, existingId = "") {
   const minQty = Math.max(1, Math.floor(Number(body?.minQty || 1)));
   const stockQuantity = Math.max(0, Math.floor(Number(body?.stockQuantity ?? 0)));
 
-  if (!name || !slug || !category || !description) {
-    return { error: "Name, slug, category, and description are required." };
+  if (!name || !slug || !category) {
+    return { error: "Name, slug, and category are required." };
   }
   if (!Number.isFinite(price) || price < 0 || price > 99999999) {
     return { error: "Price must be a valid non-negative number." };

@@ -257,7 +257,7 @@ export default function AdminDashboard({ initialProducts, admin }) {
               <label className={styles.field}><span>URL slug</span><input value={editing.slug} onChange={(e) => updateField("slug", slugify(e.target.value))} required /></label>
               <label className={`${styles.field} ${styles.categorySelect}`}><span>Category</span><select value={editing.category} onChange={(e) => updateField("category", e.target.value)}>{CATEGORIES.map((category) => <option key={category}>{category}</option>)}</select></label>
               <label className={styles.field}><span>Price ($)</span><input type="number" min="0" step="0.01" value={editing.price ?? ""} onChange={(e) => updateField("price", e.target.value === "" ? "" : Number(e.target.value))} required /></label>
-              <label className={`${styles.field} ${styles.fullWidth}`}><span>Description</span><textarea rows="5" value={editing.description} onChange={(e) => updateField("description", e.target.value)} required /></label>
+              <label className={`${styles.field} ${styles.fullWidth}`}><span>Description</span><textarea rows="5" value={editing.description} onChange={(e) => updateField("description", e.target.value)} /></label>
 
               <div className={`${styles.field} ${styles.fullWidth}`}>
                 <span>Product images (Gallery)</span>
