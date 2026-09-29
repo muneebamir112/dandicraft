@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const { createConnection } = require('mysql2/promise');
-require('dotenv').config({ path: '.env.local' });
+require('@next/env').loadEnvConfig(process.cwd());
 
 const uploadDir = path.join(process.cwd(), 'public', 'uploads');
 if (!fs.existsSync(uploadDir)) {
