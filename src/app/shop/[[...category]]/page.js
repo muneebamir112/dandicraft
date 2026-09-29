@@ -146,9 +146,11 @@ export default function Shop() {
                     <span className={styles.productCat}>{prod.category}</span>
                     <h3 className={styles.productName}>{prod.name}</h3>
                     <p className={styles.productDesc}>
-                      {prod.description.length > 90 
-                        ? `${prod.description.substring(0, 90)}...` 
-                        : prod.description}
+                      {prod.description
+                        ? (prod.description.replace(/<[^>]*>?/gm, '').length > 90 
+                            ? `${prod.description.replace(/<[^>]*>?/gm, '').substring(0, 90)}...` 
+                            : prod.description.replace(/<[^>]*>?/gm, ''))
+                        : ''}
                     </p>
                     
                     <div className={styles.productFooter}>
