@@ -98,10 +98,21 @@ async function main() {
 
       try {
         await connection.execute(
-          `INSERT IGNORE INTO products
+          `INSERT INTO products
             (id, slug, name, category, price, description, has_upload, requires_quote,
              min_qty, track_inventory, stock_quantity, image, images_json, options_json, addons_json, featured, active)
-           VALUES (?, ?, ?, ?, ?, ?, FALSE, FALSE, 1, ?, ?, ?, ?, '[]', '[]', ?, TRUE)`,
+           VALUES (?, ?, ?, ?, ?, ?, FALSE, FALSE, 1, ?, ?, ?, ?, '[]', '[]', ?, TRUE)
+           ON DUPLICATE KEY UPDATE
+             name = VALUES(name),
+             category = VALUES(category),
+             price = VALUES(price),
+             description = VALUES(description),
+             track_inventory = VALUES(track_inventory),
+             stock_quantity = VALUES(stock_quantity),
+             image = VALUES(image),
+             images_json = VALUES(images_json),
+             featured = VALUES(featured),
+             active = TRUE`,
           [
             id,
             slug,
