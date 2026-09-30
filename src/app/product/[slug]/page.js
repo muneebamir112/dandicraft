@@ -7,6 +7,23 @@ import { useCart } from "../../../context/CartContext";
 import { useProducts } from "@/hooks/useProducts";
 import styles from "./ProductDetail.module.css";
 
+function formatProductDescription(raw) {
+  if (!raw) return "";
+  // Normalize literal escaped newlines if present
+  let cleaned = raw.replace(/\\r\\n|\\n/g, "\n");
+  // Remove broken legacy WordPress upload images
+  cleaned = cleaned.replace(/<img[^>]*wp-content\/uploads[^>]*>/gi, "");
+
+  // If description already has block-level HTML tags (<p>, <div>, <ul>, <ol>, etc.), preserve it
+  const hasBlockTags = /<(p|div|ul|ol|table|h[1-6])[\s>]/i.test(cleaned);
+  if (hasBlockTags) {
+    return cleaned;
+  }
+
+  // Otherwise (plain text or inline markup), convert newlines to <br />
+  return cleaned.replace(/\r\n|\n/g, "<br />");
+}
+
 export default function ProductDetail() {
   const params = useParams();
   const router = useRouter();
@@ -271,13 +288,7 @@ export default function ProductDetail() {
 
             <div 
               className={styles.productDesc} 
-              dangerouslySetInnerHTML={{ 
-                __html: product.description 
-                  ? (/<[a-z][\s\S]*>/i.test(product.description) 
-                      ? product.description 
-                      : product.description.replace(/\n/g, '<br />')) 
-                  : '' 
-              }} 
+              dangerouslySetInnerHTML={{ __html: formatProductDescription(product.description) }} 
             />
 
             {/* Minimum Order Alert */}
