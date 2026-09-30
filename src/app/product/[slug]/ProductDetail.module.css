@@ -247,6 +247,19 @@
   margin-bottom: 24px;
 }
 
+.productDesc p {
+  margin-bottom: 1rem;
+}
+
+.productDesc ul, .productDesc ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.productDesc li {
+  margin-bottom: 0.5rem;
+}
+
 /* MOQ Alert */
 .moqAlert {
   background-color: var(--primary-bg);

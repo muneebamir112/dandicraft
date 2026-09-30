@@ -271,7 +271,13 @@ export default function ProductDetail() {
 
             <div 
               className={styles.productDesc} 
-              dangerouslySetInnerHTML={{ __html: product.description ? product.description.replace(/\n/g, '<br />') : '' }} 
+              dangerouslySetInnerHTML={{ 
+                __html: product.description 
+                  ? (/<[a-z][\s\S]*>/i.test(product.description) 
+                      ? product.description 
+                      : product.description.replace(/\n/g, '<br />')) 
+                  : '' 
+              }} 
             />
 
             {/* Minimum Order Alert */}
