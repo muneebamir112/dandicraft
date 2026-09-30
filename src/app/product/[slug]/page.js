@@ -136,7 +136,7 @@ export default function ProductDetail() {
   // Add to cart form handler
   const handleAddToCart = (e) => {
     e.preventDefault();
-    
+
     // Validation: check upload
     if (product.hasUpload && !uploadFile) {
       alert("Please upload your photo before adding this custom product to the cart.");
@@ -153,7 +153,7 @@ export default function ProductDetail() {
       alert(result.message);
       return;
     }
-    
+
     setSuccessMsg("Success! Product has been added to your shopping cart.");
 
     // Clear messages after 4 seconds
@@ -219,7 +219,7 @@ export default function ProductDetail() {
           {/* Gallery Column */}
           <div className={styles.galleryColumn}>
             {/* Main Visual Frame */}
-            <div className={styles.visualFrame} style={{ 
+            <div className={styles.visualFrame} style={{
               background: `linear-gradient(135deg, var(--primary-bg) 0%, var(--primary-accent) 100%)`
             }}>
               {uploadFile ? (
@@ -233,7 +233,7 @@ export default function ProductDetail() {
                 </div>
               )}
             </div>
-            
+
             {uploadFile && (
               <div className={styles.previewCaption}>
                 <span>📸 Upload Preview: <strong>{uploadFileName}</strong></span>
@@ -246,7 +246,7 @@ export default function ProductDetail() {
                 </button>
               </div>
             )}
-            
+
             <div className={styles.badgeBanner}>
               <span>🛡️ Certified safe materials (SGS tested non-toxic)</span>
             </div>
@@ -256,7 +256,7 @@ export default function ProductDetail() {
           <div className={styles.configColumn}>
             <span className={styles.categoryTag}>{product.category}</span>
             <h1 className={styles.productTitle}>{product.name}</h1>
-            
+
             <p className={styles.priceRow}>
               {product.price > 0 ? (
                 <>
@@ -269,9 +269,15 @@ export default function ProductDetail() {
               )}
             </p>
 
-            <div 
-              className={styles.productDesc} 
-              dangerouslySetInnerHTML={{ __html: product.description ? product.description.replace(/\n/g, '<br />') : '' }} 
+            <div
+              className={styles.productDesc}
+              dangerouslySetInnerHTML={{
+                __html: product.description
+                  ? (/<[a-z][\s\S]*>/i.test(product.description)
+                    ? product.description
+                    : product.description.replace(/\n/g, '<br />'))
+                  : ''
+              }}
             />
 
             {/* Minimum Order Alert */}
@@ -296,12 +302,12 @@ export default function ProductDetail() {
               <div className={styles.quoteBlock}>
                 <h3>How to Purchase Plaster Crafts:</h3>
                 <p>
-                  Our plaster craft pieces are shipped in bulk bundles for schools, summer camps, and paint studios. 
+                  Our plaster craft pieces are shipped in bulk bundles for schools, summer camps, and paint studios.
                   Online payment checkout is disabled. Please contact us to get a catalog copy and place an order.
                 </p>
-                <Link 
-                  href={`/contact?subject=Quote%20Request%20-%20${encodeURIComponent(product.name)}`} 
-                  className="btn btn-primary" 
+                <Link
+                  href={`/contact?subject=Quote%20Request%20-%20${encodeURIComponent(product.name)}`}
+                  className="btn btn-primary"
                   style={{ width: "100%", marginTop: "16px" }}
                 >
                   Request Plaster Catalog Quote
@@ -314,7 +320,7 @@ export default function ProductDetail() {
                 {product.options && product.options.map((opt) => (
                   <div key={opt.name} className={styles.optionGroup}>
                     <label className="form-label">{opt.name}:</label>
-                    
+
                     {opt.type === "swatch" ? (
                       <div className={styles.swatchList}>
                         {opt.values.map(val => {
@@ -406,8 +412,8 @@ export default function ProductDetail() {
                   <div className={styles.quantityRow}>
                     <span className={styles.qtyLabel}>Quantity:</span>
                     <div className={styles.qtySelector}>
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         onClick={() => changeQuantity(-1)}
                         className={styles.qtyBtn}
                         disabled={quantity <= (product.minQty || 1)}
@@ -415,8 +421,8 @@ export default function ProductDetail() {
                         -
                       </button>
                       <span className={styles.qtyValue}>{quantity}</span>
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         onClick={() => changeQuantity(1)}
                         className={styles.qtyBtn}
                         disabled={product.trackInventory && quantity >= availableToAdd}
@@ -432,8 +438,8 @@ export default function ProductDetail() {
                     <span className={styles.subtotalValue}>${totalPrice.toFixed(2)}</span>
                   </div>
 
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="btn btn-primary"
                     style={{ width: "100%", padding: "14px 20px" }}
                     disabled={!canAddToCart}
