@@ -37,9 +37,10 @@
 /* Layout */
 .contactLayout {
   display: grid;
-  grid-template-columns: 1fr 360px;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
   gap: 40px;
   align-items: start;
+  width: 100%;
 }
 
 .formColumn {
@@ -111,6 +112,7 @@
 .infoColumn {
   position: sticky;
   top: 150px;
+  width: 100%;
 }
 
 .infoCard {
