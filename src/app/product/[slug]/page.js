@@ -42,6 +42,7 @@ export default function ProductDetail() {
   const [reviewForm, setReviewForm] = useState({ name: "", email: "", rating: 5, review: "" });
   const [reviewStatus, setReviewStatus] = useState("");
   const [isSubmittingReview, setIsSubmittingReview] = useState(false);
+  const [hoverRating, setHoverRating] = useState(0);
 
   // Find product on mount / parameter change
   useEffect(() => {
@@ -538,67 +539,96 @@ export default function ProductDetail() {
             <div className={styles.reviewList}>
               {reviews.length ? reviews.map((review) => (
                 <article className={styles.reviewCard} key={review.id}>
-                  <div className={styles.reviewCardHeader}>
-                    <strong>{review.name}</strong>
-                    <span className={styles.reviewStars} aria-label={`${review.rating} out of 5 stars`}>
-                      {"★".repeat(Number(review.rating))}{"☆".repeat(5 - Number(review.rating))}
-                    </span>
+                  <div className={styles.reviewAvatar}>
+                    {review.name.charAt(0).toUpperCase()}
                   </div>
-                  <p>{review.review}</p>
+                  <div className={styles.reviewContent}>
+                    <div className={styles.reviewCardHeader}>
+                      <div className={styles.reviewerInfo}>
+                        <strong>{review.name}</strong>
+                        <span className={styles.verifiedBadge}>✓ Verified</span>
+                      </div>
+                      <span className={styles.reviewStars} aria-label={`${review.rating} out of 5 stars`}>
+                        {"★".repeat(Number(review.rating))}{"☆".repeat(5 - Number(review.rating))}
+                      </span>
+                    </div>
+                    <p className={styles.reviewText}>{review.review}</p>
+                  </div>
                 </article>
               )) : (
-                <p className={styles.emptyReviews}>Be the first to review this product.</p>
+                <div className={styles.emptyReviewsCard}>
+                  <span className={styles.emptyReviewsIcon}>✨</span>
+                  <p>Be the first to review this product!</p>
+                  <small>Share your thoughts and help others make a decision.</small>
+                </div>
               )}
             </div>
 
             <form className={styles.reviewForm} onSubmit={handleReviewSubmit}>
-              <h3>Leave a review</h3>
-              <label className="form-group">
-                <span className="form-label">Your name *</span>
-                <input
-                  className="form-control"
-                  value={reviewForm.name}
-                  onChange={(e) => setReviewForm((current) => ({ ...current, name: e.target.value }))}
-                  required
-                />
-              </label>
-              <label className="form-group">
-                <span className="form-label">Email address *</span>
-                <input
-                  type="email"
-                  className="form-control"
-                  value={reviewForm.email}
-                  onChange={(e) => setReviewForm((current) => ({ ...current, email: e.target.value }))}
-                  required
-                />
-              </label>
-              <label className="form-group">
+              <div className={styles.formHeader}>
+                <h3>Write a Review</h3>
+                <p>Share your experience with others.</p>
+              </div>
+              <div className={styles.formGroupRow}>
+                <div className="form-group">
+                  <span className="form-label">Your name *</span>
+                  <input
+                    className="form-control"
+                    value={reviewForm.name}
+                    onChange={(e) => setReviewForm((current) => ({ ...current, name: e.target.value }))}
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <span className="form-label">Email address *</span>
+                  <input
+                    type="email"
+                    className="form-control"
+                    value={reviewForm.email}
+                    onChange={(e) => setReviewForm((current) => ({ ...current, email: e.target.value }))}
+                    placeholder="john@example.com"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="form-group">
                 <span className="form-label">Rating *</span>
-                <select
-                  className="form-control"
-                  value={reviewForm.rating}
-                  onChange={(e) => setReviewForm((current) => ({ ...current, rating: Number(e.target.value) }))}
-                >
-                  <option value="5">5 - Excellent</option>
-                  <option value="4">4 - Very good</option>
-                  <option value="3">3 - Good</option>
-                  <option value="2">2 - Fair</option>
-                  <option value="1">1 - Poor</option>
-                </select>
-              </label>
-              <label className="form-group">
+                <div className={styles.starRatingInput} onMouseLeave={() => setHoverRating(0)}>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      className={star <= (hoverRating || reviewForm.rating) ? styles.starActive : styles.starInactive}
+                      onMouseEnter={() => setHoverRating(star)}
+                      onClick={() => setReviewForm((current) => ({ ...current, rating: star }))}
+                      aria-label={`${star} star${star > 1 ? 's' : ''}`}
+                    >
+                      ★
+                    </button>
+                  ))}
+                  <span className={styles.ratingText}>
+                    {reviewForm.rating === 5 ? "5 - Excellent" :
+                     reviewForm.rating === 4 ? "4 - Very good" :
+                     reviewForm.rating === 3 ? "3 - Good" :
+                     reviewForm.rating === 2 ? "2 - Fair" : "1 - Poor"}
+                  </span>
+                </div>
+              </div>
+              <div className="form-group">
                 <span className="form-label">Your review *</span>
                 <textarea
                   className="form-control"
-                  rows="5"
+                  rows="4"
                   value={reviewForm.review}
                   onChange={(e) => setReviewForm((current) => ({ ...current, review: e.target.value }))}
+                  placeholder="Tell us what you think about this product..."
                   required
                 />
-              </label>
+              </div>
               {reviewStatus && <p className={styles.reviewStatus} role="status">{reviewStatus}</p>}
-              <button type="submit" className="btn btn-primary" disabled={isSubmittingReview}>
-                {isSubmittingReview ? "Posting review..." : "Post review"}
+              <button type="submit" className={styles.submitReviewBtn} disabled={isSubmittingReview}>
+                {isSubmittingReview ? "Posting review..." : "Submit Review"}
               </button>
             </form>
           </div>
