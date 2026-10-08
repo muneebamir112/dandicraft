@@ -78,11 +78,30 @@ export default async function AdminOrderDetailPage({ params }) {
                       <td style={{ padding: '16px 0' }}>
                         <div style={{ fontWeight: 600 }}>{item.product_name}</div>
                         <div style={{ fontSize: '0.85rem', color: 'var(--muted-text)', marginTop: '4px' }}>
-                          {Object.entries(item.options_json).map(([k, v]) => `${k}: ${v}`).join(", ")}
+                          {Object.entries(item.options_json)
+                            .filter(([k]) => k !== '_uploadFile')
+                            .map(([k, v]) => `${k}: ${v}`).join(", ")}
                         </div>
                         {item.addons_json && item.addons_json.length > 0 && (
                           <div style={{ fontSize: '0.85rem', color: 'var(--muted-text)' }}>
                             Add-ons: {item.addons_json.map(a => a.name).join(", ")}
+                          </div>
+                        )}
+                        {item.options_json._uploadFile && (
+                          <div style={{ marginTop: '10px' }}>
+                            <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--primary)', marginBottom: '4px' }}>Customer Uploaded Photo:</div>
+                            <a 
+                              href={item.options_json._uploadFile} 
+                              download={`customer-upload-${order.order_number}-${item.product_name.replace(/\s+/g, '-').toLowerCase()}`}
+                              title="Click to download high-resolution photo"
+                            >
+                              <img 
+                                src={item.options_json._uploadFile} 
+                                alt="Customer upload" 
+                                style={{ maxWidth: '120px', borderRadius: '4px', border: '1px solid var(--border-light)' }} 
+                              />
+                            </a>
+                            <div style={{ fontSize: '0.75rem', color: 'var(--muted-text)', marginTop: '4px' }}>Click image to download</div>
                           </div>
                         )}
                       </td>

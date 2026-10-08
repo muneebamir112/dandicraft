@@ -54,8 +54,8 @@ export default function PrivacyPolicy() {
             <div className={styles.section}>
               <h2>3. Data Retention & Photo Erasure</h2>
               <p>
-                We respect your personal media privacy. All customized photo uploads (which contain family pictures, portraits, or custom graphics) are stored in secure servers for production processing. 
-                These files are **automatically deleted permanently** from our production databases within **30 days** after your order has been successfully shipped and delivered.
+                We respect your personal media privacy. All customized photo uploads (which contain family pictures, portraits, or custom graphics) are stored in secure servers for production processing.
+                These files are automatically deleted permanently from our production databases within 30 days after your order has been successfully shipped and delivered.
               </p>
             </div>
 
@@ -76,7 +76,7 @@ export default function PrivacyPolicy() {
                 If you have questions about this Privacy Policy or wish to request immediate erasure of your custom photo uploads prior to the 30-day window, please email us at <a href="mailto:info@dandicraft.com">info@dandicraft.com</a>.
               </p>
             </div>
-            
+
             <div className={styles.privacyFooter}>
               <span>Last updated: August 2026</span>
               <p>© Dandicraft. Keeping your creative memories safe.</p>

@@ -45,6 +45,14 @@
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.02);
 }
 
+.filterHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
 .filterTabsWrapper {
   display: flex;
   gap: 8px;
@@ -52,6 +60,44 @@
   padding: 16px 0;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  flex-grow: 1;
+}
+
+.sortSelectWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+}
+
+.sortSelectLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted-text);
+  white-space: nowrap;
+}
+
+.sortSelect {
+  padding: 8px 32px 8px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  background-color: var(--bg-slate);
+  color: var(--dark-text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  transition: all var(--transition-fast);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+}
+
+.sortSelect:hover, .sortSelect:focus {
+  border-color: var(--primary);
+  background-color: var(--white);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

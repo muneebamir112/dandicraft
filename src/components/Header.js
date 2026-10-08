@@ -4,10 +4,12 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "../context/CartContext";
+import { useProducts } from "../hooks/useProducts";
 import styles from "./Header.module.css";
 
 export default function Header() {
   const { cartItemCount } = useCart();
+  const { products } = useProducts();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hideDropdown, setHideDropdown] = useState(false);
@@ -63,7 +65,7 @@ export default function Header() {
               {/* Logo */}
               <Link href="/" className={styles.logoLink}>
                 <div className={styles.logo}>
-                  <span className={styles.logoText}>Dandi<span className={styles.logoAlt}>craft</span></span>
+                  <img src="/logo.png" alt="Dandicraft Logo" className={styles.logoImage} />
                 </div>
               </Link>
 
@@ -88,14 +90,18 @@ export default function Header() {
                             </span>
                             <div className={styles.dropdownMenu} style={hideDropdown ? { display: "none" } : {}}>
                               <Link href="/shop" className={styles.dropdownItem} onClick={handleDropdownClick}>All Products</Link>
-                              <Link href="/shop/paint-by-number" className={styles.dropdownItem} onClick={handleDropdownClick}>Paint-by-Number</Link>
-                              <Link href="/shop/washable-paint-by-number" className={styles.dropdownItem} onClick={handleDropdownClick}>Washable</Link>
-                              <Link href="/shop/custom" className={styles.dropdownItem} onClick={handleDropdownClick}>Custom Canvas</Link>
-                              <Link href="/shop/plaster" className={styles.dropdownItem} onClick={handleDropdownClick}>Plaster</Link>
-                              <Link href="/shop/stuff-a-bear" className={styles.dropdownItem} onClick={handleDropdownClick}>Stuff-a-Bear</Link>
-                              <Link href="/shop/paint-and-supplies" className={styles.dropdownItem} onClick={handleDropdownClick}>Supplies</Link>
-                              <Link href="/shop/photo-pillows" className={styles.dropdownItem} onClick={handleDropdownClick}>Photo Pillows</Link>
-                              <Link href="/shop/candleart" className={styles.dropdownItem} onClick={handleDropdownClick}>CandleArt</Link>
+                              {Array.from(new Set(products.map(p => p.category)))
+                                .filter(Boolean)
+                                .sort()
+                                .map(cat => {
+                                  const catSlug = cat.toLowerCase().trim().replace(/[\s_]+/g, '-').replace(/[^\w\-]+/g, '');
+                                  return (
+                                    <Link key={cat} href={`/shop/${catSlug}`} className={styles.dropdownItem} onClick={handleDropdownClick}>
+                                      {cat}
+                                    </Link>
+                                  );
+                                })
+                              }
                             </div>
                           </div>
                         );

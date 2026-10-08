@@ -1,15 +1,17 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import nodemailer from "nodemailer";
+import { getSettings } from "@/lib/settings";
 
 async function sendOrderConfirmation(orderNumber, formData, cartItems, totalAmount) {
-  if (!process.env.SMTP_HOST || !process.env.SMTP_USER) return;
+  const settings = await getSettings(['SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASSWORD']);
+  if (!settings.SMTP_HOST || !settings.SMTP_USER) return;
   try {
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: process.env.SMTP_SECURE === "true",
-      auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASSWORD }
+      host: settings.SMTP_HOST,
+      port: Number(settings.SMTP_PORT) || 587,
+      secure: Number(settings.SMTP_PORT) === 465,
+      auth: { user: settings.SMTP_USER, pass: settings.SMTP_PASSWORD }
     });
 
     const itemsList = cartItems.map(item => {
@@ -37,7 +39,7 @@ Thank you,
 Dandicraft`;
 
     await transporter.sendMail({
-      from: process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER,
+      from: settings.SMTP_USER,
       to: formData.email,
       subject: `Order Confirmation - ${orderNumber}`,
       text: emailBody
@@ -179,7 +181,7 @@ export async function POST(request) {
             item.name,
             item.quantity,
             finalPrice,
-            JSON.stringify(item.options || {}),
+            JSON.stringify({ ...(item.options || {}), _uploadFile: item.uploadFile || null }),
             JSON.stringify(item.addons || [])
           ]
         );

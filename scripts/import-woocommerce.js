@@ -1,10 +1,36 @@
 const fs = require("node:fs");
 const path = require("node:path");
+const https = require("node:https");
 const mysql = require("mysql2/promise");
 const { loadEnvConfig } = require("@next/env");
 const csv = require("csv-parser"); // You need to run: npm install csv-parser
 
 loadEnvConfig(process.cwd());
+
+function downloadImage(url, destPath) {
+  return new Promise((resolve, reject) => {
+    if (fs.existsSync(destPath)) {
+      resolve(); // Already downloaded
+      return;
+    }
+    const file = fs.createWriteStream(destPath);
+    https.get(url, (response) => {
+      if (response.statusCode === 200) {
+        response.pipe(file);
+        file.on('finish', () => {
+          file.close(resolve);
+        });
+      } else {
+        file.close();
+        if (fs.existsSync(destPath)) fs.unlinkSync(destPath);
+        reject(new Error(`Failed to download ${url}: ${response.statusCode}`));
+      }
+    }).on('error', (err) => {
+      if (fs.existsSync(destPath)) fs.unlinkSync(destPath);
+      reject(err);
+    });
+  });
+}
 
 const database = process.env.MYSQL_DATABASE || "dandicraft";
 
@@ -87,7 +113,32 @@ async function main() {
       // Images (comma separated URLs)
       const rawImages = row["Images"] || "";
       const imageUrls = rawImages.split(",").map(url => url.trim()).filter(Boolean);
-      const mainImage = imageUrls.length > 0 ? imageUrls[0] : "";
+      
+      const uploadDir = path.join(process.cwd(), 'public', 'uploads');
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true });
+      }
+
+      const localImageUrls = [];
+      for (let i = 0; i < imageUrls.length; i++) {
+        const url = imageUrls[i];
+        if (url.startsWith('http')) {
+          try {
+            const fileName = path.basename(new URL(url).pathname);
+            const safeName = slug + '-' + i + '-' + fileName;
+            const destPath = path.join(uploadDir, safeName);
+            await downloadImage(url, destPath);
+            localImageUrls.push('/uploads/' + safeName);
+          } catch (e) {
+            console.error(`Error downloading image ${url}:`, e.message);
+            localImageUrls.push(url); // fallback
+          }
+        } else {
+          localImageUrls.push(url);
+        }
+      }
+
+      const mainImage = localImageUrls.length > 0 ? localImageUrls[0] : "";
       
       // Stock
       const stockQuantity = parseInt(row["Stock"]) || 0;
@@ -123,7 +174,7 @@ async function main() {
             trackInventory,
             stockQuantity,
             mainImage,
-            JSON.stringify(imageUrls),
+            JSON.stringify(localImageUrls),
             isFeatured
           ]
         );

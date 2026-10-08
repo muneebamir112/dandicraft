@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { getSettings } from "@/lib/settings";
 
 const requiredFields = ["name", "email", "subject", "message"];
 
@@ -16,12 +17,12 @@ export async function POST(request) {
       return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
     }
 
+    const settings = await getSettings(['SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASSWORD']);
+
     if (
-      !process.env.SMTP_HOST ||
-      !process.env.SMTP_PORT ||
-      !process.env.SMTP_USER ||
-      !process.env.SMTP_PASSWORD ||
-      process.env.SMTP_PASSWORD === "replace-with-your-gmail-app-password" ||
+      !settings.SMTP_HOST ||
+      !settings.SMTP_USER ||
+      !settings.SMTP_PASSWORD ||
       !process.env.CONTACT_EMAIL
     ) {
       console.error("Contact email configuration is incomplete.");
@@ -38,17 +39,17 @@ export async function POST(request) {
     ].join("\n");
 
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: process.env.SMTP_SECURE === "true",
+      host: settings.SMTP_HOST,
+      port: Number(settings.SMTP_PORT) || 587,
+      secure: Number(settings.SMTP_PORT) === 465,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD
+        user: settings.SMTP_USER,
+        pass: settings.SMTP_PASSWORD
       }
     });
 
     await transporter.sendMail({
-      from: process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER,
+      from: settings.SMTP_USER,
       to: process.env.CONTACT_EMAIL,
       replyTo: email,
       subject: body.subject.trim(),

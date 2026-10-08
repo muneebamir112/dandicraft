@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Color Palette */
-  --primary-deep: #4c1d95;       /* Deep Violet */
-  --primary: #6b21a8;            /* Purple */
-  --primary-medium: #8b5cf6;     /* Medium Purple */
-  --primary-light: #c084fc;      /* Soft Light Purple */
-  --primary-accent: #f3e8ff;     /* Extra Light Lavender */
-  --primary-bg: #faf5ff;         /* Soft Background Tint */
+  /* Color Palette matching new logo */
+  --primary-deep: #220F35;       /* Very Dark Plum */
+  --primary: #34194F;            /* Logo Text Dark Purple */
+  --primary-medium: #693C80;     /* Muted Mid Purple */
+  --primary-light: #9660A9;      /* Logo Accent Floral Purple */
+  --primary-accent: #EFE4F5;     /* Extra Light Floral Lavender */
+  --primary-bg: #FAF5FC;         /* Soft Background Tint */
   
   --secondary: #14b8a6;          /* Teal Accent */
   --secondary-light: #ccfbf1;    /* Light Teal */

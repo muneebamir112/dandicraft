@@ -43,6 +43,7 @@ export default function AdminDashboard({ initialProducts, admin }) {
   const router = useRouter();
   const [products, setProducts] = useState(initialProducts);
   const [query, setQuery] = useState("");
+  const [filterCategory, setFilterCategory] = useState("All");
   const [editing, setEditing] = useState(null);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -57,12 +58,18 @@ export default function AdminDashboard({ initialProducts, admin }) {
   }, [editing]);
 
   const visibleProducts = useMemo(() => {
+    let filtered = products;
+    if (filterCategory !== "All") {
+      filtered = filtered.filter(p => p.category === filterCategory);
+    }
     const value = query.trim().toLowerCase();
-    if (!value) return products;
-    return products.filter((product) =>
-      [product.name, product.slug, product.category].some((field) => field.toLowerCase().includes(value))
-    );
-  }, [products, query]);
+    if (value) {
+      filtered = filtered.filter((product) =>
+        [product.name, product.slug, product.category].some((field) => field.toLowerCase().includes(value))
+      );
+    }
+    return filtered;
+  }, [products, query, filterCategory]);
 
   const totalPages = Math.ceil(visibleProducts.length / productsPerPage);
   const currentPage = totalPages > 0 ? Math.min(page, totalPages) : 1;
@@ -226,6 +233,7 @@ export default function AdminDashboard({ initialProducts, admin }) {
             <p className={styles.subhead}>Signed in as {admin.name}</p>
           </div>
           <div className={styles.topActions}>
+            <Link href="/admin/settings" className={styles.secondaryButton}>Settings</Link>
             <Link href="/admin/orders" className={styles.secondaryButton}>View Orders</Link>
             <button className={styles.secondaryButton} onClick={logout}>Sign out</button>
             <button className={styles.primaryButton} onClick={beginNewProduct}>+ Add product</button>
@@ -255,7 +263,21 @@ export default function AdminDashboard({ initialProducts, admin }) {
             <div className={styles.formGrid}>
               <label className={styles.field}><span>Product name</span><input value={editing.name} onChange={(e) => updateField("name", e.target.value)} required /></label>
               <label className={styles.field}><span>URL slug</span><input value={editing.slug} onChange={(e) => updateField("slug", slugify(e.target.value))} required /></label>
-              <label className={`${styles.field} ${styles.categorySelect}`}><span>Category</span><select value={editing.category} onChange={(e) => updateField("category", e.target.value)}>{CATEGORIES.map((category) => <option key={category}>{category}</option>)}</select></label>
+              <label className={styles.field}>
+                <span>Category</span>
+                <input 
+                  list="category-options"
+                  value={editing.category}
+                  onChange={(e) => updateField("category", e.target.value)}
+                  placeholder="Type or select a category"
+                  required 
+                />
+                <datalist id="category-options">
+                  {Array.from(new Set([...CATEGORIES, ...products.map(p => p.category)])).sort().map(cat => (
+                    <option key={cat} value={cat} />
+                  ))}
+                </datalist>
+              </label>
               <label className={styles.field}><span>Price ($)</span><input type="number" min="0" step="0.01" value={editing.price ?? ""} onChange={(e) => updateField("price", e.target.value === "" ? "" : Number(e.target.value))} required /></label>
               <label className={`${styles.field} ${styles.fullWidth}`}><span>Description</span><textarea rows="5" value={editing.description} onChange={(e) => updateField("description", e.target.value)} /></label>
 
@@ -320,10 +342,11 @@ export default function AdminDashboard({ initialProducts, admin }) {
             </div>
 
             <div className={styles.builderSection}>
-              <div className={styles.builderHeader}><div><h3>Add-ons</h3><p>Optional extras customers can add to this product.</p></div><button type="button" className={styles.secondaryButton} onClick={() => updateField("addons", [...editing.addons, { name: "", price: 0, description: "" }])}>+ Add add-on</button></div>
+              <div className={styles.builderHeader}><div><h3>Add-ons</h3><p>Optional extras customers can add to this product.</p></div><button type="button" className={styles.secondaryButton} onClick={() => updateField("addons", [...editing.addons, { name: "", image: "", price: 0, description: "" }])}>+ Add add-on</button></div>
               {editing.addons.map((addon, index) => (
-                <div className={styles.builderRow} key={`addon-${index}`}>
+                <div className={styles.addonRow} key={`addon-${index}`}>
                   <input placeholder="Add-on name" value={addon.name} onChange={(e) => updateAddon(index, "name", e.target.value)} />
+                  <input placeholder="Image URL (optional)" value={addon.image || ""} onChange={(e) => updateAddon(index, "image", e.target.value)} />
                   <input type="number" min="0" step="0.01" placeholder="Price" value={addon.price} onChange={(e) => updateAddon(index, "price", e.target.value)} />
                   <input placeholder="Description" value={addon.description} onChange={(e) => updateAddon(index, "description", e.target.value)} />
                   <button type="button" className={styles.removeButton} onClick={() => updateField("addons", editing.addons.filter((_, itemIndex) => itemIndex !== index))}>Remove</button>
@@ -341,7 +364,13 @@ export default function AdminDashboard({ initialProducts, admin }) {
 
         <div className={styles.catalogHeader}>
           <div><h2>Catalog</h2><p>Changes are reflected on the storefront immediately.</p></div>
-          <input className={styles.search} type="search" placeholder="Search products…" value={query} onChange={(e) => { setQuery(e.target.value); setPage(1); }} />
+          <div className={styles.catalogFilters}>
+            <select className={styles.categoryFilter} value={filterCategory} onChange={(e) => { setFilterCategory(e.target.value); setPage(1); }}>
+              <option value="All">All Categories</option>
+              {CATEGORIES.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+            </select>
+            <input className={styles.search} type="search" placeholder="Search products…" value={query} onChange={(e) => { setQuery(e.target.value); setPage(1); }} />
+          </div>
         </div>
 
         <div className={styles.productGrid}>

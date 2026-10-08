@@ -96,3 +96,8 @@ CREATE TABLE IF NOT EXISTS order_items (
   CONSTRAINT fk_order_items_order
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS settings (
+  setting_key VARCHAR(100) PRIMARY KEY,
+  setting_value TEXT NOT NULL
+);

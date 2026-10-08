@@ -2,10 +2,12 @@
 
 import React from "react";
 import Link from "next/link";
+import { useProducts } from "../hooks/useProducts";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { products } = useProducts();
 
   return (
     <footer className={styles.footer}>
@@ -14,7 +16,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className={styles.columnLarge}>
             <div className={styles.logo}>
-              <span className={styles.logoText}>Dandi<span className={styles.logoAlt}>craft</span></span>
+              <img src="/logo.png" alt="Dandicraft Logo" className={styles.logoImage} />
             </div>
             <p className={styles.description}>
               Crafting premium creative moments for families, camps, schools, and craft enthusiasts.
@@ -27,12 +29,19 @@ export default function Footer() {
           <div className={styles.column}>
             <h3 className={styles.title}>Shop Crafts</h3>
             <ul className={styles.linksList}>
-              <li><Link href="/shop/paint-by-number">Paint-by-Number</Link></li>
-              <li><Link href="/shop/washable-paint-by-number">Washable Paint-by-Number</Link></li>
-              <li><Link href="/shop/custom">Custom Canvas</Link></li>
-              <li><Link href="/shop/stuff-a-bear">Stuff-a-Bear Kits</Link></li>
-              <li><Link href="/shop/candleart">CandleArt Kits</Link></li>
-              <li><Link href="/shop/paint-and-supplies">Paint & Supplies</Link></li>
+              {Array.from(new Set(products.map(p => p.category)))
+                .filter(Boolean)
+                .sort()
+                .slice(0, 6) // limit to top 6 categories in footer
+                .map(cat => {
+                  const catSlug = cat.toLowerCase().trim().replace(/[\s_]+/g, '-').replace(/[^\w\-]+/g, '');
+                  return (
+                    <li key={cat}>
+                      <Link href={`/shop/${catSlug}`}>{cat}</Link>
+                    </li>
+                  );
+                })
+              }
             </ul>
           </div>
 

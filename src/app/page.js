@@ -38,9 +38,12 @@ export default function Home() {
       color: "#f3e8ff",
       textColor: "#6b21a8",
       icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={styles.categoryIcon}>
-          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" />
-          <path d="M12 6V12L16 14" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.categoryIcon}>
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.22 0 2.29-.69 2.76-1.74.1-.23.15-.48.15-.76 0-1.1-.9-2-2-2h-1.55c-2.3 0-4.17-1.87-4.17-4.17S9.06 9.16 11.36 9.16H18c2.21 0 4-1.79 4-4 0-2.21-1.79-4-4-4z" />
+          <circle cx="6.5" cy="11.5" r="1" fill="currentColor"/>
+          <circle cx="8.5" cy="7.5" r="1" fill="currentColor"/>
+          <circle cx="13.5" cy="6.5" r="1" fill="currentColor"/>
+          <circle cx="17.5" cy="10.5" r="1" fill="currentColor"/>
         </svg>
       )
     },
@@ -51,10 +54,10 @@ export default function Home() {
       color: "#e0f2fe",
       textColor: "#0284c7",
       icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={styles.categoryIcon}>
-          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" />
-          <path d="M8 12H16" />
-          <path d="M12 8V16" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.categoryIcon}>
+          <rect x="2" y="3" width="20" height="6" rx="2" />
+          <path d="M19 9v3a2 2 0 0 1-2 2h-4v4" />
+          <rect x="11" y="18" width="4" height="4" rx="1" />
         </svg>
       )
     },
@@ -65,9 +68,10 @@ export default function Home() {
       color: "#dcfce7",
       textColor: "#16a34a",
       icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={styles.categoryIcon}>
-          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-          <circle cx="12" cy="13" r="4" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.categoryIcon}>
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+          <polyline points="21 15 16 10 5 21"></polyline>
         </svg>
       )
     },
@@ -78,8 +82,13 @@ export default function Home() {
       color: "#fef9c3",
       textColor: "#ca8a04",
       icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={styles.categoryIcon}>
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.categoryIcon}>
+          <circle cx="12" cy="14" r="7" />
+          <circle cx="7" cy="9" r="3" />
+          <circle cx="17" cy="9" r="3" />
+          <circle cx="12" cy="16" r="2" />
+          <circle cx="10" cy="13" r="1" fill="currentColor" />
+          <circle cx="14" cy="13" r="1" fill="currentColor" />
         </svg>
       )
     },
@@ -90,8 +99,10 @@ export default function Home() {
       color: "#ffe4e6",
       textColor: "#e11d48",
       icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={styles.categoryIcon}>
-          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.categoryIcon}>
+          <path d="M9 22V10a3 3 0 0 1 6 0v12" />
+          <path d="M12 2c0 2-2 3-2 5 0 1.1.9 2 2 2s2-.9 2-2c0-2-2-3-2-5z" />
+          <path d="M7 22h10" />
         </svg>
       )
     },
@@ -102,10 +113,12 @@ export default function Home() {
       color: "#ede9fe",
       textColor: "#5b21b6",
       icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={styles.categoryIcon}>
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-          <line x1="9" y1="9" x2="15" y2="15" />
-          <line x1="15" y1="9" x2="9" y2="15" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.categoryIcon}>
+          <rect x="3" y="3" width="18" height="18" rx="3" ry="3" />
+          <line x1="7" y1="7" x2="17" y2="7" strokeDasharray="2 2" />
+          <line x1="7" y1="17" x2="17" y2="17" strokeDasharray="2 2" />
+          <line x1="7" y1="7" x2="7" y2="17" strokeDasharray="2 2" />
+          <line x1="17" y1="7" x2="17" y2="17" strokeDasharray="2 2" />
         </svg>
       )
     }
@@ -305,12 +318,12 @@ export default function Home() {
                   <span className={styles.productCat}>{prod.category}</span>
                   <h3 className={styles.productName}>{prod.name}</h3>
                   <p className={styles.productPrice}>
-                    {prod.price > 0 ? `$${prod.price.toFixed(2)}` : "Contact for Quote"}
+                    {prod.price > 0 ? `$${prod.price.toFixed(2)}` : "Contact for Order"}
                   </p>
                   
                   <div className={styles.productAction}>
                     <Link href={`/product/${prod.slug}`} className="btn btn-outline hover-lift" style={{ width: "100%", padding: "10px" }}>
-                      {prod.requiresQuote ? "Request Quote" : "Add to Cart"}
+                      {prod.requiresQuote ? "Contact for Order" : "Add to Cart"}
                     </Link>
                   </div>
                 </div>

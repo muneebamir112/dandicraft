@@ -263,7 +263,7 @@ export const CartProvider = ({ children }) => {
 
   // Helper to calculate total price of an item including its addons
   const getItemPrice = (item) => {
-    const addonsTotal = item.addons.reduce((sum, addon) => sum + addon.price, 0);
+    const addonsTotal = item.addons.reduce((sum, addon) => sum + (addon.price * (addon.quantity || 1)), 0);
     return item.basePrice + addonsTotal;
   };
 

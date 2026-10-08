@@ -1,38 +1,80 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import styles from "./Shop.module.css";
 import { useProducts } from "@/hooks/useProducts";
 
+function formatShopDescription(raw) {
+  if (!raw) return "";
+  let text = raw.replace(/<[^>]*>?/gm, ''); // strip html
+  text = text.replace(/\\r\\n|\\n/g, ' '); // remove literal \n
+  text = text.replace(/&nbsp;/g, ' '); // replace &nbsp;
+  text = text.replace(/\s+/g, ' ').trim(); // cleanup spaces
+  return text.length > 90 ? text.substring(0, 90) + '...' : text;
+}
+
 export default function Shop() {
   const params = useParams();
   const { products, loading } = useProducts();
   const [page, setPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState("price-asc");
   const productsPerPage = 12;
-  
+  const tabsRef = useRef(null);
+
+  useEffect(() => {
+    const container = tabsRef.current;
+    if (!container) return;
+
+    const handleWheel = (e) => {
+      const canScrollLeft = container.scrollLeft > 0;
+      const canScrollRight = Math.ceil(container.scrollLeft) < container.scrollWidth - container.clientWidth;
+      
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+
+      if (e.deltaY < 0 && canScrollLeft) {
+        e.preventDefault();
+        container.scrollLeft += e.deltaY;
+      } else if (e.deltaY > 0 && canScrollRight) {
+        e.preventDefault();
+        container.scrollLeft += e.deltaY;
+      }
+    };
+
+    container.addEventListener('wheel', handleWheel, { passive: false });
+    return () => container.removeEventListener('wheel', handleWheel);
+  }, []);
+
   // Extract category slug from optional catch-all param
   const categorySlug = params.category ? params.category[0] : null;
 
-  // Mapping from url slug to product category names
-  const categoryMap = {
-    "paint-by-number": "Paint-by-Number",
-    "washable-paint-by-number": "Washable Paint-by-Number",
-    "custom": "Custom",
-    "plaster": "Plaster",
-    "stuff-a-bear": "Stuff-a-Bear",
-    "paint-and-supplies": "Paint and Supplies",
-    "photo-pillows": "Photo Pillows",
-    "candleart": "CandleArt"
-  };
-
-  const activeCategoryName = categorySlug ? categoryMap[categorySlug] : null;
+  // Derive active category from slug by looking at products
+  const uniqueCategories = Array.from(new Set(products.map(p => p.category))).filter(Boolean).sort();
+  let activeCategoryName = null;
+  if (categorySlug) {
+    activeCategoryName = uniqueCategories.find(c => {
+      const slug = c.toLowerCase().trim().replace(/[\s_]+/g, '-').replace(/[^\w\-]+/g, '');
+      return slug === categorySlug;
+    });
+  }
 
   // Filter products based on URL parameter
-  const filteredProducts = activeCategoryName
+  let filteredProducts = activeCategoryName
     ? products.filter(p => p.category === activeCategoryName)
-    : products;
+    : [...products];
+
+  // Apply sorting
+  if (sortOrder === "price-asc") {
+    filteredProducts.sort((a, b) => a.price - b.price);
+  } else if (sortOrder === "price-desc") {
+    filteredProducts.sort((a, b) => b.price - a.price);
+  } else if (sortOrder === "name-asc") {
+    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortOrder === "name-desc") {
+    filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+  }
+
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const currentPage = totalPages > 0 ? Math.min(page, totalPages) : 1;
   const paginatedProducts = filteredProducts.slice(
@@ -42,14 +84,10 @@ export default function Shop() {
 
   const filterTabs = [
     { name: "All Products", slug: null },
-    { name: "Paint-by-Number", slug: "paint-by-number" },
-    { name: "Washable", slug: "washable-paint-by-number" },
-    { name: "Custom Canvas", slug: "custom" },
-    { name: "Plaster", slug: "plaster" },
-    { name: "Stuff-a-Bear", slug: "stuff-a-bear" },
-    { name: "Supplies", slug: "paint-and-supplies" },
-    { name: "Photo Pillows", slug: "photo-pillows" },
-    { name: "CandleArt", slug: "candleart" }
+    ...uniqueCategories.map(cat => ({
+      name: cat,
+      slug: cat.toLowerCase().trim().replace(/[\s_]+/g, '-').replace(/[^\w\-]+/g, '')
+    }))
   ];
 
   return (
@@ -67,23 +105,43 @@ export default function Shop() {
         </div>
       </div>
 
-      {/* Categories Filter Tabs */}
+      {/* Categories Filter Tabs & Sort */}
       <div className={styles.filterSection}>
         <div className="container">
-          <div className={styles.filterTabsWrapper}>
-            {filterTabs.map((tab) => {
-              const isActive = (!categorySlug && tab.slug === null) || (categorySlug === tab.slug);
-              return (
-                <Link
-                  key={tab.name}
-                  href={tab.slug ? `/shop/${tab.slug}` : "/shop"}
-                  className={`${styles.filterTab} ${isActive ? styles.filterTabActive : ""}`}
-                  onClick={() => setPage(1)}
-                >
-                  {tab.name}
-                </Link>
-              );
-            })}
+          <div className={styles.filterHeader}>
+            <div className={styles.filterTabsWrapper} ref={tabsRef}>
+              {filterTabs.map((tab) => {
+                const isActive = (!categorySlug && tab.slug === null) || (categorySlug === tab.slug);
+                return (
+                  <Link
+                    key={tab.name}
+                    href={tab.slug ? `/shop/${tab.slug}` : "/shop"}
+                    className={`${styles.filterTab} ${isActive ? styles.filterTabActive : ""}`}
+                    onClick={() => setPage(1)}
+                  >
+                    {tab.name}
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className={styles.sortSelectWrapper}>
+              <span className={styles.sortSelectLabel}>Sort by:</span>
+              <select
+                className={styles.sortSelect}
+                value={sortOrder}
+                onChange={(e) => {
+                  setSortOrder(e.target.value);
+                  setPage(1);
+                }}
+              >
+                <option value="">Featured</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="name-asc">Name: A to Z</option>
+                <option value="name-desc">Name: Z to A</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -112,7 +170,7 @@ export default function Shop() {
                       <img src={prod.images?.[0] || prod.image} alt={prod.name} className={styles.productRealImage} />
                     ) : (
                       /* CSS Mock Image for premium graphics */
-                      <div className={styles.productMockImage} style={{ 
+                      <div className={styles.productMockImage} style={{
                         background: `linear-gradient(135deg, var(--primary-bg) 0%, var(--primary-accent) 100%)`
                       }}>
                         <span className={styles.mockText}>🎨 {prod.category}</span>
@@ -120,9 +178,9 @@ export default function Shop() {
                     )}
 
                     {/* Notice Badges */}
-                    {prod.requiresQuote && (
+                    {prod.requiresQuote && prod.category !== 'Plaster' && (
                       <span className={`${styles.badge} ${styles.badgeQuote}`}>
-                        Quote Required
+                        Contact to Order
                       </span>
                     )}
                     {prod.minQty && prod.minQty > 1 && (
@@ -141,25 +199,43 @@ export default function Shop() {
                       </span>
                     )}
                   </div>
-                  
+
                   <div className={styles.productInfo}>
                     <span className={styles.productCat}>{prod.category}</span>
                     <h3 className={styles.productName}>{prod.name}</h3>
                     <p className={styles.productDesc}>
-                      {prod.description
-                        ? (prod.description.replace(/<[^>]*>?/gm, '').length > 90 
-                            ? `${prod.description.replace(/<[^>]*>?/gm, '').substring(0, 90)}...` 
-                            : prod.description.replace(/<[^>]*>?/gm, ''))
-                        : ''}
+                      {formatShopDescription(prod.description)}
                     </p>
-                    
+
                     <div className={styles.productFooter}>
-                      <span className={styles.productPrice}>
-                        {prod.price > 0 ? `$${prod.price.toFixed(2)}` : "Contact to Buy"}
-                      </span>
-                      <Link href={`/product/${prod.slug}`} className={`btn ${styles.productBtn}`}>
-                        {prod.requiresQuote ? "Request Quote" : "Add to Cart"}
-                      </Link>
+                      {prod.category === 'Plaster' ? (
+                        <>
+                          <span className={styles.productPrice} style={{ fontSize: '1rem', color: 'var(--muted-text)', fontWeight: 600 }}>
+                            In-Store Only
+                          </span>
+                          <Link href={`/product/${prod.slug}`} className={`btn ${styles.productBtn}`}>
+                            View Details
+                          </Link>
+                        </>
+                      ) : prod.requiresQuote ? (
+                        <>
+                          <span className={styles.productPrice} style={{ fontSize: '1rem', color: 'var(--muted-text)', fontWeight: 600 }}>
+                            Contact for Order
+                          </span>
+                          <Link href={`/product/${prod.slug}`} className={`btn ${styles.productBtn}`}>
+                            View Details
+                          </Link>
+                        </>
+                      ) : (
+                        <>
+                          <span className={styles.productPrice}>
+                            ${prod.price.toFixed(2)}
+                          </span>
+                          <Link href={`/product/${prod.slug}`} className={`btn ${styles.productBtn}`}>
+                            Add to Cart
+                          </Link>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>

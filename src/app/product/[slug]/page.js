@@ -108,9 +108,14 @@ export default function ProductDetail() {
       if (exists) {
         return prev.filter(a => a.name !== addon.name);
       } else {
-        return [...prev, addon];
+        return [...prev, { ...addon, quantity: 1 }];
       }
     });
+  };
+
+  const handleAddonQtyChange = (addonName, qty) => {
+    const parsed = parseInt(qty, 10) || 1;
+    setSelectedAddons(prev => prev.map(a => a.name === addonName ? { ...a, quantity: Math.max(1, parsed) } : a));
   };
 
   // Handle file uploads (converts to base64 for cart storage / preview)
@@ -146,14 +151,14 @@ export default function ProductDetail() {
 
   // Calculate dynamic price per unit
   const basePrice = product.price;
-  const addonsPrice = selectedAddons.reduce((sum, a) => sum + a.price, 0);
+  const addonsPrice = selectedAddons.reduce((sum, a) => sum + (a.price * (a.quantity || 1)), 0);
   const pricePerUnit = basePrice + addonsPrice;
   const totalPrice = pricePerUnit * quantity;
 
   // Add to cart form handler
   const handleAddToCart = (e) => {
     e.preventDefault();
-    
+
     // Validation: check upload
     if (product.hasUpload && !uploadFile) {
       alert("Please upload your photo before adding this custom product to the cart.");
@@ -170,7 +175,7 @@ export default function ProductDetail() {
       alert(result.message);
       return;
     }
-    
+
     setSuccessMsg("Success! Product has been added to your shopping cart.");
 
     // Clear messages after 4 seconds
@@ -236,7 +241,7 @@ export default function ProductDetail() {
           {/* Gallery Column */}
           <div className={styles.galleryColumn}>
             {/* Main Visual Frame */}
-            <div className={styles.visualFrame} style={{ 
+            <div className={styles.visualFrame} style={{
               background: `linear-gradient(135deg, var(--primary-bg) 0%, var(--primary-accent) 100%)`
             }}>
               {uploadFile ? (
@@ -250,7 +255,7 @@ export default function ProductDetail() {
                 </div>
               )}
             </div>
-            
+
             {uploadFile && (
               <div className={styles.previewCaption}>
                 <span>📸 Upload Preview: <strong>{uploadFileName}</strong></span>
@@ -263,7 +268,7 @@ export default function ProductDetail() {
                 </button>
               </div>
             )}
-            
+
             <div className={styles.badgeBanner}>
               <span>🛡️ Certified safe materials (SGS tested non-toxic)</span>
             </div>
@@ -273,22 +278,18 @@ export default function ProductDetail() {
           <div className={styles.configColumn}>
             <span className={styles.categoryTag}>{product.category}</span>
             <h1 className={styles.productTitle}>{product.name}</h1>
-            
-            <p className={styles.priceRow}>
-              {product.price > 0 ? (
-                <>
-                  <span className={styles.priceLabel}>Price:</span>
-                  <span className={styles.priceValue}>${product.price.toFixed(2)}</span>
-                  {addonsPrice > 0 && <span className={styles.addonsTotalLabel}> (+ addons)</span>}
-                </>
-              ) : (
-                <span className={styles.quoteOnly}>Wholesale Quote Required</span>
-              )}
-            </p>
 
-            <div 
-              className={styles.productDesc} 
-              dangerouslySetInnerHTML={{ __html: formatProductDescription(product.description) }} 
+            {product.price > 0 && (
+              <p className={styles.priceRow}>
+                <span className={styles.priceLabel}>Price:</span>
+                <span className={styles.priceValue}>${product.price.toFixed(2)}</span>
+                {addonsPrice > 0 && <span className={styles.addonsTotalLabel}> (+ addons)</span>}
+              </p>
+            )}
+
+            <div
+              className={styles.productDesc}
+              dangerouslySetInnerHTML={{ __html: formatProductDescription(product.description) }}
             />
 
             {/* Minimum Order Alert */}
@@ -309,20 +310,21 @@ export default function ProductDetail() {
             )}
 
             {product.requiresQuote ? (
-              /* Quote Mode for Plaster Crafts */
+              /* Quote Mode */
               <div className={styles.quoteBlock}>
-                <h3>How to Purchase Plaster Crafts:</h3>
+                <h3>{product.category === 'Plaster' ? 'Available In-Store Only' : 'Contact for Order'}</h3>
                 <p>
-                  Our plaster craft pieces are shipped in bulk bundles for schools, summer camps, and paint studios. 
-                  Online payment checkout is disabled. Please contact us to get a catalog copy and place an order.
+                  {product.category === 'Plaster' 
+                    ? 'Plaster is viewing online and can be purchased from our Lakewood location. For details, please email.'
+                    : 'Please contact us via email to request an order and finalize details for this item.'}
                 </p>
-                <Link 
-                  href={`/contact?subject=Quote%20Request%20-%20${encodeURIComponent(product.name)}`} 
-                  className="btn btn-primary" 
-                  style={{ width: "100%", marginTop: "16px" }}
+                <a
+                  href="mailto:info@dandicraft.com"
+                  className="btn btn-primary"
+                  style={{ display: "block", textAlign: "center", marginTop: "16px" }}
                 >
-                  Request Plaster Catalog Quote
-                </Link>
+                  Email for Details
+                </a>
               </div>
             ) : (
               /* Standard Add-to-Cart Configurations */
@@ -331,7 +333,7 @@ export default function ProductDetail() {
                 {product.options && product.options.map((opt) => (
                   <div key={opt.name} className={styles.optionGroup}>
                     <label className="form-label">{opt.name}:</label>
-                    
+
                     {opt.type === "swatch" ? (
                       <div className={styles.swatchList}>
                         {opt.values.map(val => {
@@ -395,8 +397,15 @@ export default function ProductDetail() {
                   <div className={styles.addonsSection}>
                     <label className="form-label">Select Add-ons (Optional):</label>
                     <div className={styles.addonsList}>
-                      {product.addons.map((addon) => {
-                        const isChecked = selectedAddons.some(a => a.name === addon.name);
+                      {product.addons.filter(addon => addon.name !== 'Select T-shirt' && addon.name !== 'Setup Fee').map((addon) => {
+                        const checkedAddon = selectedAddons.find(a => a.name === addon.name);
+                        const isChecked = !!checkedAddon;
+                        
+                        let displayImage = null;
+                        if (addon.image && typeof addon.image === 'string' && addon.image.trim() !== 'NULL' && addon.image.trim() !== '') {
+                          displayImage = addon.image.replace(/^https?:\/\/(www\.)?dandicraft\.com\/wp-content\/uploads\/\d{4}\/\d{2}\//i, '/uploads/');
+                        }
+
                         return (
                           <label key={addon.name} className={`${styles.addonLabel} ${isChecked ? styles.addonLabelChecked : ""}`}>
                             <input
@@ -408,8 +417,39 @@ export default function ProductDetail() {
                             <div className={styles.addonDetails}>
                               <span className={styles.addonName}>{addon.name}</span>
                               <span className={styles.addonDesc}>{addon.description}</span>
+                              {displayImage && (
+                                <img 
+                                  src={displayImage} 
+                                  alt={addon.name} 
+                                  className={styles.addonImage} 
+                                  style={{ marginTop: '8px', width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px', border: '1px solid var(--border-light)' }}
+                                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                                />
+                              )}
                             </div>
-                            <span className={styles.addonPrice}>+${addon.price.toFixed(2)}</span>
+                            
+                            <div className={styles.addonQtyWrapper} onClick={(e) => e.preventDefault()}>
+                              <span className={styles.qtyLabelSm}>Qty:</span>
+                              <input 
+                                type="number" 
+                                min="0" 
+                                value={isChecked ? (checkedAddon.quantity || 1) : 0} 
+                                onChange={(e) => {
+                                  const val = parseInt(e.target.value, 10) || 0;
+                                  if (val > 0) {
+                                    if (!isChecked) handleAddonToggle(addon);
+                                    handleAddonQtyChange(addon.name, val);
+                                  } else {
+                                    if (isChecked) handleAddonToggle(addon);
+                                  }
+                                }} 
+                                className={styles.addonQtyInput}
+                                title="Quantity"
+                              />
+                            </div>
+                            <span className={styles.addonPrice}>
+                              +${(addon.price * (isChecked ? (checkedAddon.quantity || 1) : 1)).toFixed(2)}
+                            </span>
                           </label>
                         );
                       })}
@@ -423,8 +463,8 @@ export default function ProductDetail() {
                   <div className={styles.quantityRow}>
                     <span className={styles.qtyLabel}>Quantity:</span>
                     <div className={styles.qtySelector}>
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         onClick={() => changeQuantity(-1)}
                         className={styles.qtyBtn}
                         disabled={quantity <= (product.minQty || 1)}
@@ -432,8 +472,8 @@ export default function ProductDetail() {
                         -
                       </button>
                       <span className={styles.qtyValue}>{quantity}</span>
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         onClick={() => changeQuantity(1)}
                         className={styles.qtyBtn}
                         disabled={product.trackInventory && quantity >= availableToAdd}
@@ -449,8 +489,8 @@ export default function ProductDetail() {
                     <span className={styles.subtotalValue}>${totalPrice.toFixed(2)}</span>
                   </div>
 
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="btn btn-primary"
                     style={{ width: "100%", padding: "14px 20px" }}
                     disabled={!canAddToCart}

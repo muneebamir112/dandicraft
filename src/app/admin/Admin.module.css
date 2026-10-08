@@ -81,6 +81,8 @@
 .builderHeader h3 { margin-bottom: 6px; font-size: 20px; color: #0f172a; }
 .builderRow { display: grid; grid-template-columns: 1fr 160px 1.6fr auto; gap: 16px; align-items: center; margin-top: 16px; background: rgba(248, 250, 252, 0.8); padding: 16px; border-radius: 16px; border: 1px solid rgba(226, 232, 240, 0.8); transition: all 0.2s; }
 .builderRow:hover { border-color: #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+.addonRow { display: grid; grid-template-columns: 1fr 1fr 120px 1.6fr auto; gap: 16px; align-items: center; margin-top: 16px; background: rgba(248, 250, 252, 0.8); padding: 16px; border-radius: 16px; border: 1px solid rgba(226, 232, 240, 0.8); transition: all 0.2s; }
+.addonRow:hover { border-color: #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
 .removeButton { border: none; background: rgba(239, 68, 68, 0.1); color: #ef4444; font-weight: 700; padding: 10px 16px; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
 .removeButton:hover { background: #ef4444; color: white; }
 .emptyBuilder { margin-top: 16px; color: #94a3b8; font-size: 14px; font-style: italic; padding: 20px; text-align: center; background: rgba(248, 250, 252, 0.5); border-radius: 16px; border: 1px dashed #cbd5e1; }
@@ -89,6 +91,9 @@
 /* Catalog */
 .catalogHeader { margin: 50px 0 24px; }
 .catalogHeader h2 { font-size: 32px; font-weight: 800; color: #0f172a; }
+.catalogFilters { display: flex; align-items: center; gap: 12px; }
+.categoryFilter { border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 16px; background: rgba(255, 255, 255, 0.9); color: #1e293b; font: inherit; font-size: 14px; outline: none; transition: all 0.2s; max-width: 200px; cursor: pointer; }
+.categoryFilter:focus { border-color: #6366f1; background: #fff; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); }
 .productGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
 .productCard { border: 1px solid rgba(226, 232, 240, 0.8); border-radius: 24px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); display: flex; flex-direction: column; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
 .productCard:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08); border-color: rgba(99, 102, 241, 0.3); }
