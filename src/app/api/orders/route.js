@@ -16,8 +16,9 @@ async function sendOrderConfirmation(orderNumber, formData, cartItems, totalAmou
 
     const itemsList = cartItems.map(item => {
       const price = item.basePrice ?? item.price ?? 0;
-      return `- ${item.name} x${item.quantity} ($${price.toFixed(2)})`;
-    }).join('\n');
+      // Add a direct link to the review section for this product
+      return `- ${item.name} x${item.quantity} ($${price.toFixed(2)})\n  Leave a review: https://dandicraft.com/product/${item.slug}#reviews-heading`;
+    }).join('\n\n');
     
     const emailBody = `Hello ${formData.fullName},
 
@@ -261,7 +262,7 @@ export async function POST(request) {
         if (xResult === "A") {
           await connection.execute(`UPDATE orders SET status = 'Processing' WHERE id = ?`, [orderId]);
           
-          sendOrderConfirmation(orderNumber, formData, cartItems, calculatedTotal).catch(console.error);
+          await sendOrderConfirmation(orderNumber, formData, cartItems, calculatedTotal).catch(console.error);
 
           return NextResponse.json({
             success: true,
@@ -278,7 +279,7 @@ export async function POST(request) {
         }, { status: 402 });
       }
 
-      sendOrderConfirmation(orderNumber, formData, cartItems, cartSubtotal).catch(console.error);
+      await sendOrderConfirmation(orderNumber, formData, cartItems, cartSubtotal).catch(console.error);
 
       // Cash payment response
       return NextResponse.json({

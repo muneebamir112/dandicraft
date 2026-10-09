@@ -5,10 +5,10 @@ from email.message import EmailMessage
 # SMTP CONFIGURATION
 # =========================
 
-SMTP_HOST = "smtpout.secureserver.net"
+SMTP_HOST = "smtp.hostinger.com"
 SMTP_PORT = 465
 SMTP_USERNAME = "info@dandicraft.com"
-SMTP_PASSWORD = "craft8471!"
+SMTP_PASSWORD = "Website8471!"
 SMTP_ENCRYPTION = "ssl"  # "ssl" or "tls"
 
 # Receiver
